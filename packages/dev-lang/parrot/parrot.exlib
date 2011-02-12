@@ -1,0 +1,87 @@
+# Copyright 2008, 2009, 2010 Ingmar Vanhassel <ingmar@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+myexparam release_type="stable"
+
+require multilib
+
+export_exlib_phases src_configure src_install src_test_expensive
+
+SUMMARY="A virtual machine designed to efficiently compile and execute bytecode for dynamic languages"
+DESCRIPTION="
+Parrot currently hosts a variety of language implementations in various stages
+of completion, including Tcl, Javascript, Ruby, Lua, Scheme, PHP, Python, Perl
+6, APL, and a .NET bytecode translator."
+HOMEPAGE="http://www.parrot.org"
+DOWNLOADS="ftp://ftp.parrot.org/pub/${PN}/releases/$(exparam release_type)/${PV}/${PNV}.tar.bz2 ${DOWNLOADS}"
+
+UPSTREAM_CHANGELOG="https://github.com/parrot/parrot/raw/master/ChangeLog"
+UPSTREAM_RELEASE_NOTES="${HOMEPAGE}/news/2010/${PN/p/P}-${PV}"
+
+BUGS_TO="ingmar@exherbo.org"
+
+SLOT="0"
+LICENCES="Artistic"
+# FIXME: disabling threads makes t/src/atomic.t fail
+MYOPTIONS="gmp icu opengl pcre readline vim-syntax"
+
+DEPENDENCIES="
+    build:
+        dev-lang/perl:*[>5&<6]
+        sys-devel/gettext
+    build+run:
+        dev-libs/openssl
+        sys-libs/ncurses
+        sys-libs/zlib
+        gmp? ( dev-libs/gmp )
+        icu? ( dev-libs/icu )
+        opengl? (
+            x11-dri/mesa
+            x11-dri/freeglut
+        )
+        pcre? ( dev-libs/pcre )
+        readline? ( sys-libs/readline )
+"
+
+parrot_src_configure() {
+    edo perl Configure.pl \
+        --prefix=/usr \
+        --libdir=/usr/$(get_libdir) \
+        --infodir=/usr/share/info \
+        --mandir=/usr/share/man \
+        --optimize="${CFLAGS}" \
+        $(option gmp || echo --without-gmp) \
+        $(option icu || echo --without-icu) \
+        $(option opengl || echo --without-opengl) \
+        $(option pcre || echo --without-pcre) \
+        $(option readline || echo --without-readline)
+}
+
+parrot_src_install() {
+    # Install nqp (not quite perl), necessary to build rakudo against an installed parrot
+    # Could be optional for bin packages
+    emake -j1 DESTDIR="${IMAGE}" install-dev install
+    # .pod docs
+    emake -j1 DESTDIR="${IMAGE}" docs
+    if option vim-syntax ; then
+        emake -j1 -C editor VIM_DIR="${IMAGE}/usr/share/vim/vimfiles" vim-install
+    fi
+    emagicdocs
+}
+
+parrot_src_test() {
+    emake check TEST_JOBS="${EXJOBS:-1}"
+}
+
+# We run a default, fast testsuite, as well an optional extensive testsuite:
+parrot_src_test_expensive() {
+    emake fulltest TEST_JOBS="${EXJOBS:-1}"
+}
+
+src_install() {
+    default
+
+    # Installed as readable by root by default only, needed by rakudo
+    edo chmod a+r "${IMAGE}"/usr/$(get_libdir)/${PN}/*/parrot_config.o
+}
+
