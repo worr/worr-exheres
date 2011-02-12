@@ -43,7 +43,8 @@ DEPENDENCIES="
         readline? ( sys-libs/readline )
 "
 
-PARROT_CONFIG_OPTIONS="
+parrot_src_configure() {
+    edo perl Configure.pl \
         --prefix=/usr \
         --libdir=/usr/$(get_libdir) \
         --infodir=/usr/share/info \
@@ -54,12 +55,6 @@ PARROT_CONFIG_OPTIONS="
         $(option opengl || echo --without-opengl) \
         $(option pcre || echo --without-pcre) \
         $(option readline || echo --without-readline)
-"
-
-
-parrot_src_configure() {
-    edo perl Configure.pl \
-        ${PARROT_CONFIG_OPTIONS}
 }
 
 parrot_src_install() {
