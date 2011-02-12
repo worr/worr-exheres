@@ -27,4 +27,10 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-SCONS_SRC_INSTALL_PARAMS=( "PREFIX=/usr" )
+SCONS_SRC_INSTALL_PARAMS=( "PREFIX=${IMAGE}/usr" )
+
+src_install {
+    if [[ ! -d ${IMAGE}/usr ]]; then
+        mkdir ${IMAGE}/usr
+    fi
+}
