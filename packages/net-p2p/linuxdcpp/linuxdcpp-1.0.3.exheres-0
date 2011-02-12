@@ -33,5 +33,5 @@ src_install {
     if [[ ! -d ${IMAGE}/usr ]]; then
         mkdir ${IMAGE}/usr
     fi
-    default
+    scons_src_install
 }
