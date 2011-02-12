@@ -29,9 +29,8 @@ BUGS_TO="will@worrbase.com"
 
 SCONS_SRC_INSTALL_PARAMS=( "PREFIX=${IMAGE}/usr" )
 
-src_install {
+src_install() {
     if [[ ! -d ${IMAGE}/usr ]]; then
         mkdir ${IMAGE}/usr
     fi
-    scons_src_install
 }
