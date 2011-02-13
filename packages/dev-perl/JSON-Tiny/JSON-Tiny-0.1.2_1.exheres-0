@@ -6,7 +6,7 @@ require perl-module [ module_author=moritz ]
 SUMMARY="Perl6 JSON parser"
 
 SLOT="0"
-PLATFORMS=""
+PLATFORMS="~amd64"
 MYOPTIONS=""
 
 BUGS_TO="will@worrbase.com"
