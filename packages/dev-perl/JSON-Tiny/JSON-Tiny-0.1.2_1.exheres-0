@@ -1,8 +1,6 @@
 # Copyright 2011 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require JSON-Tiny [ module_author=MORITZ ]
-
 SUMMARY="Perl6 JSON parser"
 
 HOMEPAGE="http://search.cpan.org/dist/${MY_PN:-${PN}}/"
