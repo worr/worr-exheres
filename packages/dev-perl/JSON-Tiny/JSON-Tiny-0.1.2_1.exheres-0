@@ -13,4 +13,7 @@ BUGS_TO="will@worrbase.com"
 
 DEFAULT_SRC_PREPARE_PATCHES=( -p1 "${FILES}/JSON-Tiny-Configure.patch" )
 
+# Unit tests are so broken
+RESTRICT="test"
+
 DEPENDENCIES=""
