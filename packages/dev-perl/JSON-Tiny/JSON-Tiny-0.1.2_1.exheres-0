@@ -41,7 +41,7 @@ src_configure() {
 src_install() {
     PERL6LIB="${IMAGE}/usr/lib64/parrot/3.0.0-devel/languages/perl6/lib"
     JSON="${PERL6LIB}/JSON"
-    TINY="${PERL6LIB}/Tiny"
+    TINY="${JSON}/Tiny"
     mkdir -p ${TINY}
     for lib in Tiny.pir Tiny.pm; do
         install "${WORK}/lib/JSON/${lib}" "${JSON}/${lib}"
