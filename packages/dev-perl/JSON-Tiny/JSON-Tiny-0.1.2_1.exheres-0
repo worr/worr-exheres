@@ -27,7 +27,6 @@ DEPENDENCIES="
         dev-lang/parrot[>=3.0.0]
 "
 
-
 src_configure() {
     export PERL6LIB="/usr/lib64/parrot/3.0.0-devel/languages/perl6/lib"
     export RAKUDO_DIR="/usr/lib64/parrot/3.0.0-devel/languages/perl6"
@@ -37,4 +36,18 @@ src_configure() {
     if [[ -f Configure ]]; then
         edo perl6 Configure
     fi
+}
+
+src_install() {
+    PERL6LIB="${IMAGE}/usr/lib64/parrot/3.0.0-devel/languages/perl6/lib"
+    JSON="${PERL6LIB}/JSON"
+    TINY="${PERL6LIB}/Tiny"
+    mkdir -p ${TINY}
+    for lib in Tiny.pir Tiny.pm; do
+        install "${WORK}/${PNVR}/lib/JSON/${lib}" "${JSON}"
+    done
+
+    for lib in Actions.pir Actions.pm Grammar.pm Grammar.pir; do
+        install "${WORK}/${PNVR}/lib/JSON/${lib}" "${TINY}"
+    done
 }
