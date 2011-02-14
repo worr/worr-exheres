@@ -27,15 +27,13 @@ DEPENDENCIES="
         dev-lang/parrot[>=3.0.0]
 "
 
-PERL6LIB="/usr/lib64/parrot/3.0.0-devel/languages/perl6/lib"
-RAKUDO_DIR="/usr/lib64/parrot/3.0.0-devel/languages/perl6"
-PARROT_DIR=$(which parrot)
-PARROT_DIR=${PARROT_DIR%parrot}
 
 src_configure() {
-    export ${PERL6LIB}
-    export ${RAKUDO_DIR}
-    export ${PARROT_DIR}
+    export PERL6LIB="/usr/lib64/parrot/3.0.0-devel/languages/perl6/lib"
+    export RAKUDO_DIR="/usr/lib64/parrot/3.0.0-devel/languages/perl6"
+    PARROT_DIR=$(which parrot)
+    export PARROT_DIR=${PARROT_DIR%parrot}
+
     if [[ -f Configure ]]; then
         edo perl6 Configure
     fi
