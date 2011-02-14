@@ -36,7 +36,7 @@ DEPENDENCIES="build+run: dev-lang/rakudo:="
 
 JSON-Tiny_src_configure() {
     if [[ -f Configure ]]; then
-        export PERL6_LIB=/usr/lib64/parrot/3.0.0-devel/languages/perl6/lib
+        export PERL6LIB=/usr/lib64/parrot/3.0.0-devel/languages/perl6/lib
         export RAKUDO_DIR=/usr/lib64/parrot/3.0.0-devel/languages/perl6
         edo perl6 Configure
     fi
