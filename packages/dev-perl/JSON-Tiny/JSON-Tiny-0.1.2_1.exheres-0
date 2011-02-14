@@ -33,6 +33,9 @@ PARROT_DIR=$(which parrot)
 PARROT_DIR=${PARROT_DIR%parrot}
 
 src_configure() {
+    export ${PERL6LIB}
+    export ${RAKUDO_DIR}
+    export ${PARROT_DIR}
     if [[ -f Configure ]]; then
         edo perl6 Configure
     fi
