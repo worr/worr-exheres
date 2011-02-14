@@ -5,15 +5,36 @@ require JSON-Tiny [ module_author=MORITZ ]
 
 SUMMARY="Perl6 JSON parser"
 
+HOMEPAGE="http://search.cpan.org/dist/${MY_PN:-${PN}}/"
+DOWNLOADS="mirror://cpan/authors/id/M/MO/MORITZ/${MY_PNV:-${PNV}}.tar.gz"
+BUGS_TO="will@worrbase.com"
+REMOTE_IDS="cpan:${MY_PN:-${PN}}"
+UPSTREAM_CHANGELOG="http://search.cpan.org/dist/${MY_PNV:-${PNV}}/Changes"
+
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
+
+LICENCES="Artistic"
 
 BUGS_TO="will@worrbase.com"
 
 DEFAULT_SRC_PREPARE_PATCHES=( -p1 "${FILES}/JSON-Tiny-Configure.patch" )
 
-# Unit tests are so broken
 RESTRICT="test"
 
-DEPENDENCIES=""
+DEPENDENCIES="
+    build+run:
+        dev-lang/rakudo:=
+        dev-lang/parrot[>=3.0.0]
+"
+
+src_configure() {
+    if [[ -f Configure ]]; then
+        export PERL6LIB=/usr/lib64/parrot/*/languages/perl6/lib
+        export RAKUDO_DIR=/usr/lib64/parrot/*/languages/perl6
+        export PARROT_DIR=$(which parrot)
+        export PARROT_DIR=${PARROT_DIR%parrot}
+        edo perl6 Configure
+    fi
+}
