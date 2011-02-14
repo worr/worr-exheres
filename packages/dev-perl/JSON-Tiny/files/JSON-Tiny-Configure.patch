@@ -1,7 +1,7 @@
 diff -rNu JSON-Tiny-0.1.2_1/Configure JSON-Tiny-0.1.2_1.new/Configure
 +++ JSON-Tiny-0.1.2_1/Configure	2011-02-13 22:05:30.887671000 -0500
 --- JSON-Tiny-0.1.2_1.new/Configure	2009-06-17 15:06:12.000000000 -0400
-@@ -1,152 +1,4 @@
+@@ +1,152 -1,4 @@
 +# Configure.pm
 +
 +.say for
@@ -161,7 +161,7 @@ diff -rNu JSON-Tiny-0.1.2_1/Configure JSON-Tiny-0.1.2_1.new/Configure
 diff -rNu JSON-Tiny-0.1.2_1/lib/Configure.pm JSON-Tiny-0.1.2_1.new/lib/Configure.pm
 +++ JSON-Tiny-0.1.2_1/lib/Configure.pm	1969-12-31 19:00:00.000000000 -0500
 --- JSON-Tiny-0.1.2_1.new/lib/Configure.pm	2009-06-17 15:06:12.000000000 -0400
-@@ -0,0 +1,143 @@
+@@ +0,0 -1,143 @@
 -# Configure.pm
 -
 -.say for
