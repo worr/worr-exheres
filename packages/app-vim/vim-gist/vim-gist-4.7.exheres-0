@@ -1,0 +1,25 @@
+# Copyright 2011 <name>
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin [ vim_version=7.0 script_id=2423 src_id=14679 src_suffix=vim script_type=utility ]
+
+SUMMARY="vim plugin to interact with gist.github.com"
+DESCRIPTION="
+    A vim plugin to view, post and edit gists on gist.github.com
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+"
+
+BUGS_TO=""
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( )
+
+
