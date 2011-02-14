@@ -34,48 +34,10 @@ LICENCES="${LICENCES:-|| ( Artistic GPL-1 GPL-2 GPL-3 )}"
 
 DEPENDENCIES="build+run: dev-lang/rakudo:="
 
-perl-module_src_configure() {
+JSON-Tiny_src_configure() {
     if [[ -f Configure ]]; then
         export PERL6_LIB=/usr/lib64/parrot/3.0.0-devel/languages/perl6/lib
         export RAKUDO_DIR=/usr/lib64/parrot/3.0.0-devel/languages/perl6
         edo perl6 Configure
-    fi
-}
-
-perl-module_src_compile() {
-    if [[ -f Makefile ]]; then
-        default
-    fi
-}
-
-perl-module_src_test() {
-    if [[ -f Makefile ]]; then
-        default
-    fi
-}
-
-perl-module_src_install() {
-    if [[ -f Makefile ]]; then
-        default
-    fi
-
-    if [[ -d ${IMAGE}/usr/share/man ]] ; then
-        edo find "${IMAGE}"/usr/share/man -type f -name "*.3pm*" -delete
-        edo find "${IMAGE}"/usr/share/man -depth -type d -empty -delete
-    fi
-
-    fixlocalpod
-
-    find "${IMAGE}" -type f | grep -v '\.so' | while read file
-    do
-        stat=$(file "${file}" | grep -i " text")
-        if [[ -n "${stat}" ]]; then
-            sed -i -e "s:${IMAGE}:/:g" "${file}"
-        fi
-    done
-
-    if [[ -d "${IMAGE}/usr/$(get_libdir)" ]] ; then
-        edo find "${IMAGE}/usr/$(get_libdir)" -type f -name .packlist -delete
-        edo find "${IMAGE}/usr/$(get_libdir)" -depth -type d -empty -delete
     fi
 }
