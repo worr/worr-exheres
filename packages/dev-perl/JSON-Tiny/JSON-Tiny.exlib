@@ -13,7 +13,7 @@
 
 require multilib
 
-export_exlib_phases src_configure src_compile src_test src_install
+export_exlib_phases src_configure
 
 myexparam module_author=
 myexparam module_extension=.tar.gz
