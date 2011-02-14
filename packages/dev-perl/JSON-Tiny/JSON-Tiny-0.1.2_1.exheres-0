@@ -48,6 +48,6 @@ src_install() {
     done
 
     for lib in Actions.pir Actions.pm Grammar.pm Grammar.pir; do
-        install "${WORK}/lib/JSON/${lib}" "${TINY}"
+        install "${WORK}/lib/JSON/Tiny/${lib}" "${TINY}"
     done
 }
