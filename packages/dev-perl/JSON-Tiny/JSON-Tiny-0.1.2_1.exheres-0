@@ -1,7 +1,7 @@
 # Copyright 2011 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require perl-module [ module_author=MORITZ ]
+require JSON-Tiny [ module_author=MORITZ ]
 
 SUMMARY="Perl6 JSON parser"
 

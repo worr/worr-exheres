@@ -1,0 +1,81 @@
+# Copyright 2008, 2009, 2010 Ingmar Vanhassel <ingmar@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+#
+# Based in part upon 'perl-module.eclass' which is
+#   Copyright 1999-2007 Gentoo Foundation
+#
+#   Adapted for Perl6:
+#       Will Orr <will@worrbase.com>
+#   Original Authors:
+#       Seemant Kulleen <seemant@gentoo.org>
+#       Robin Johnson <robbat2@gentoo.org>
+#       Michael Cummings <mcummings@gentoo.org>
+
+require multilib
+
+export_exlib_phases src_configure src_compile src_test src_install
+
+myexparam module_author=
+myexparam module_extension=.tar.gz
+
+exparam -v MODULE_AUTHOR module_author
+exparam -v MODULE_EXTENSION module_extension
+
+if [[ -z ${HOMEPAGE} && -z ${DOWNLOADS} && -n ${MODULE_AUTHOR} ]]; then
+    HOMEPAGE="http://search.cpan.org/dist/${MY_PN:-${PN}}/"
+    DOWNLOADS="mirror://cpan/authors/id/${MODULE_AUTHOR:0:1}/${MODULE_AUTHOR:0:2}/${MODULE_AUTHOR}/${MY_PNV:-${PNV}}${MODULE_EXTENSION}"
+    BUGS_TO="will@worrbase.com"
+    REMOTE_IDS="cpan:${MY_PN:-${PN}}"
+    UPSTREAM_CHANGELOG="http://search.cpan.org/dist/${MY_PNV:-${PNV}}/Changes"
+fi
+
+# Default license, for packages licensed under perl's terms.
+LICENCES="${LICENCES:-|| ( Artistic GPL-1 GPL-2 GPL-3 )}"
+
+DEPENDENCIES="build+run: dev-lang/rakudo:="
+
+perl-module_src_configure() {
+    if [[ -f Configure ]]; then
+        export PERL6_LIB=/usr/lib64/parrot/3.0.0-devel/languages/perl6/lib
+        export RAKUDO_DIR=/usr/lib64/parrot/3.0.0-devel/languages/perl6
+        edo perl6 Configure
+    fi
+}
+
+perl-module_src_compile() {
+    if [[ -f Makefile ]]; then
+        default
+    fi
+}
+
+perl-module_src_test() {
+    if [[ -f Makefile ]]; then
+        default
+    fi
+}
+
+perl-module_src_install() {
+    if [[ -f Makefile ]]; then
+        default
+    fi
+
+    if [[ -d ${IMAGE}/usr/share/man ]] ; then
+        edo find "${IMAGE}"/usr/share/man -type f -name "*.3pm*" -delete
+        edo find "${IMAGE}"/usr/share/man -depth -type d -empty -delete
+    fi
+
+    fixlocalpod
+
+    find "${IMAGE}" -type f | grep -v '\.so' | while read file
+    do
+        stat=$(file "${file}" | grep -i " text")
+        if [[ -n "${stat}" ]]; then
+            sed -i -e "s:${IMAGE}:/:g" "${file}"
+        fi
+    done
+
+    if [[ -d "${IMAGE}/usr/$(get_libdir)" ]] ; then
+        edo find "${IMAGE}/usr/$(get_libdir)" -type f -name .packlist -delete
+        edo find "${IMAGE}/usr/$(get_libdir)" -depth -type d -empty -delete
+    fi
+}
