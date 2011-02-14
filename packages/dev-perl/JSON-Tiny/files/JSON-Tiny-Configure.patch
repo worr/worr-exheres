@@ -1,8 +1,12 @@
-diff -rNu JSON-Tiny-0.1.2_1/Configure JSON-Tiny-0.1.2_1.new/Configure
---- JSON-Tiny-0.1.2_1.new/Configure	2009-06-17 15:06:12.000000000 -0400
-+++ JSON-Tiny-0.1.2_1/Configure	2011-02-13 22:05:30.887671000 -0500
-@@ +1,152 -1,4 @@
-+# Configure.pm
+diff --git a/Configure b/Configure
+index 6cf20bc..dcb9961 100755
+--- a/Configure
++++ b/Configure
+@@ -1,4 +1,149 @@
+-#!perl6
+ use v6;
+-BEGIN { @*INC.push('lib') }
+-use Configure;
 +
 +.say for
 +    '',
@@ -23,9 +27,6 @@ diff -rNu JSON-Tiny-0.1.2_1/Configure JSON-Tiny-0.1.2_1.new/Configure
 +
 +my regex parrot_in_rakudo { ( .* '/rakudo' ) '/parrot' }
 +
-+say %*ENV<RAKUDO_DIR>;
-+say %*ENV<PERL6LIB>;
-+
 +# There are two possible relationships between the parrot and rakudo
 +# directories: rakudo/parrot or parrot/languages/rakudo
 +if $parrot_dir ~~ / <parrot_in_rakudo=&parrot_in_rakudo> / {
@@ -36,11 +37,11 @@ diff -rNu JSON-Tiny-0.1.2_1/Configure JSON-Tiny-0.1.2_1.new/Configure
 +elsif "$parrot_dir/languages/rakudo".IO ~~ :d {
 +    # second case, parrot/languages/rakudo if installed the old way
 +    $rakudo_dir = "$parrot_dir/languages/rakudo";
-+}
++} 
 +elsif defined %*ENV<RAKUDO_DIR> {
-+    $rakudo_dir = %*ENV<RAKUDO_DIR>
-+    $parrot_dir = %*ENV<PARROT_DIR>
-+}
++    $rakudo_dir = %*ENV<RAKUDO_DIR>;
++    $parrot_dir = %*ENV<PARROT_DIR>;
++} 
 +else { # anything else 
 +    .say for
 +        "Found a PARROT_DIR to be $parrot_dir",
@@ -154,14 +155,12 @@ diff -rNu JSON-Tiny-0.1.2_1/Configure JSON-Tiny-0.1.2_1.new/Configure
 +Martin Berends (mberends on CPAN github #perl6 and @autoexec.demon.nl).
 +
 +=end pod
--#!perl6
--use v6;
--BEGIN { @*INC.push('lib') }
--use Configure;
-diff -rNu JSON-Tiny-0.1.2_1/lib/Configure.pm JSON-Tiny-0.1.2_1.new/lib/Configure.pm
---- JSON-Tiny-0.1.2_1.new/lib/Configure.pm	2009-06-17 15:06:12.000000000 -0400
-+++ JSON-Tiny-0.1.2_1/lib/Configure.pm	1969-12-31 19:00:00.000000000 -0500
-@@ +1,143 -0,0 @@
+diff --git a/lib/Configure.pm b/lib/Configure.pm
+deleted file mode 100644
+index a295593..0000000
+--- a/lib/Configure.pm
++++ /dev/null
+@@ -1,143 +0,0 @@
 -# Configure.pm
 -
 -.say for
@@ -305,3 +304,6 @@ diff -rNu JSON-Tiny-0.1.2_1/lib/Configure.pm JSON-Tiny-0.1.2_1.new/lib/Configure
 -Martin Berends (mberends on CPAN github #perl6 and @autoexec.demon.nl).
 -
 -=end pod
+-- 
+1.7.4.1
+
