@@ -38,7 +38,8 @@ JSON-Tiny_src_configure() {
     if [[ -f Configure ]]; then
         export PERL6LIB=/usr/lib64/parrot/*/languages/perl6/lib
         export RAKUDO_DIR=/usr/lib64/parrot/*/languages/perl6
-        export PARROT_DIR=${$(which parrot)%parrot}
+        export PARROT_DIR=$(which parrot)
+        export PARROT_DIR=${PARROT_DIR%parrot}
         edo perl6 Configure
     fi
 }
