@@ -1,0 +1,33 @@
+--- Configure.pm	2009-06-18 05:35:13.000000000 -0400
++++ Configure.pm.new	2011-02-13 18:51:16.291671001 -0500
+@@ -10,9 +10,9 @@
+ # PERL6       how to execute a Perl 6 script
+ # PERL6LIB    initial value of @*INC, where 'use <module>;' searches
+ # PERL6BIN    directory where executables such as 'prove' reside
+-# RAKUDO_DIR  (deprecated) currently the location of Rakudo's Test.pm
++# RAKUDO_DIR  location of rakudo installation
+ 
+-my $parrot_dir = %*VM<config><build_dir>;
++my $parrot_dir = $PROCESS::VM<config><build_dir>;
+ my $rakudo_dir;
+ my $perl6;
+ 
+@@ -29,6 +29,9 @@
+     # second case, parrot/languages/rakudo if installed the old way
+     $rakudo_dir = "$parrot_dir/languages/rakudo";
+ }
++elsif defined(%*ENV<RAKUDO_DIR>) {
++    $rakudo_dir = %*ENV<RAKUDO_DIR>
++}
+ else { # anything else 
+     .say for
+         "Found a PARROT_DIR to be $parrot_dir",
+@@ -135,7 +138,7 @@
+  <PERL6>        pathname of Perl 6 (fake)executable
+  <PERL6LIB>     lib/ directory of the installed project
+  <PERL6BIN>     bin/ directory of the installed project
+- <RAKUDO_DIR>   whence Rakudo's Test.pm can be compiled
++ <RAKUDO_DIR>   location of rakudo installation
+ 
+ =head1 AUTHOR
+ Martin Berends (mberends on CPAN github #perl6 and @autoexec.demon.nl).
