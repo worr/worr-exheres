@@ -11,6 +11,6 @@ MYOPTIONS=""
 
 BUGS_TO="will@worrbase.com"
 
-DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}/JSON-Tiny-Configure.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( -p1 "${FILES}/JSON-Tiny-Configure.patch" )
 
 DEPENDENCIES=""
