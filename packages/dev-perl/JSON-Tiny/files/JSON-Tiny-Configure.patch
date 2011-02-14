@@ -304,6 +304,28 @@ index a295593..0000000
 -Martin Berends (mberends on CPAN github #perl6 and @autoexec.demon.nl).
 -
 -=end pod
+diff --git a/lib/JSON/Tiny/Actions.pm b/lib/JSON/Tiny/Actions.pm
+index d2e7ffb..2103de1 100644
+--- a/lib/JSON/Tiny/Actions.pm
++++ b/lib/JSON/Tiny/Actions.pm
+@@ -16,7 +16,7 @@ method pairlist($/) {
+         make %r;
+     }
+     else {
+-        make undef;
++        make Nil;
+     }
+ }
+ 
+@@ -44,7 +44,7 @@ method value($/, $what) {
+     given $what {
+         when 'true'     { make Bool::True  };
+         when 'false'    { make Bool::False };
+-        when 'null'     { make undef       };
++        when 'null'     { make Mu       };
+         when *          { make $/{$_}.ast  };
+     }
+ }
 -- 
 1.7.4.1
 
