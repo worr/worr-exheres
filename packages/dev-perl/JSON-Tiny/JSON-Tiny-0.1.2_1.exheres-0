@@ -44,10 +44,10 @@ src_install() {
     TINY="${PERL6LIB}/Tiny"
     mkdir -p ${TINY}
     for lib in Tiny.pir Tiny.pm; do
-        install "${WORK}/lib/JSON/${lib}" "${JSON}"
+        install "${WORK}/lib/JSON/${lib}" "${JSON}/${lib}"
     done
 
     for lib in Actions.pir Actions.pm Grammar.pm Grammar.pir; do
-        install "${WORK}/lib/JSON/Tiny/${lib}" "${TINY}"
+        install "${WORK}/lib/JSON/Tiny/${lib}" "${TINY}/${lib}"
     done
 }
