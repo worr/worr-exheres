@@ -1,0 +1,13 @@
+# Copyright 2008 Anders Ossowicki <arkanoid@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=KGRENNAN ]
+
+SUMMARY="OAuth protocol support in Perl"
+DESCRIPTION="This module allows you to programmatically authenticate to web
+sites that use the OAuth protocol"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
