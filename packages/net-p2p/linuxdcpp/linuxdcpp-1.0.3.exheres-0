@@ -1,6 +1,0 @@
-# Copyright 2011 William Orr <will@worrbase.com>
-# Distributed under the terms of the GNU General Public License v2
-
-require linuxdcpp
-
-PLATFORMS="~x86 ~amd64"

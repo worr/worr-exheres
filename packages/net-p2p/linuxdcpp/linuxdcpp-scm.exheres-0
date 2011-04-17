@@ -5,14 +5,3 @@ SCM_REPOSITORY="http://bazaar.launchpad.net/~linuxdcpp-team/linuxdcpp/trunk/"
 PLATFORMS="~amd64 ~x86"
 
 require scm-bzr linuxdcpp
-
-DEPENDENCIES="
-    build:
-        dev-util/pkg-config
-    build+run:
-        x11-libs/gtk+[>=2.10]
-        gnome-platform/libglade[>=2.4]
-        app-arch/libarchive
-        dev-libs/openssl
-        dev-libs/boost
-"
