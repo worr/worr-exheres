@@ -38,8 +38,6 @@ src_install() {
 
     insinto /usr/share/icons
     doins icons/*
-    insinto /usr/share/icons/hicolor
-    doins icons/hicolor/*
 
     dodir /usr/local/share
     dosym /usr/share/${PN} /usr/local/share/${PN}
