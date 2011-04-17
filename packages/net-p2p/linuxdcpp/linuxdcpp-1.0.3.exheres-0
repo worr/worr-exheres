@@ -39,7 +39,6 @@ src_install() {
     insinto /usr/share/${PN}/glade
     doins glade/*
 
-    mkdir /usr/local/share
     dosym /usr/share/${PN} /usr/local/share/${PN}
 
     dodoc Readme.txt Changelog.txt Credits.txt
