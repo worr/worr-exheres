@@ -33,6 +33,9 @@ src_install() {
     insinto /usr/share/${PN}
     doins ${PN}
 
+    insinto /usr/share/${PN}/glade
+    doins glade/*
+
     dodoc Readme.txt Changelog.txt Credits.txt
 
     dobin linuxdcpp
