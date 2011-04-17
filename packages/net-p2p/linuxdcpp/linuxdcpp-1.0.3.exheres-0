@@ -27,12 +27,20 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-SCONS_SRC_INSTALL_PARAMS=( "PREFIX=${IMAGE}usr" )
+SCONS_SRC_INSTALL_PARAMS=( "PREFIX=/usr" )
 
 src_install() {
-    if [[ ! -d ${IMAGE}usr ]]; then
-        mkdir ${IMAGE}usr
-    fi
+    insinto /usr/share/${PN}
+    doins ${PN}
+
+    insinto /usr/share/${PN}
+    doins pixmaps/*
+
+    insinto /usr/share/${PN}/glade
+    doins glade/*
+
+    dodoc Readme.txt Changelog.txt Credits.txt
+
     dobin linuxdcpp
     default
 }
