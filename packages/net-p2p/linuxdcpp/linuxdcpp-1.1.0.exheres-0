@@ -1,6 +1,18 @@
 # Copyright 2011 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require linuxdcpp
 
 PLATFORMS="~x86 ~amd64"
+
+require linuxdcpp
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        x11-libs/gtk+[>=2.10]
+        gnome-platform/libglade[>=2.4]
+        app-arch/libarchive
+        dev-libs/openssl
+        dev-libs/boost
+"
