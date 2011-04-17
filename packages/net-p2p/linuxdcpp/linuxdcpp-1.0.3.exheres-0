@@ -33,7 +33,7 @@ src_install() {
     insinto /usr/share/${PN}
     doins ${PN}
 
-    insinto /usr/share/${PN}
+    insinto /usr/share/${PN}/pixmaps
     doins pixmaps/*
 
     insinto /usr/share/${PN}/glade
