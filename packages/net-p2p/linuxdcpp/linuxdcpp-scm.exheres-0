@@ -1,4 +1,6 @@
 # Copyright 2011 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require linuxdcpp
+REPOSITORY=lp:linuxdcpp
+
+require scm-bzr linuxdcpp
