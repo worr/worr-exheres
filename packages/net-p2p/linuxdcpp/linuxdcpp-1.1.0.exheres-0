@@ -4,4 +4,4 @@
 
 PLATFORMS="~x86 ~amd64"
 
-require linuxdcpp
+require linuxdcpp launchpad [ suffix=tar.bz2 ]
