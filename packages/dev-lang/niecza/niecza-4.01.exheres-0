@@ -20,7 +20,7 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-niecza_src_unpack {
+src_unpack {
+    mkdir ${PN}-${PV}
     [[ -n "${ARCHIVES}" ]] && unzip ${ARCHIVES} -d ${PN}-${PV}
-    default
 }
