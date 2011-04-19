@@ -16,8 +16,12 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
-    build:
     build+run:
+        x11-libs/libX11
+        x11-libs/libxcb
+        x11-libs/libXdmcp
+        x11-libs/libXau
+        x11-libs/libXext
 "
 
 BUGS_TO="will@worrbase.com"
