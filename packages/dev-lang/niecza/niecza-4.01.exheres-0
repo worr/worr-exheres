@@ -22,5 +22,5 @@ BUGS_TO="will@worrbase.com"
 
 src_unpack() {
     mkdir "${WORK}"
-    [[ -n "${ARCHIVES}" ]] && unzip "${FETCHDIR}/${ARCHIVES}" -d "${WORK}"
+    [[ -n "${ARCHIVES}" ]] && unzip "${FETCHEDDIR}/${ARCHIVES}" -d "${WORK}"
 }
