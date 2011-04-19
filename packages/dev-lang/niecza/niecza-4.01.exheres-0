@@ -21,6 +21,6 @@ DEPENDENCIES="
 BUGS_TO="will@worrbase.com"
 
 src_unpack() {
-    mkdir ${WORK}
-    [[ -n "${ARCHIVES}" ]] && unzip ${ARCHIVES} -d ${WORK}
+    mkdir "${WORK}"
+    [[ -n "${ARCHIVES}" ]] && unzip "${FETCHDIR}/${ARCHIVES}" -d "${WORK}"
 }
