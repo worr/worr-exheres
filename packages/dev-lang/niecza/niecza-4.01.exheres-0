@@ -20,7 +20,7 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-src_unpack {
-    mkdir ${WORK}/${PN}\-${PV}
+src_unpack() {
+    mkdir ${PN}\-${PV}
     [[ -n "${ARCHIVES}" ]] && unzip ${ARCHIVES} -d ${PN}\-${PV}
 }
