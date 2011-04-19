@@ -10,7 +10,7 @@ pub.
 HOMEPAGE="http://tools.suckless.org/slock"
 DOWNLOADS="http://dl.suckless.org/tools/slock-0.9.tar.gz"
 
-LICENCES=""
+LICENCES="MIT"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
