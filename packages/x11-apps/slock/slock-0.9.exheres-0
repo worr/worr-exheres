@@ -1,0 +1,27 @@
+# Copyright 2011 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="The simple X display locker"
+DESCRIPTION="
+This is the simplest X screen locker we are aware of. It is stable and quite a lot of people in our
+community are using it every day when they are out with friends or fetching some food from the local
+pub.
+"
+HOMEPAGE="http://tools.suckless.org/slock"
+DOWNLOADS="http://dl.suckless.org/tools/slock-0.9.tar.gz"
+
+LICENCES=""
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+    build+run:
+"
+
+BUGS_TO="will@worrbase.com"
+
+DEFAULT_SRC_COMPILE_PARAMS=( "PREFIX=/usr" )
+
+src_configure {}
