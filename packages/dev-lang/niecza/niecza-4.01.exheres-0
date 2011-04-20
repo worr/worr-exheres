@@ -33,14 +33,17 @@ src_install() {
 
     insinto "/usr/lib/${PN}"
     for lib in $(ls "${WORK}/run"); do
+        einfo "${WORK}/run/${lib}"
         dolib "${WORK}/run/${lib}"
     done
     for lib in $(ls "${WORK}/obj"); do
+        einfo "${WORK}/obj/${lib}"
         dolib "${WORK}/obj/${lib}"
     done
 
     insinto "/usr/lib/perl6"
     for lib in $(ls "${WORK}/lib"); do
+        einfo "${WORK}/lib/${lib}"
         dolib "${WORK}/lib/${lib}"
     done
 
