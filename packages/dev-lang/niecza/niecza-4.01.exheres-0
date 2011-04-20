@@ -27,11 +27,17 @@ src_unpack() {
 
 src_install() {
     dodir "/usr/lib/${PN}"
+    dodir "/usr/lib/${PN}/run"
+    dodir "/usr/lib/${PN}/obj"
     dodir "/usr/lib/perl6"
 
     insinto "/usr/lib/${PN}"
-    dolib "${WORK}/run/"
-    dolib "${WORK}/obj/"
+    for lib in $(ls "${WORK}/run"); do
+        dolib "${WORK}/run/${lib}"
+    done
+    for lib in $(ls "${WORK}/obj"); do
+        dolib "${WORK}/obj/${lib}"
+    done
 
     insinto "/usr/lib/perl6"
     dolib "${WORK}/lib/*"
