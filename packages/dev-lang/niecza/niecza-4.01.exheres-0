@@ -40,7 +40,9 @@ src_install() {
     done
 
     insinto "/usr/lib/perl6"
-    dolib "${WORK}/lib/*"
+    for lib in $(ls "${WORK}/lib"); do
+        dolib "${WORK}/lib/${lib}"
+    done
 
     default
 }
