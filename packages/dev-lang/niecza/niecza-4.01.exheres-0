@@ -24,3 +24,17 @@ src_unpack() {
     mkdir "${WORK}"
     [[ -n "${ARCHIVES}" ]] && unzip "${FETCHEDDIR}/${ARCHIVES}" -d "${WORK}"
 }
+
+src_install() {
+    dodir "/usr/lib/${PN}"
+    dodir "/usr/lib/perl6"
+
+    insinto "/usr/lib/${PN}"
+    dolib "${WORK}/run/"
+    dolib "${WORK}/obj/"
+
+    insinto "/usr/lib/perl6"
+    dolib "${WORK}/lib/*"
+
+    default
+}
