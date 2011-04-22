@@ -11,3 +11,9 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
+DEPENDENCIES="
+    build+run:
+        dev-perl/Class-Data-Inheritable
+    test:
+        dev-perl/Test-Warn
+"
