@@ -31,10 +31,12 @@ src_install() {
     dodir "/usr/${LIBDIR:-lib}/${PN}/obj"
     dodir "/usr/${LIBDIR:-lib}/perl6"
 
-    insinto "/usr/${LIBDIR:-lib}/${PN}"
+    insinto "/usr/${LIBDIR:-lib}/${PN}/run"
     for lib in $(ls "${WORK}/run"); do
         doins "${WORK}/run/${lib}"
     done
+
+    insinto "/usr/${LIBDIR:-lib}/${PN}/obj"
     for lib in $(ls "${WORK}/obj"); do
         doins "${WORK}/obj/${lib}"
     done
