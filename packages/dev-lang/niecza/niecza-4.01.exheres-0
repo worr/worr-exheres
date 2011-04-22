@@ -29,7 +29,6 @@ src_install() {
     dodir "/usr/${LIBDIR:-lib}/${PN}"
     dodir "/usr/${LIBDIR:-lib}/${PN}/run"
     dodir "/usr/${LIBDIR:-lib}/${PN}/obj"
-    dodir "/usr/${LIBDIR:-lib}/perl6"
 
     insinto "/usr/${LIBDIR:-lib}/${PN}/run"
     for lib in $(ls "${WORK}/run"); do
