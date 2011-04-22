@@ -15,6 +15,12 @@ DEPENDENCIES="
     build+run:
         dev-perl/Class-Data-Inheritable
         dev-perl/Class-Accessor
+        dev-perl/Digest-HMAC
+        dev-perl/UNIVERSAL-require
+        dev-perl/URI
     test:
         dev-perl/Test-Warn
 "
+
+BUGS_TO="arkanoid@exherbo.org"
+
