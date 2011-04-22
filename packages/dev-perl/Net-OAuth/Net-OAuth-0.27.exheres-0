@@ -14,6 +14,7 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-perl/Class-Data-Inheritable
+        dev-perl/Class-Accessor
     test:
         dev-perl/Test-Warn
 "
