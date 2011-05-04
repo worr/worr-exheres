@@ -4,11 +4,13 @@
 require perl-module [ module_author=KGRENNAN ]
 
 SUMMARY="OAuth protocol support in Perl"
-DESCRIPTION="This module allows you to programmatically authenticate to web
-sites that use the OAuth protocol"
+DESCRIPTION="
+This module allows you to programmatically authenticate to web
+sites that use the OAuth protocol
+"
 
 SLOT="0"
-PLATFORMS="~x86 ~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
