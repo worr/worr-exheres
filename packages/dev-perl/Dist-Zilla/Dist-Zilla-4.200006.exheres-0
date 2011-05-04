@@ -1,0 +1,18 @@
+# Copyright 2008 Anders Ossowicki <arkanoid@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="Tool to ease Perl module distribution building"
+DESCRIPTION="
+Dist::Zilla is a program to make it easier to write, package, manage, and 
+release free software.  It's targeted at libraries written in the Perl 
+programming language and released to the CPAN. If you release software to 
+the CPAN, Dist::Zilla can probably save you a lot of work. It has plugins to
+automate dozens of boring steps.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
