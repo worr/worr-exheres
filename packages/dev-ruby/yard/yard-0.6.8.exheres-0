@@ -1,0 +1,22 @@
+# Copyright 2011 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=false ]
+
+SUMMARY="Ruby doc generator"
+DESCRIPTION="
+YARD is a documentation generation tool for the Ruby programming language. It enables the user to
+generate consistent, usable documentation that can be exported to a number of formats very easily,
+and also supports extending for custom Ruby constructs such as custom class level definitions.
+"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+"
+
+BUGS_TO="will@worrbase.com"
+
