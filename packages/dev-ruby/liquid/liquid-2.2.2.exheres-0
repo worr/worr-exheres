@@ -1,0 +1,22 @@
+# Copyright 2011 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="A templating engine for ruby"
+DESCRIPTION="
+A secure, non-evaling end user template engine with aesthetic markup.
+"
+
+HOMEPAGE="http://www.liquidmarkup.org/"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+"
+
+BUGS_TO="will@worrbase.com"
+
