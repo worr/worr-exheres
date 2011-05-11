@@ -8,8 +8,6 @@ DESCRIPTION="
 Fast Implementation of Gruber's Markdown in C
 "
 
-HOMEPAGE="http://www.liquidmarkup.org/"
-
 LICENCES="BSD"
 SLOT="0"
 PLATFORMS="~amd64"
