@@ -1,0 +1,25 @@
+# Copyright 2011 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="CSS generator that adds lots of features"
+DESCRIPTION="
+Sass makes CSS fun again. Sass is an extension of CSS3, adding nested rules, variables, mixins,
+selector inheritance, and more. It's translated to well-formatted, standard CSS using the command
+line tool or a web-framework plugin.
+"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/maruku[>=0.5.9]
+        dev-ruby/yard[>=0.5.3]
+"
+
+BUGS_TO="will@worrbase.com"
+
