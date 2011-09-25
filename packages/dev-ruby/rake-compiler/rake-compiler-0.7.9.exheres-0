@@ -1,0 +1,23 @@
+# Copyright 2011 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=false ]
+
+SUMMARY="Use rake to compile ruby extensions"
+DESCRIPTION="
+Provide a standard and simple way to build and package Ruby extensions
+"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/rake
+"
+
+BUGS_TO="will@worrbase.com"
+
