@@ -1,0 +1,24 @@
+# Copyright 2011 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="Ruby wrapper for pygmentize"
+DESCRIPTION="
+Ruby wrapper for pygmentize
+"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/posix-spawn[>=0.3.6]
+        dev-python/Pygments
+"
+
+BUGS_TO="will@worrbase.com"
+
