@@ -1,0 +1,23 @@
+# Copyright 2011 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="Blog aware, static site generator"
+DESCRIPTION="
+Jekyll is a simple, blog aware, static site generator.
+"
+
+LICENCES="LGPL"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/rake-compiler[>=0.7.6]
+"
+
+BUGS_TO="will@worrbase.com"
+
