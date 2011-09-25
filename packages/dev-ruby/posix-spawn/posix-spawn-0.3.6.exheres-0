@@ -3,9 +3,9 @@
 
 require gem [ has_rdoc=true ]
 
-SUMMARY="Blog aware, static site generator"
+SUMMARY="faster process spawning"
 DESCRIPTION="
-Jekyll is a simple, blog aware, static site generator.
+uses posix_spawnp for faster process spawning
 "
 
 LICENCES="LGPL"
