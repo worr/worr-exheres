@@ -35,8 +35,7 @@ src_install() {
     dodir "/usr/${LIBDIR}/${PN}"
 
     insinto "/usr/${LIBDIR}/${PN}"
-    insopts "-r"
-    doins "${WORK}/run"
-    doins "${WORK}/obj"
-    doins "${WORK}/lib"
+    doins -r "${WORK}/run"
+    doins -r "${WORK}/obj"
+    doins -r "${WORK}/lib"
 }
