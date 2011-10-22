@@ -25,9 +25,8 @@ DEPENDENCIES="
 BUGS_TO="will@worrbase.com"
 
 src_compile() {
-    esandbox disable_net
+    esandbox allow_net -connect "inet:207.97.227.239/255.255.255.255@443"
     default
-    esandbox enable_net
 }
 
 src_install() {
