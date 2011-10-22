@@ -48,6 +48,4 @@ src_install() {
     for lib in $(ls "${WORK}/lib"); do
         doins "${WORK}/lib/${lib}"
     done
-
-    default
 }
