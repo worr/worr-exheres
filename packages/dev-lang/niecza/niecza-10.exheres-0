@@ -24,11 +24,6 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-src_unpack() {
-    dodir "${WORK}"
-    [[ -n "${ARCHIVES}" ]] && unzip "${FETCHEDDIR}/${ARCHIVES}" -d "${WORK}"
-}
-
 src_install() {
     diropts "-m0777"
     dodir "/usr/${LIBDIR}/${PN}" "/usr/${LIBDIR}/${PN}/run" "/usr/${LIBDIR}/${PN}/obj"
