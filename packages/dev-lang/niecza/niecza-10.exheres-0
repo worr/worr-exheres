@@ -2,8 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="git://github.com/sorear/niecza.git"
+SCM_TAG="v10"
 
-require scm-git [ tag=v10 ]
+require scm-git
 
 SUMMARY="A Perl 6 compiler targetting the CLR"
 DESCRIPTION="
