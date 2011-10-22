@@ -1,7 +1,9 @@
 # Copyright 2011 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require scm-git [ repository="git://github.com/sorear/niecza.git" tag=v10 ]
+SCM_REPOSITORY="git://github.com/sorear/niecza.git"
+
+require scm-git [ tag=v10 ]
 
 SUMMARY="A Perl 6 compiler targetting the CLR"
 DESCRIPTION="
