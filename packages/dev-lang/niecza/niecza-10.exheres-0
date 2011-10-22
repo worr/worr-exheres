@@ -1,12 +1,13 @@
 # Copyright 2011 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require git-scm [ repository="git://github.com/sorear/niecza.git" tag=v10 ]
+
 SUMMARY="A Perl 6 compiler targetting the CLR"
 DESCRIPTION="
 A Perl 6 compiler targetting the CLR with an experimental focus on optimizations
 "
 HOMEPAGE="https://github.com/sorear/niecza"
-DOWNLOADS="https://github.com/downloads/sorear/niecza/niecza-10.zip"
 
 LICENCES="Artistic"
 SLOT="0"
