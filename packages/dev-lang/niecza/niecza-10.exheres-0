@@ -20,28 +20,21 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-src_unpack() {
-    mkdir "${WORK}"
-    [[ -n "${ARCHIVES}" ]] && unzip "${FETCHEDDIR}/${ARCHIVES}" -d "${WORK}"
-}
-
 src_install() {
     diropts "-m0777"
-    dodir "/usr/${LIBDIR:-lib}/${PN}"
-    dodir "/usr/${LIBDIR:-lib}/${PN}/run"
-    dodir "/usr/${LIBDIR:-lib}/${PN}/obj"
+    dodir "/usr/${LIBDIR}/${PN}" "/usr/${LIBDIR}/${PN}/run" "/usr/${LIBDIR}/${PN}/obj"
 
-    insinto "/usr/${LIBDIR:-lib}/${PN}/run"
+    insinto "/usr/${LIBDIR}/${PN}/run"
     for lib in $(ls "${WORK}/run"); do
         doins "${WORK}/run/${lib}"
     done
 
-    insinto "/usr/${LIBDIR:-lib}/${PN}/obj"
+    insinto "/usr/${LIBDIR}/${PN}/obj"
     for lib in $(ls "${WORK}/obj"); do
         doins "${WORK}/obj/${lib}"
     done
 
-    insinto "/usr/${LIBDIR:-lib}/${PN}/lib"
+    insinto "/usr/${LIBDIR}/${PN}/lib"
     for lib in $(ls "${WORK}/lib"); do
         doins "${WORK}/lib/${lib}"
     done
