@@ -25,8 +25,9 @@ DEPENDENCIES="
 BUGS_TO="will@worrbase.com"
 
 src_compile() {
-    esandbox allow_net -connect "inet:207.97.227.239/255.255.255.255@443"
+    esandbox disable_net
     default
+    esandbox enable_net
 }
 
 src_install() {
@@ -34,17 +35,11 @@ src_install() {
     dodir "/usr/${LIBDIR}/${PN}" "/usr/${LIBDIR}/${PN}/run" "/usr/${LIBDIR}/${PN}/obj"
 
     insinto "/usr/${LIBDIR}/${PN}/run"
-    for lib in $(ls "${WORK}/run"); do
-        doins "${WORK}/run/${lib}"
-    done
+    doins "${WORK}/run/*"
 
     insinto "/usr/${LIBDIR}/${PN}/obj"
-    for lib in $(ls "${WORK}/obj"); do
-        doins "${WORK}/obj/${lib}"
-    done
+    doins "${WORK}/obj/*"
 
     insinto "/usr/${LIBDIR}/${PN}/lib"
-    for lib in $(ls "${WORK}/lib"); do
-        doins "${WORK}/lib/${lib}"
-    done
+    doins "${WORK}/lib/*"
 }
