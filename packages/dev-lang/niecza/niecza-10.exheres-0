@@ -32,14 +32,11 @@ src_compile() {
 
 src_install() {
     diropts "-m0777"
-    dodir "/usr/${LIBDIR}/${PN}" "/usr/${LIBDIR}/${PN}/run" "/usr/${LIBDIR}/${PN}/obj"
+    dodir "/usr/${LIBDIR}/${PN}"
 
-    insinto "/usr/${LIBDIR}/${PN}/run"
-    doins "${WORK}/run/*"
-
-    insinto "/usr/${LIBDIR}/${PN}/obj"
-    doins "${WORK}/obj/*"
-
-    insinto "/usr/${LIBDIR}/${PN}/lib"
-    doins "${WORK}/lib/*"
+    insinto "/usr/${LIBDIR}/${PN}"
+    insopts "-r"
+    doins "${WORK}/run"
+    doins "${WORK}/obj"
+    doins "${WORK}/lib"
 }
