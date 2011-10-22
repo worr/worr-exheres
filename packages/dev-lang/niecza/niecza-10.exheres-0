@@ -6,7 +6,7 @@ DESCRIPTION="
 A Perl 6 compiler targetting the CLR with an experimental focus on optimizations
 "
 HOMEPAGE="https://github.com/sorear/niecza"
-DOWNLOADS="https://github.com/downloads/sorear/niecza/niecza-4.01.zip"
+DOWNLOADS="https://github.com/downloads/sorear/niecza/niecza-10.zip"
 
 LICENCES="Artistic"
 SLOT="0"
@@ -19,6 +19,7 @@ DEPENDENCIES="
 "
 
 BUGS_TO="will@worrbase.com"
+
 src_unpack() {
     dodir "${WORK}"
     [[ -n "${ARCHIVES}" ]] && unzip "${FETCHEDDIR}/${ARCHIVES}" -d "${WORK}"
