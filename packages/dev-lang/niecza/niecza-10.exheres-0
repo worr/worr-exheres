@@ -24,6 +24,12 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
+src_compile() {
+    esandbox disable_net
+    default
+    esandbox enable_net
+}
+
 src_install() {
     diropts "-m0777"
     dodir "/usr/${LIBDIR}/${PN}" "/usr/${LIBDIR}/${PN}/run" "/usr/${LIBDIR}/${PN}/obj"
