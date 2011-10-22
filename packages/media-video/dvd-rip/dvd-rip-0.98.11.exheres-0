@@ -1,0 +1,19 @@
+# Copyright 2011 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=jred ]
+
+SUMMARY="GTK+ DVD ripper"
+DESCRIPTION="
+A full feature DVD ripper written in Perl
+"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+"
+
+BUGS_TO="will@worrbase.com"
+

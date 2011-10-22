@@ -1,0 +1,17 @@
+# Copyright 2008 Anders Ossowicki <arkanoid@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="Helper for setting up App::Cmd classes"
+DESCRIPTION="
+A Helper library used to set up base classes that will be used as part of an
+App::Cmd program.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+BUGS_TO="will@worrbase.com"
+
