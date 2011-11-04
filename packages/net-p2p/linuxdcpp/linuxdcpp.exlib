@@ -19,6 +19,7 @@ DEPENDENCIES="
         dev-util/pkg-config
     build+run:
         x11-libs/gtk+[>=2.10]
+        x11-libs/libnotify
         gnome-platform/libglade[>=2.4]
         app-arch/libarchive
         dev-libs/openssl
