@@ -8,7 +8,7 @@ DESCRIPTION="
 Fast Implementation of Gruber's Markdown in C
 "
 
-LICENCES="BSD"
+LICENCES="BSD-4"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""

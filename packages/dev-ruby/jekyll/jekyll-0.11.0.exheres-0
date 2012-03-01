@@ -5,10 +5,13 @@ require gem [ has_rdoc=true ]
 
 SUMMARY="Blog aware, static site generator"
 DESCRIPTION="
-Jekyll is a simple, blog aware, static site generator.
+Jekyll is a simple, blog aware, static site generator. It can generate static sites from markdown,
+and add features like syntax highlighting.
+
+It's the engine behind Github pages.
 "
 
-LICENCES="BSD"
+LICENCES="BSD-4"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="

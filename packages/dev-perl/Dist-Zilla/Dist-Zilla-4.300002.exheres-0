@@ -47,3 +47,6 @@ DEPENDENCIES="
         dev-perl/Test-Deep
         dev-perl/YAML-Tiny
 "
+
+BUGS_TO="will@worrbase.com"
+

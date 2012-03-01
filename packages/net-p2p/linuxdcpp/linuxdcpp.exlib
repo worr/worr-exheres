@@ -47,3 +47,4 @@ src_install() {
     dobin linuxdcpp
     default
 }
+

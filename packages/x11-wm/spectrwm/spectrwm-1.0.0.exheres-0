@@ -1,11 +1,13 @@
 # Copyright 2012 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-SUMMARY=""
+SUMMARY="A lightweight tiling window manager"
 DESCRIPTION="
-If DESCRIPTION is set it must not be an empty string.
+This window manager is the new version of scrotwm - the lightweight tiling window manager written in
+C. Written by some of the minds behind OpenBSD, it aims to be lightweight, dead simple to configure
+and written in a reasonable and well-known language.
 "
-HOMEPAGE=""
+HOMEPAGE="https://opensource.conformal.com/wiki/spectrwm"
 DOWNLOADS="https://opensource.conformal.com/snapshots/spectrwm/${PNV}.tgz"
 
 LICENCES="ISC"
@@ -17,6 +19,7 @@ DEPENDENCIES="
     build+run:
         x11-libs/libXrandr
         x11-libs/libXtst
+    recommends:
         x11-misc/dmenu
 "
 
@@ -24,18 +27,9 @@ BUGS_TO="will@worrbase.com"
 
 DEFAULT_SRC_INSTALL_PARAMS=( "PREFIX=/usr" )
 
-src_compile() {
-    cd linux
-    default
-}
-
-src_test() {
-    cd linux
-    default
-}
+WORK="linux"
 
 src_install() {
-    cd linux
     default
 
     dosym "/usr/bin/spectrwm" "/usr/bin/scrotwm"
