@@ -27,7 +27,7 @@ BUGS_TO="will@worrbase.com"
 
 DEFAULT_SRC_INSTALL_PARAMS=( "PREFIX=/usr" )
 
-WORK="linux"
+WORK="${WORK}/linux"
 
 src_install() {
     default
