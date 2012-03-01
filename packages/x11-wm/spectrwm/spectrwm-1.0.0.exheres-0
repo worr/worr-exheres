@@ -19,7 +19,7 @@ DEPENDENCIES="
     build+run:
         x11-libs/libXrandr
         x11-libs/libXtst
-    recommends:
+    recommendation:
         x11-misc/dmenu
 "
 
