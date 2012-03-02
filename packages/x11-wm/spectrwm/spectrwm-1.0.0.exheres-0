@@ -30,7 +30,7 @@ src_compile() {
 src_install() {
     cd linux
 
-    dosym "/usr/local/bin/scrotwm"
+    dosym "/usr/local/bin/spectrwm" "/usr/local/bin/scrotwm"
     default
 }
 
