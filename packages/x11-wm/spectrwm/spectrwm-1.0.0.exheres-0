@@ -1,0 +1,29 @@
+# Copyright 2012 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY=""
+DESCRIPTION="
+If DESCRIPTION is set it must not be an empty string.
+"
+HOMEPAGE=""
+DOWNLOADS="https://opensource.conformal.com/snapshots/spectrwm/${PNV}.tgz"
+
+LICENCES="ISC"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/libXrandr
+        x11-libs/libXtst
+        x11-misc/dmenu
+"
+
+BUGS_TO="will@worrbase.com"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( )
+
+
