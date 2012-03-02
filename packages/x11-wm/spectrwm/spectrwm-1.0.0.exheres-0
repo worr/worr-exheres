@@ -22,17 +22,22 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-SRC_INSTALL_PARAMS=( "PREFIX=/usr" )
+DEFAULT_SRC_INSTALL_PARAMS=( "PREFIX=/usr" )
 
 src_compile() {
     cd linux
     default
 }
 
+src_test() {
+    cd linux
+    default
+}
+
 src_install() {
     cd linux
-
     default
+
     dosym "/usr/bin/spectrwm" "/usr/bin/scrotwm"
 }
 
