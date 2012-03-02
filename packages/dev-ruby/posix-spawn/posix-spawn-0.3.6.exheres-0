@@ -8,7 +8,7 @@ DESCRIPTION="
 uses posix_spawnp for faster process spawning
 "
 
-LICENCES="LGPL"
+LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="
