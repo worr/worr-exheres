@@ -32,7 +32,7 @@ src_compile() {
 src_install() {
     cd linux
 
-    doins "/usr/bin/scrotwm"
+    dosym "/usr/bin/spectrwm" "/usr/bin/scrotwm"
     default
 }
 
