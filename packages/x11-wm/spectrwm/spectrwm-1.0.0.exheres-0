@@ -27,4 +27,8 @@ src_compile() {
     default
 }
 
+src_install() {
+    cd linux
+    default
+}
 
