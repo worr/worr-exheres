@@ -18,32 +18,32 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/Test-Deep
-        dev-perl/Prereq-Scanner
-        dev-perl/MooseX-SetOnce
-        dev-perl/MooseX-LazyRequire
-        dev-perl/File-pushd
-        dev-perl/File-HomeDir
-        dev-perl/Config-MVP-Reader
-        dev-perl/MooseX-Types-Path-Class
-        dev-perl/Data-Section
-        dev-perl/Log-Dispatchouli
-        dev-perl/Perl-Version
-        dev-perl/File-Find-Rule
-        dev-perl/YAML-Tiny
-        dev-perl/CPAN-Uploader
-        dev-perl/MooseX-Types-Perl
-        dev-perl/File-ShareDir-Install
-        dev-perl/DateTime
-        dev-perl/Pod-Eventual
         dev-perl/App-Cmd-Setup
-        dev-perl/autobox
-        dev-perl/Software-License
         dev-perl/Archive-Tar
-        dev-perl/ExtUtils-Manifest
+        dev-perl/autobox
+        dev-perl/Config-MVP-Reader
         dev-perl/Config-MVP-Reader-INI
-        dev-perl/Moose-Autobox
-        dev-perl/Hash-Merge-Simple
+        dev-perl/CPAN-Uploader
+        dev-perl/Data-Section
+        dev-perl/DateTime
+        dev-perl/ExtUtils-Manifest
         dev-perl/File-Copy-Recursive
+        dev-perl/File-Find-Rule
+        dev-perl/File-HomeDir
+        dev-perl/File-pushd
         dev-perl/File-ShareDir
+        dev-perl/File-ShareDir-Install
+        dev-perl/Hash-Merge-Simple
+        dev-perl/Log-Dispatchouli
+        dev-perl/Moose-Autobox
+        dev-perl/MooseX-LazyRequire
+        dev-perl/MooseX-SetOnce
+        dev-perl/MooseX-Types-Path-Class
+        dev-perl/MooseX-Types-Perl
+        dev-perl/Perl-Version
+        dev-perl/Pod-Eventual
+        dev-perl/Prereq-Scanner
+        dev-perl/Software-License
+        dev-perl/Test-Deep
+        dev-perl/YAML-Tiny
 "

@@ -18,12 +18,12 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config
     build+run:
+        app-arch/libarchive
+        dev-libs/boost
+        dev-libs/openssl
+        gnome-platform/libglade[>=2.4]
         x11-libs/gtk+[>=2.10]
         x11-libs/libnotify
-        gnome-platform/libglade[>=2.4]
-        app-arch/libarchive
-        dev-libs/openssl
-        dev-libs/boost
 "
 
 BUGS_TO="will@worrbase.com"

@@ -3,7 +3,7 @@
 
 require gem [ has_rdoc=true ]
 
-SUMMARY="Markdown implementation in C for ruby"
+SUMMARY="Markdown implementation for ruby"
 DESCRIPTION="
 Fast Implementation of Gruber's Markdown in C
 "

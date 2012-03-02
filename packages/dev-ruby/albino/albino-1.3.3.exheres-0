@@ -5,7 +5,7 @@ require gem [ has_rdoc=true ]
 
 SUMMARY="Ruby wrapper for pygmentize"
 DESCRIPTION="
-Ruby wrapper for pygmentize
+Ruby wrapper for pygmentize, the Python syntax highlighting library
 "
 
 LICENCES="MIT"
@@ -16,8 +16,8 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build+run:
-        dev-ruby/posix-spawn[>=0.3.6]
         dev-python/Pygments
+        dev-ruby/posix-spawn[>=0.3.6]
 "
 
 BUGS_TO="will@worrbase.com"

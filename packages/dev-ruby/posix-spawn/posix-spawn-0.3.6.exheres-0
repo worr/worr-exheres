@@ -5,7 +5,7 @@ require gem [ has_rdoc=true ]
 
 SUMMARY="faster process spawning"
 DESCRIPTION="
-uses posix_spawnp for faster process spawning
+This gem uses posix_spawnp() for faster process spawning than exec
 "
 
 LICENCES="LGPL-2.1"
