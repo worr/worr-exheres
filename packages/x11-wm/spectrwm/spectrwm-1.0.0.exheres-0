@@ -26,7 +26,7 @@ DEPENDENCIES="
 BUGS_TO="will@worrbase.com"
 
 DEFAULT_SRC_COMPILE_PARAMS=( "PREFIX=/usr" LIBDIR="/usr/${LIBDIR:-lib}" )
-DEFAULT_SRC_INSTALL_PARAMS=( "PREFIX=/usr" )
+DEFAULT_SRC_INSTALL_PARAMS=( "PREFIX=/usr" LIBDIR="/usr/${LIBDIR:-lib}" )
 
 WORK="${WORK}/linux"
 
