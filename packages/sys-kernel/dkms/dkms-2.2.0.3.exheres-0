@@ -35,6 +35,6 @@ src_compile() {
 
 src_install() {
     default
-    make DESTDIR="${IMAGE}" install-doc
+    make DESTDIR="${IMAGE}" LIBDIR="/usr/${LIBDIR:-lib}/dkms" install-doc
 }
 
