@@ -1,0 +1,39 @@
+# Copyright 2012 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Dynamically rebuild kernel modules"
+DESCRIPTION="
+DKMS includes utilities to dynamically rebuild kernel modules when the kernel is updated. It also
+allows developers to build DKMS-enabled tarballs, rpms and debs that will be rebuilt on kernel
+update.
+"
+HOMEPAGE="http://linux.dell.com/dkms/"
+DOWNLOADS="http://linux.dell.com/dkms/permalink/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        app-shells/bash
+    suggestion:
+        app-arch/dpkg [[
+            description = [ Build DKMS-enabled debs ]
+        ]]
+        app-arch/rpm [[
+            description = [ Build DKMS-enabled rpms ]
+        ]]
+"
+
+BUGS_TO="will@worrbase.com"
+
+src_compile {
+}
+
+src_install {
+    default
+    make DESTDIR="${IMAGE}" install-doc
+}
+
