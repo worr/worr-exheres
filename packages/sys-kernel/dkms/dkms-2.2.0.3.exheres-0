@@ -29,13 +29,10 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-DEFAULT_SRC_INSTALL_PARAMS = ( LIBDIR="${DESTDIR}/usr/${LIBDIR:-lib}" )
+DEFAULT_SRC_INSTALL_PARAMS=( LIBDIR="${DESTDIR}/usr/${LIBDIR:-lib}" )
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( "README.dkms" )
 
 src_compile() {
     :
-}
-
-src_install() {
-    default
 }
 
