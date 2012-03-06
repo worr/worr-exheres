@@ -29,10 +29,10 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-src_compile {
+src_compile() {
 }
 
-src_install {
+src_install() {
     default
     make DESTDIR="${IMAGE}" install-doc
 }
