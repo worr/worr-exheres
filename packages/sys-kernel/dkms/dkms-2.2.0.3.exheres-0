@@ -30,6 +30,7 @@ DEPENDENCIES="
 BUGS_TO="will@worrbase.com"
 
 src_compile() {
+    :
 }
 
 src_install() {
