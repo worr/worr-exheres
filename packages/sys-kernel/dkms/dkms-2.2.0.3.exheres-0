@@ -29,12 +29,13 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
+DEFAULT_SRC_INSTALL_PARAMS = ( LIBDIR="${DESTDIR}/usr/${LIBDIR:-lib}" )
+
 src_compile() {
     :
 }
 
 src_install() {
     default
-    make DESTDIR="${IMAGE}" LIBDIR="/usr/${LIBDIR:-lib}/dkms" install-doc
 }
 
