@@ -1,8 +1,6 @@
 # Copyright 2012 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.9 ] ]
-
 SUMMARY="Configuration management engine"
 DESCRIPTION="
 cfengine is a configuration management tool designed to merge system configs
