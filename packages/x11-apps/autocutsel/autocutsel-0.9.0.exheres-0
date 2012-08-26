@@ -28,7 +28,7 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=(
+SRC_CONFIGURE_PARAMS=(
     --mandir="/usr/share/man"
     --infodir="/usr/share/info"
     --datadir="/usr/share"
@@ -36,4 +36,8 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --localstatedir="/var/lib"
     --libdir="/usr/${LIBDIR}"
 )
+
+src_configure() {
+    econf "${SRC_CONFIGURE_PARAMS[@]}"
+}
 
