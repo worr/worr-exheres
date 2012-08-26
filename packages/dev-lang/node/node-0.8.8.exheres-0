@@ -1,0 +1,72 @@
+# Copyright 2011 Michael Thomas <aelmalinka@gmail.com>
+# Distributed under the terms of the GNU General Public Licesnse v2
+
+MY_PV="v${PV}"
+MY_PNV="${PN}-${MY_PV}"
+WORK="${WORKBASE}/${MY_PNV}"
+
+SUMMARY="Evented I/O for V8 Javascript"
+DESCRIPTION="Designed to provide an easy way to build scalable network applications, similar to Event Machine or Twisted"
+DOWNLOADS="http://nodejs.org/dist/${MY_PV}/${MY_PNV}.tar.gz"
+HOMEPAGE="http://nodejs.org/"
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/libpthread-stubs
+        dev-libs/openssl
+        dev-libs/v8
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    -p1 "${FILES}/${PNV}-test-prefer-binding-to-local-interface.patch"
+    -p1 "${FILES}/${PN}-test-pingpong-avoid-binding-to-0.0.0.0.patch"
+    -p1 "${FILES}/${PN}-test-server-bind-avoid-binding-to-0.0.0.0.patch"
+)
+
+SRC_CONFIGURE_PARAMS=(
+    --shared-openssl
+    --shared-zlib
+    --shared-v8
+    --shared-v8-includes=/usr/include
+)
+
+DEFAULT_SRC_COMPILE_PARAMS=(
+    V=1
+)
+
+src_prepare() {
+    default
+
+    # these tests fail on localhost
+    edo mv test/simple/test-dgram-{broad,multi}cast-multi-process.js test/simple/test-process-active-wraps.js test/disabled
+    # these tests call out to openssl which will only bind on 0.0.0.0
+    edo mv test/simple/test-tls-securepair-{client,server}.js test/disabled
+    # these tests call out to google.com
+    edo mv test/simple/test-net-connect-timeout.js test/simple/test-regress-GH-819.js test/disabled
+
+    edo sed -i "/queue.push('rm -rf ' + npmDir);/d" tools/installer.js
+}
+
+src_configure() {
+    edo ./configure --prefix=/usr "${SRC_CONFIGURE_PARAMS[@]}"
+}
+
+src_install() {
+    default
+
+    [[ $LIBDIR != lib ]] && edo mv "${IMAGE}/usr/lib" "${IMAGE}/usr/${LIBDIR}"
+}
+
+src_test() {
+    # rebuild certificates, using updated parameters from ef046bf4f64161c6d0f4c4920ab62895789d576c.patch
+    emake -j1 -C test/fixtures/keys clean
+    emake -j1 -C test/fixtures/keys
+
+    esandbox allow_net "inet:0.0.0.0@0"
+    esandbox allow_net "unix:${WORK}/test/tmp/test.sock"
+
+    emake test
+}
