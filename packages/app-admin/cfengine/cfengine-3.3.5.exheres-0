@@ -16,8 +16,10 @@ MYOPTIONS="mysql postgresql"
 
 DEPENDENCIES="
     build+run:
+        libvirt? ( virtualization-lib/libvirt )
         mysql? ( dev-db/mysql )
         postgresql? ( dev-db/postgresql )
+
         dev-db/tokyocabinet
         dev-libs/openssl
         dev-libs/pcre
@@ -28,5 +30,5 @@ BUGS_TO="will@worrbase.com"
 # works around bug in cfengine build system
 # pull request #144 in upstream repo
 DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-fhs --libexecdir="/usr/${LIBDIR}" ) 
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( mysql postgresql )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( mysql postgresql libvirt )
 
