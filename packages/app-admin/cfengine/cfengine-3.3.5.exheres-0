@@ -1,0 +1,33 @@
+# Copyright 2012 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require autotools [ support_autoconf=[ 2.5 ] supported_automake=[ 1.9 ] ]
+
+SUMMARY="Configuration management engine"
+DESCRIPTION="
+cfengine is a configuration management tool designed to merge system configs
+to a known, desired state over time.
+"
+HOMEPAGE="http://cfengine.com/"
+DOWNLOADS="http://cfengine.com/source-code/download?file=${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="amd64"
+MYOPTIONS="mysql postgresql"
+
+DEPENDENCIES="
+    build+run:
+        mysql? ( dev-db/mysql )
+        postgresql? ( dev-db/postgresql )
+        dev-db/tokyocabinent
+        dev-libs/openssl
+        dev-libs/pcre
+"
+
+BUGS_TO="will@worrbase.com"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( PREFIX=/usr )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( mysql postgresql )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( )
+
