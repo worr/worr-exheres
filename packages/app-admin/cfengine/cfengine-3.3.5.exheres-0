@@ -39,8 +39,7 @@ src_install() {
 }
 
 pkg_postinst() {
-    dodir /var/cfengine/
-    dodir /var/cfengine/{inputs,masterfiles,modules,outputs,ppkeys}
+    mkdir -p /var/cfengine/{inputs,masterfiles,modules,outputs,ppkeys}
     default
 }
 
