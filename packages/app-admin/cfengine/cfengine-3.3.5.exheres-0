@@ -35,7 +35,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( mysql postgresql libvirt )
 src_install() {
     default
 
-    edo rm -f /var/cfengine
+    edo rm -r /var/cfengine
 }
 
 pkg_postinst() {
