@@ -45,8 +45,6 @@ src_prepare() {
     edo mv test/simple/test-tls-securepair-{client,server}.js test/disabled
     # these tests call out to google.com
     edo mv test/simple/test-net-connect-timeout.js test/simple/test-regress-GH-819.js test/disabled
-
-    edo sed -i "/queue.push('rm -rf ' + npmDir);/d" tools/installer.js
 }
 
 src_configure() {
