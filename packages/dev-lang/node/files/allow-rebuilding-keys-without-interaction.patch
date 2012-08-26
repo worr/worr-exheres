@@ -1,0 +1,26 @@
+Source: Michael Thomas <aelmalinka@gmail.com>
+Upstream: yes, https://github.com/joyent/node/commit/4e48605
+Reason: rebuilding keys requires interactive elements w/o this, see ef046bf4f64161c6d0f4c4920ab62895789d576c.patch
+
+diff --git a/test/fixtures/keys/Makefile b/test/fixtures/keys/Makefile
+index fa64352..fb8996a 100644
+--- a/test/fixtures/keys/Makefile
++++ b/test/fixtures/keys/Makefile
+@@ -120,13 +120,15 @@ ca2-crl.pem: ca2-key.pem ca2-cert.pem ca2.cnf
+ 	openssl ca -revoke agent4-cert.pem \
+ 		-keyfile ca2-key.pem \
+ 		-cert ca2-cert.pem \
+-		-config ca2.cnf
++		-config ca2.cnf \
++		-passin 'pass:password'
+ 	openssl ca \
+ 		-keyfile ca2-key.pem \
+ 		-cert ca2-cert.pem \
+ 		-config ca2.cnf \
+ 		-gencrl \
+-		-out ca2-crl.pem
++		-out ca2-crl.pem \
++		-passin 'pass:password'
+ 
+ clean:
+ 	rm -f *.pem *.srl ca2-database.txt ca2-serial

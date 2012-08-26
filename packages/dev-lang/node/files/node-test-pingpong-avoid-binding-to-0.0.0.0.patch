@@ -1,0 +1,40 @@
+Upstream: No, disables parts of test suite
+Source: Michael Thomas <aelmalinka@gmail.com>
+Reason: pingpong runs on all local interfaces, AND all interfaces
+
+diff --git a/test/simple/test-dgram-pingpong.js b/test/simple/test-dgram-pingpong.js
+index 18b39b5..2176216 100644
+--- a/test/simple/test-dgram-pingpong.js
++++ b/test/simple/test-dgram-pingpong.js
+@@ -104,10 +104,9 @@ function pingPongTest(port, host) {
+ // All are run at once, so run on different ports
+ pingPongTest(20989, 'localhost');
+ pingPongTest(20990, 'localhost');
+-pingPongTest(20988);
+ //pingPongTest('/tmp/pingpong.sock');
+ 
+ process.on('exit', function() {
+-  assert.equal(3, tests_run);
++  assert.equal(2, tests_run);
+   console.log('done');
+ });
+diff --git a/test/simple/test-net-pingpong.js b/test/simple/test-net-pingpong.js
+index a81f0dc..d56d78c 100644
+--- a/test/simple/test-net-pingpong.js
++++ b/test/simple/test-net-pingpong.js
+@@ -130,11 +130,10 @@ function pingPongTest(port, host) {
+ 
+ /* All are run at once, so run on different ports */
+ pingPongTest(common.PIPE);
+-pingPongTest(20988);
+ pingPongTest(20989, 'localhost');
+ pingPongTest(20997, '::1');
+ 
+ process.on('exit', function() {
+-  assert.equal(4, tests_run);
++  assert.equal(3, tests_run);
+   console.log('done');
+ });
+-- 
+1.7.10.4
+
