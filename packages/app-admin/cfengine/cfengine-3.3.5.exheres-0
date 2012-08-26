@@ -25,6 +25,8 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --libdir="/usr/${LIBDIR}" )
+# works around bug in cfengine build system
+# pull request #144 in upstream repo
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-fhs --libexecdir="/usr/${LIBDIR}" ) 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( mysql postgresql )
 
