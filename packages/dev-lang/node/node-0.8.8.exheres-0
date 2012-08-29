@@ -23,7 +23,7 @@ DEPENDENCIES="
 DEFAULT_SRC_PREPARE_PATCHES=(
     -p1 "${FILES}/${PN}-test-pingpong-avoid-binding-to-0.0.0.0.patch"
     -p1 "${FILES}/${PN}-test-server-bind-avoid-binding-to-0.0.0.0.patch"
-    -p1 "${FILES}/${PNV}-test-prefer-binding-to-local-interface.patch
+    -p1 "${FILES}/${PNV}-test-prefer-binding-to-local-interface.patch"
 )
 
 SRC_CONFIGURE_PARAMS=(
