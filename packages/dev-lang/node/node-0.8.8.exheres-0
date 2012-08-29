@@ -12,6 +12,7 @@ HOMEPAGE="http://nodejs.org/"
 LICENCES="MIT"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
+MYOPTIONS="waf"
 
 DEPENDENCIES="
     build+run:
@@ -36,6 +37,8 @@ SRC_CONFIGURE_PARAMS=(
 DEFAULT_SRC_COMPILE_PARAMS=(
     V=1
 )
+
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "waf" )
 
 src_prepare() {
     default
