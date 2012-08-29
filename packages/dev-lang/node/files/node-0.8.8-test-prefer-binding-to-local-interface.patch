@@ -1,0 +1,2199 @@
+Upstream: https://github.com/joyent/node/pull/3725
+
+From 9e860f92e994e28015e1569cef16b1d1b11822b4 Mon Sep 17 00:00:00 2001
+From: Michael Thomas <aelmalinka@gmail.com>
+Date: Fri, 20 Jul 2012 15:54:42 -0400
+Subject: [PATCH] test: prefer binding to local interface
+
+---
+ test/simple/test-child-process-disconnect.js                   |    2 +-
+ test/simple/test-child-process-fork-net.js                     |    4 ++--
+ test/simple/test-child-process-fork2.js                        |    2 +-
+ test/simple/test-dgram-multicast-setTTL.js                     |    2 +-
+ test/simple/test-dgram-send-error.js                           |    2 +-
+ test/simple/test-dgram-udp4.js                                 |    2 +-
+ test/simple/test-domain-http-server.js                         |    2 +-
+ test/simple/test-domain-multi.js                               |    2 +-
+ test/simple/test-http-1.0.js                                   |    2 +-
+ test/simple/test-http-304.js                                   |    2 +-
+ test/simple/test-http-abort-before-end.js                      |    2 +-
+ test/simple/test-http-abort-client.js                          |    2 +-
+ test/simple/test-http-after-connect.js                         |    2 +-
+ test/simple/test-http-agent.js                                 |    2 +-
+ test/simple/test-http-allow-req-after-204-res.js               |    2 +-
+ test/simple/test-http-blank-header.js                          |    2 +-
+ test/simple/test-http-buffer-sanity.js                         |    2 +-
+ test/simple/test-http-chunked.js                               |    2 +-
+ test/simple/test-http-client-abort.js                          |    2 +-
+ test/simple/test-http-client-abort2.js                         |    2 +-
+ test/simple/test-http-client-agent.js                          |    2 +-
+ test/simple/test-http-client-get-url.js                        |    2 +-
+ test/simple/test-http-client-race-2.js                         |    2 +-
+ test/simple/test-http-client-race.js                           |    2 +-
+ test/simple/test-http-client-upload-buf.js                     |    2 +-
+ test/simple/test-http-client-upload.js                         |    2 +-
+ test/simple/test-http-connect.js                               |    2 +-
+ test/simple/test-http-contentLength0.js                        |    2 +-
+ test/simple/test-http-curl-chunk-problem.js                    |    2 +-
+ test/simple/test-http-date-header.js                           |    2 +-
+ test/simple/test-http-default-encoding.js                      |    2 +-
+ test/simple/test-http-eof-on-connect.js                        |    2 +-
+ test/simple/test-http-exceptions.js                            |    2 +-
+ test/simple/test-http-expect-continue.js                       |    2 +-
+ test/simple/test-http-extra-response.js                        |    2 +-
+ test/simple/test-http-full-response.js                         |    2 +-
+ test/simple/test-http-get-pipeline-problem.js                  |    2 +-
+ test/simple/test-http-head-request.js                          |    2 +-
+ test/simple/test-http-head-response-has-no-body-end.js         |    2 +-
+ test/simple/test-http-head-response-has-no-body.js             |    2 +-
+ test/simple/test-http-header-read.js                           |    2 +-
+ test/simple/test-http-host-headers.js                          |    4 ++--
+ test/simple/test-http-keep-alive-close-on-header.js            |    2 +-
+ test/simple/test-http-keep-alive.js                            |    2 +-
+ test/simple/test-http-legacy.js                                |    2 +-
+ test/simple/test-http-malformed-request.js                     |    2 +-
+ test/simple/test-http-many-keep-alive-connections.js           |    2 +-
+ test/simple/test-http-max-headers-count.js                     |    2 +-
+ test/simple/test-http-multi-line-headers.js                    |    2 +-
+ test/simple/test-http-mutable-headers.js                       |    2 +-
+ test/simple/test-http-no-content-length.js                     |    2 +-
+ test/simple/test-http-parser-free.js                           |    2 +-
+ test/simple/test-http-pause-resume-one-end.js                  |    2 +-
+ test/simple/test-http-pause.js                                 |    2 +-
+ test/simple/test-http-pipe-fs.js                               |    2 +-
+ test/simple/test-http-proxy.js                                 |    4 ++--
+ test/simple/test-http-request-end-twice.js                     |    2 +-
+ test/simple/test-http-request-end.js                           |    2 +-
+ test/simple/test-http-request-methods.js                       |    2 +-
+ test/simple/test-http-res-write-end-dont-take-array.js         |    2 +-
+ test/simple/test-http-response-close.js                        |    2 +-
+ test/simple/test-http-response-readable.js                     |    2 +-
+ test/simple/test-http-server-multiheaders.js                   |    2 +-
+ test/simple/test-http-server.js                                |    2 +-
+ test/simple/test-http-set-cookies.js                           |    2 +-
+ test/simple/test-http-set-timeout.js                           |    2 +-
+ test/simple/test-http-set-trailers.js                          |    2 +-
+ test/simple/test-http-should-keep-alive.js                     |    2 +-
+ test/simple/test-http-status-code.js                           |    2 +-
+ test/simple/test-http-timeout.js                               |    2 +-
+ test/simple/test-http-upgrade-client2.js                       |    2 +-
+ test/simple/test-http-upgrade-server.js                        |    2 +-
+ test/simple/test-http-upgrade-server2.js                       |    2 +-
+ test/simple/test-http-url.parse-auth-with-header-in-request.js |    2 +-
+ test/simple/test-http-url.parse-auth.js                        |    2 +-
+ test/simple/test-http-url.parse-basic.js                       |    2 +-
+ test/simple/test-http-url.parse-https.request.js               |    2 +-
+ test/simple/test-http-url.parse-path.js                        |    2 +-
+ test/simple/test-http-url.parse-post.js                        |    2 +-
+ test/simple/test-http-url.parse-search.js                      |    2 +-
+ test/simple/test-http-wget.js                                  |    2 +-
+ test/simple/test-http-write-empty-string.js                    |    2 +-
+ test/simple/test-http.js                                       |    2 +-
+ test/simple/test-https-agent.js                                |    2 +-
+ test/simple/test-https-client-reject.js                        |    2 +-
+ test/simple/test-https-connecting-to-http.js                   |    2 +-
+ test/simple/test-https-drain.js                                |    2 +-
+ test/simple/test-https-eof-for-eom.js                          |    2 +-
+ test/simple/test-https-foafssl.js                              |    2 +-
+ test/simple/test-https-invalid-key.js                          |    2 +-
+ test/simple/test-https-simple.js                               |    2 +-
+ test/simple/test-https-socket-options.js                       |    6 +++---
+ test/simple/test-https-timeout.js                              |    2 +-
+ test/simple/test-listen-fd-cluster.js                          |    2 +-
+ test/simple/test-listen-fd-detached-inherit.js                 |    2 +-
+ test/simple/test-listen-fd-detached.js                         |    2 +-
+ test/simple/test-listen-fd-server.js                           |    2 +-
+ test/simple/test-net-after-close.js                            |    2 +-
+ test/simple/test-net-binary.js                                 |    2 +-
+ test/simple/test-net-bind-twice.js                             |    2 +-
+ test/simple/test-net-bytes-stats.js                            |    2 +-
+ test/simple/test-net-can-reset-timeout.js                      |    2 +-
+ test/simple/test-net-connect-buffer.js                         |    2 +-
+ test/simple/test-net-connect-options.js                        |    2 +-
+ test/simple/test-net-during-close.js                           |    2 +-
+ test/simple/test-net-eaddrinuse.js                             |    4 ++--
+ test/simple/test-net-keepalive.js                              |    2 +-
+ test/simple/test-net-large-string.js                           |    2 +-
+ test/simple/test-net-reconnect.js                              |    2 +-
+ test/simple/test-net-server-bind.js                            |    6 +++---
+ test/simple/test-net-server-close.js                           |    2 +-
+ test/simple/test-net-server-listen-remove-callback.js          |    4 ++--
+ test/simple/test-net-server-max-connections.js                 |    2 +-
+ test/simple/test-net-server-try-ports.js                       |    6 +++---
+ test/simple/test-net-settimeout.js                             |    2 +-
+ test/simple/test-net-socket-timeout.js                         |    2 +-
+ test/simple/test-net-write-after-close.js                      |    2 +-
+ test/simple/test-net-write-connect-write.js                    |    2 +-
+ test/simple/test-net-write-slow.js                             |    2 +-
+ test/simple/test-pipe-file-to-http.js                          |    2 +-
+ test/simple/test-pipe.js                                       |    4 ++--
+ test/simple/test-pump-file2tcp-noexist.js                      |    2 +-
+ test/simple/test-pump-file2tcp.js                              |    2 +-
+ test/simple/test-regress-GH-1531.js                            |    2 +-
+ test/simple/test-regress-GH-746.js                             |    2 +-
+ test/simple/test-regress-GH-784.js                             |    2 +-
+ test/simple/test-repl.js                                       |    2 +-
+ test/simple/test-tcp-wrap-connect.js                           |    2 +-
+ test/simple/test-tcp-wrap-listen.js                            |    2 +-
+ test/simple/test-tcp-wrap.js                                   |    4 ++--
+ test/simple/test-tls-client-reject.js                          |    2 +-
+ test/simple/test-tls-client-resume.js                          |    2 +-
+ test/simple/test-tls-client-verify.js                          |    2 +-
+ test/simple/test-tls-connect-given-socket.js                   |    2 +-
+ test/simple/test-tls-connect-simple.js                         |    2 +-
+ test/simple/test-tls-invalid-key.js                            |    2 +-
+ test/simple/test-tls-junk-closes-server.js                     |    2 +-
+ test/simple/test-tls-npn-server-client.js                      |    2 +-
+ test/simple/test-tls-over-http-tunnel.js                       |    4 ++--
+ test/simple/test-tls-passphrase.js                             |    2 +-
+ test/simple/test-tls-pause-close.js                            |    2 +-
+ test/simple/test-tls-pause.js                                  |    2 +-
+ test/simple/test-tls-peer-certificate-multi-keys.js            |    2 +-
+ test/simple/test-tls-peer-certificate.js                       |    2 +-
+ test/simple/test-tls-request-timeout.js                        |    2 +-
+ test/simple/test-tls-server-verify.js                          |    2 +-
+ test/simple/test-tls-session-cache.js                          |    2 +-
+ test/simple/test-tls-set-encoding.js                           |    2 +-
+ test/simple/test-tls-sni-server-client.js                      |    2 +-
+ test/simple/test-zerolengthbufferbug.js                        |    2 +-
+ 150 files changed, 164 insertions(+), 164 deletions(-)
+
+diff --git a/test/simple/test-child-process-disconnect.js b/test/simple/test-child-process-disconnect.js
+index 2136aaf..a63d373 100644
+--- a/test/simple/test-child-process-disconnect.js
++++ b/test/simple/test-child-process-disconnect.js
+@@ -49,7 +49,7 @@ if (process.argv[2] === 'child') {
+     process.send('ready');
+   });
+ 
+-  server.listen(common.PORT);
++  server.listen(common.PORT, '127.0.0.1');
+ 
+ } else {
+   // testcase
+diff --git a/test/simple/test-child-process-fork-net.js b/test/simple/test-child-process-fork-net.js
+index 39b22d2..ab17d5d 100644
+--- a/test/simple/test-child-process-fork-net.js
++++ b/test/simple/test-child-process-fork-net.js
+@@ -111,7 +111,7 @@ if (process.argv[2] === 'child') {
+       console.log('PARENT: server listening');
+       child.send({what: 'server'}, server);
+     });
+-    server.listen(common.PORT);
++    server.listen(common.PORT, '127.0.0.1');
+ 
+     // handle client messages
+     var messageHandlers = function(msg) {
+@@ -163,7 +163,7 @@ if (process.argv[2] === 'child') {
+     //
+     // An isolated test for this would be lovely, but for now, this
+     // will have to do.
+-    server.listen(common.PORT + 1, function() {
++    server.listen(common.PORT + 1, '127.0.0.1', function() {
+       console.error('testSocket, listening');
+       var connect = net.connect(common.PORT + 1);
+       var store = '';
+diff --git a/test/simple/test-child-process-fork2.js b/test/simple/test-child-process-fork2.js
+index 6add596..441e37a 100644
+--- a/test/simple/test-child-process-fork2.js
++++ b/test/simple/test-child-process-fork2.js
+@@ -36,7 +36,7 @@ var server = new net.Server(function(c) {
+   c.destroy();
+ });
+ 
+-server.listen(common.PORT, /* backlog */ 9, function() {
++server.listen(common.PORT, '127.0.0.1', /* backlog */ 9, function() {
+   console.log('PARENT send child server handle');
+   n.send({ hello: 'world' }, server._handle);
+ });
+diff --git a/test/simple/test-dgram-multicast-setTTL.js b/test/simple/test-dgram-multicast-setTTL.js
+index 8d1c0a0..10ecaee 100644
+--- a/test/simple/test-dgram-multicast-setTTL.js
++++ b/test/simple/test-dgram-multicast-setTTL.js
+@@ -25,7 +25,7 @@ var common = require('../common'),
+     thrown = false,
+     socket = dgram.createSocket('udp4');
+ 
+-socket.bind(common.PORT);
++socket.bind(common.PORT, '127.0.0.1');
+ socket.setMulticastTTL(16);
+ 
+ //Try to set an invalid TTL (valid ttl is > 0 and < 256)
+diff --git a/test/simple/test-dgram-send-error.js b/test/simple/test-dgram-send-error.js
+index 346f36d..c1605bf 100644
+--- a/test/simple/test-dgram-send-error.js
++++ b/test/simple/test-dgram-send-error.js
+@@ -43,7 +43,7 @@ var socket = dgram.createSocket('udp4');
+ 
+ socket.on('message', onMessage);
+ socket.on('listening', doSend);
+-socket.bind(common.PORT);
++socket.bind(common.PORT, '127.0.0.1');
+ 
+ function onMessage(message, info) {
+   packetsReceived++;
+diff --git a/test/simple/test-dgram-udp4.js b/test/simple/test-dgram-udp4.js
+index 9a82de5..a099cf7 100644
+--- a/test/simple/test-dgram-udp4.js
++++ b/test/simple/test-dgram-udp4.js
+@@ -74,7 +74,7 @@ server.on('close', function() {
+     clearTimeout(timer);
+   }
+ });
+-server.bind(server_port);
++server.bind(server_port, '127.0.0.1');
+ 
+ timer = setTimeout(function() {
+   throw new Error('Timeout');
+diff --git a/test/simple/test-domain-http-server.js b/test/simple/test-domain-http-server.js
+index f9962d3..85f1356 100644
+--- a/test/simple/test-domain-http-server.js
++++ b/test/simple/test-domain-http-server.js
+@@ -58,7 +58,7 @@ var server = http.createServer(function(req, res) {
+   });
+ });
+ 
+-server.listen(common.PORT, next);
++server.listen(common.PORT, '127.0.0.1', next);
+ 
+ function next() {
+   console.log('listening on localhost:%d', common.PORT);
+diff --git a/test/simple/test-domain-multi.js b/test/simple/test-domain-multi.js
+index 68e4b11..a29a8d3 100644
+--- a/test/simple/test-domain-multi.js
++++ b/test/simple/test-domain-multi.js
+@@ -71,7 +71,7 @@ var server = http.createServer(function (req, res) {
+     throw new Error('this kills domain B, not A');
+   }));
+ 
+-}).listen(common.PORT);
++}).listen(common.PORT, 'localhost');
+ 
+ var c = domain.create();
+ var req = http.get({ host: 'localhost', port: common.PORT })
+diff --git a/test/simple/test-http-1.0.js b/test/simple/test-http-1.0.js
+index f5f3aef..10d3335 100644
+--- a/test/simple/test-http-1.0.js
++++ b/test/simple/test-http-1.0.js
+@@ -45,7 +45,7 @@ function test(handler, request_generator, response_validator) {
+   var timer = setTimeout(cleanup, 1000);
+   process.on('exit', cleanup);
+ 
+-  server.listen(port);
++  server.listen(port, '127.0.0.1');
+   server.on('listening', function() {
+     var c = net.createConnection(port);
+ 
+diff --git a/test/simple/test-http-304.js b/test/simple/test-http-304.js
+index fcef21a..8d049bb 100644
+--- a/test/simple/test-http-304.js
++++ b/test/simple/test-http-304.js
+@@ -33,7 +33,7 @@ var s = http.createServer(function(request, response) {
+   response.end();
+ });
+ 
+-s.listen(common.PORT, function() {
++s.listen(common.PORT, '127.0.0.1', function() {
+   childProcess.exec('curl -i http://127.0.0.1:' + common.PORT + '/',
+                     function(err, stdout, stderr) {
+                       if (err) throw err;
+diff --git a/test/simple/test-http-abort-before-end.js b/test/simple/test-http-abort-before-end.js
+index 11e424f..d1fe782 100644
+--- a/test/simple/test-http-abort-before-end.js
++++ b/test/simple/test-http-abort-before-end.js
+@@ -27,7 +27,7 @@ var server = http.createServer(function(req, res) {
+   assert(false); // should not be called
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var req = http.request({method: 'GET', host: '127.0.0.1', port: common.PORT});
+ 
+   req.on('error', function(ex) {
+diff --git a/test/simple/test-http-abort-client.js b/test/simple/test-http-abort-client.js
+index 6acdd6f..eaacc03 100644
+--- a/test/simple/test-http-abort-client.js
++++ b/test/simple/test-http-abort-client.js
+@@ -33,7 +33,7 @@ var server = http.Server(function(req, res) {
+ 
+ var responseClose = false;
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var client = http.get({
+     port: common.PORT,
+     headers: { connection: 'keep-alive' }
+diff --git a/test/simple/test-http-after-connect.js b/test/simple/test-http-after-connect.js
+index d6451bb..f33f735 100644
+--- a/test/simple/test-http-after-connect.js
++++ b/test/simple/test-http-after-connect.js
+@@ -44,7 +44,7 @@ server.on('connect', function(req, socket, firstBodyChunk) {
+     socket.end();
+   });
+ });
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var req = http.request({
+     port: common.PORT,
+     method: 'CONNECT',
+diff --git a/test/simple/test-http-agent.js b/test/simple/test-http-agent.js
+index a1ce456..08641ac 100644
+--- a/test/simple/test-http-agent.js
++++ b/test/simple/test-http-agent.js
+@@ -35,7 +35,7 @@ var responses = 0;
+ var N = 10;
+ var M = 10;
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   for (var i = 0; i < N; i++) {
+     setTimeout(function() {
+       for (var j = 0; j < M; j++) {
+diff --git a/test/simple/test-http-allow-req-after-204-res.js b/test/simple/test-http-allow-req-after-204-res.js
+index 8f89043..2431efc 100644
+--- a/test/simple/test-http-allow-req-after-204-res.js
++++ b/test/simple/test-http-allow-req-after-204-res.js
+@@ -62,4 +62,4 @@ function nextRequest() {
+   request.end();
+ }
+ 
+-server.listen(common.PORT, nextRequest);
++server.listen(common.PORT, '127.0.0.1', nextRequest);
+diff --git a/test/simple/test-http-blank-header.js b/test/simple/test-http-blank-header.js
+index bd9be86..e94e264 100644
+--- a/test/simple/test-http-blank-header.js
++++ b/test/simple/test-http-blank-header.js
+@@ -39,7 +39,7 @@ var server = http.createServer(function(req, res) {
+ });
+ 
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var c = net.createConnection(common.PORT);
+ 
+   c.on('connect', function() {
+diff --git a/test/simple/test-http-buffer-sanity.js b/test/simple/test-http-buffer-sanity.js
+index 2e650d9..dfbd864 100644
+--- a/test/simple/test-http-buffer-sanity.js
++++ b/test/simple/test-http-buffer-sanity.js
+@@ -65,7 +65,7 @@ var web = http.Server(function(req, res) {
+ 
+ var gotThanks = false;
+ 
+-web.listen(common.PORT, function() {
++web.listen(common.PORT, '127.0.0.1', function() {
+   console.log('Making request');
+ 
+   var req = http.request({
+diff --git a/test/simple/test-http-chunked.js b/test/simple/test-http-chunked.js
+index c5def3d..f9d9295 100644
+--- a/test/simple/test-http-chunked.js
++++ b/test/simple/test-http-chunked.js
+@@ -37,7 +37,7 @@ var server = http.createServer(function(req, res) {
+   res.writeHead(200, {'Content-Type': 'text/plain; charset=utf8'});
+   res.end(UTF8_STRING, 'utf8');
+ });
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var data = '';
+   var get = http.get({
+     path: '/',
+diff --git a/test/simple/test-http-client-abort.js b/test/simple/test-http-client-abort.js
+index c9b5eb0..85d6f63 100644
+--- a/test/simple/test-http-client-abort.js
++++ b/test/simple/test-http-client-abort.js
+@@ -53,7 +53,7 @@ var responses = 0;
+ var N = http.Agent.defaultMaxSockets - 1;
+ var requests = [];
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   console.log('Server listening.');
+ 
+   for (var i = 0; i < N; i++) {
+diff --git a/test/simple/test-http-client-abort2.js b/test/simple/test-http-client-abort2.js
+index 17efb7e..02c1137 100644
+--- a/test/simple/test-http-client-abort2.js
++++ b/test/simple/test-http-client-abort2.js
+@@ -30,7 +30,7 @@ var server = http.createServer(function(req, res) {
+   res.end('Hello');
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var req = http.get({port: common.PORT}, function(res) {
+     res.on('data', function(data) {
+       req.abort();
+diff --git a/test/simple/test-http-client-agent.js b/test/simple/test-http-client-agent.js
+index f7112e3..250a8df 100644
+--- a/test/simple/test-http-client-agent.js
++++ b/test/simple/test-http-client-agent.js
+@@ -38,7 +38,7 @@ var server = http.Server(function(req, res) {
+     res.end('Hello, World!');
+   }
+ });
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   for (var i = 0; i < max; ++i) {
+     request(i);
+   }
+diff --git a/test/simple/test-http-client-get-url.js b/test/simple/test-http-client-get-url.js
+index 451f5ee..683edc6 100644
+--- a/test/simple/test-http-client-get-url.js
++++ b/test/simple/test-http-client-get-url.js
+@@ -35,7 +35,7 @@ var server = http.createServer(function(req, res) {
+   seen_req = true;
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   http.get('http://127.0.0.1:' + common.PORT + '/foo?bar');
+ });
+ 
+diff --git a/test/simple/test-http-client-race-2.js b/test/simple/test-http-client-race-2.js
+index 6b7c508..4241326 100644
+--- a/test/simple/test-http-client-race-2.js
++++ b/test/simple/test-http-client-race-2.js
+@@ -47,7 +47,7 @@ var server = http.createServer(function(req, res) {
+                 {'Content-Type': 'text/plain', 'Content-Length': body.length});
+   res.end(body);
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ var body1 = '';
+ var body2 = '';
+diff --git a/test/simple/test-http-client-race.js b/test/simple/test-http-client-race.js
+index 0f50c8e..a1874ea 100644
+--- a/test/simple/test-http-client-race.js
++++ b/test/simple/test-http-client-race.js
+@@ -33,7 +33,7 @@ var server = http.createServer(function(req, res) {
+                 {'Content-Type': 'text/plain', 'Content-Length': body.length});
+   res.end(body);
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ var body1 = '';
+ var body2 = '';
+diff --git a/test/simple/test-http-client-upload-buf.js b/test/simple/test-http-client-upload-buf.js
+index 73e07e7..d996cbf 100644
+--- a/test/simple/test-http-client-upload-buf.js
++++ b/test/simple/test-http-client-upload-buf.js
+@@ -43,7 +43,7 @@ var server = http.createServer(function(req, res) {
+     res.end();
+   });
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ server.on('listening', function() {
+   var req = http.request({
+diff --git a/test/simple/test-http-client-upload.js b/test/simple/test-http-client-upload.js
+index 912ca96..18efc0b 100644
+--- a/test/simple/test-http-client-upload.js
++++ b/test/simple/test-http-client-upload.js
+@@ -44,7 +44,7 @@ var server = http.createServer(function(req, res) {
+     res.end();
+   });
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ server.on('listening', function() {
+   var req = http.request({
+diff --git a/test/simple/test-http-connect.js b/test/simple/test-http-connect.js
+index 668dda7..9d7aa63 100644
+--- a/test/simple/test-http-connect.js
++++ b/test/simple/test-http-connect.js
+@@ -45,7 +45,7 @@ server.on('connect', function(req, socket, firstBodyChunk) {
+     socket.end(data);
+   });
+ });
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var req = http.request({
+     port: common.PORT,
+     method: 'CONNECT',
+diff --git a/test/simple/test-http-contentLength0.js b/test/simple/test-http-contentLength0.js
+index 4d6e616..ef4c25b 100644
+--- a/test/simple/test-http-contentLength0.js
++++ b/test/simple/test-http-contentLength0.js
+@@ -31,7 +31,7 @@ var s = http.createServer(function(req, res) {
+   res.writeHead(200, {'Content-Length': '0 '});
+   res.end();
+ });
+-s.listen(common.PORT, function() {
++s.listen(common.PORT, '127.0.0.1', function() {
+ 
+   var request = http.request({ port: common.PORT }, function(response) {
+     console.log('STATUS: ' + response.statusCode);
+diff --git a/test/simple/test-http-curl-chunk-problem.js b/test/simple/test-http-curl-chunk-problem.js
+index 908b0dd..c1446ef 100644
+--- a/test/simple/test-http-curl-chunk-problem.js
++++ b/test/simple/test-http-curl-chunk-problem.js
+@@ -86,6 +86,6 @@ var server = http.createServer(function(req, res) {
+ 
+ });
+ 
+-server.listen(common.PORT, maybeMakeRequest);
++server.listen(common.PORT, '127.0.0.1', maybeMakeRequest);
+ 
+ console.log('Server running at http://localhost:8080');
+diff --git a/test/simple/test-http-date-header.js b/test/simple/test-http-date-header.js
+index 8ed5281..adaefcc 100644
+--- a/test/simple/test-http-date-header.js
++++ b/test/simple/test-http-date-header.js
+@@ -33,7 +33,7 @@ var server = http.createServer(function(req, res) {
+   });
+   res.end(testResBody);
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ 
+ server.addListener('listening', function() {
+diff --git a/test/simple/test-http-default-encoding.js b/test/simple/test-http-default-encoding.js
+index 4e4741a..0d24fae 100644
+--- a/test/simple/test-http-default-encoding.js
++++ b/test/simple/test-http-default-encoding.js
+@@ -43,7 +43,7 @@ var server = http.Server(function(req, res) {
+   res.end('hello world\n');
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   http.request({
+     port: common.PORT,
+     path: '/',
+diff --git a/test/simple/test-http-eof-on-connect.js b/test/simple/test-http-eof-on-connect.js
+index 95d6fdc..976a727 100644
+--- a/test/simple/test-http-eof-on-connect.js
++++ b/test/simple/test-http-eof-on-connect.js
+@@ -29,7 +29,7 @@ var http = require('http');
+ // reproduceable on the first packet on the first connection to a server.
+ 
+ var server = http.createServer(function(req, res) {});
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ server.on('listening', function() {
+   net.createConnection(common.PORT).on('connect', function() {
+diff --git a/test/simple/test-http-exceptions.js b/test/simple/test-http-exceptions.js
+index 1501d94..97b5504 100644
+--- a/test/simple/test-http-exceptions.js
++++ b/test/simple/test-http-exceptions.js
+@@ -30,7 +30,7 @@ var server = http.createServer(function(req, res) {
+   res.end();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var req;
+   for (var i = 0; i < 4; i += 1) {
+     req = http.get({ port: common.PORT, path: '/busy/' + i });
+diff --git a/test/simple/test-http-expect-continue.js b/test/simple/test-http-expect-continue.js
+index 54c04cc..c2ac4ba 100644
+--- a/test/simple/test-http-expect-continue.js
++++ b/test/simple/test-http-expect-continue.js
+@@ -48,7 +48,7 @@ server.on('checkContinue', function(req, res) {
+     handler(req, res);
+   }, 100);
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ 
+ 
+diff --git a/test/simple/test-http-extra-response.js b/test/simple/test-http-extra-response.js
+index 1649a6a..bd3db15 100644
+--- a/test/simple/test-http-extra-response.js
++++ b/test/simple/test-http-extra-response.js
+@@ -60,7 +60,7 @@ var server = net.createServer(function(socket) {
+ });
+ 
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   http.get({ port: common.PORT }, function(res) {
+     var buffer = '';
+     console.log('Got res code: ' + res.statusCode);
+diff --git a/test/simple/test-http-full-response.js b/test/simple/test-http-full-response.js
+index d33df8b..8588c3f 100644
+--- a/test/simple/test-http-full-response.js
++++ b/test/simple/test-http-full-response.js
+@@ -75,7 +75,7 @@ function runAb(opts, callback) {
+   });
+ }
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   runAb('-c 1 -n 10', function() {
+     console.log('-c 1 -n 10 okay');
+ 
+diff --git a/test/simple/test-http-get-pipeline-problem.js b/test/simple/test-http-get-pipeline-problem.js
+index 720ce4b..c470f01 100644
+--- a/test/simple/test-http-get-pipeline-problem.js
++++ b/test/simple/test-http-get-pipeline-problem.js
+@@ -53,7 +53,7 @@ var server = http.Server(function(req, res) {
+ });
+ 
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   for (var i = 0; i < total; i++) {
+     (function() {
+       var x = i;
+diff --git a/test/simple/test-http-head-request.js b/test/simple/test-http-head-request.js
+index 6b6b876..1592f16 100644
+--- a/test/simple/test-http-head-request.js
++++ b/test/simple/test-http-head-request.js
+@@ -36,7 +36,7 @@ var server = http.createServer(function(req, res) {
+ 
+ var gotEnd = false;
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var request = http.request({
+     port: common.PORT,
+     method: 'HEAD',
+diff --git a/test/simple/test-http-head-response-has-no-body-end.js b/test/simple/test-http-head-response-has-no-body-end.js
+index 8ad3bca..5153928 100644
+--- a/test/simple/test-http-head-response-has-no-body-end.js
++++ b/test/simple/test-http-head-response-has-no-body-end.js
+@@ -35,7 +35,7 @@ var server = http.createServer(function(req, res) {
+   res.writeHead(200);
+   res.end('FAIL'); // broken: sends FAIL from hot path.
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ var responseComplete = false;
+ 
+diff --git a/test/simple/test-http-head-response-has-no-body.js b/test/simple/test-http-head-response-has-no-body.js
+index 620ad75..75d5661 100644
+--- a/test/simple/test-http-head-response-has-no-body.js
++++ b/test/simple/test-http-head-response-has-no-body.js
+@@ -32,7 +32,7 @@ var server = http.createServer(function(req, res) {
+   res.writeHead(200); // broken: defaults to TE chunked
+   res.end();
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ var responseComplete = false;
+ 
+diff --git a/test/simple/test-http-header-read.js b/test/simple/test-http-header-read.js
+index de20df6..4a41f6a 100644
+--- a/test/simple/test-http-header-read.js
++++ b/test/simple/test-http-header-read.js
+@@ -41,7 +41,7 @@ var s = http.createServer(function(req, res) {
+   );
+ });
+ 
+-s.listen(common.PORT, runTest);
++s.listen(common.PORT, '127.0.0.1', runTest);
+ 
+ function runTest() {
+   http.get({ port: common.PORT }, function(response) {
+diff --git a/test/simple/test-http-host-headers.js b/test/simple/test-http-host-headers.js
+index 2e92ae5..366d559 100644
+--- a/test/simple/test-http-host-headers.js
++++ b/test/simple/test-http-host-headers.js
+@@ -69,7 +69,7 @@ function testHttp() {
+     }
+   }
+ 
+-  httpServer.listen(common.PORT, function(er) {
++  httpServer.listen(common.PORT, '127.0.0.1', function(er) {
+     console.error('listening on ' + common.PORT);
+ 
+     if (er) throw er;
+@@ -121,7 +121,7 @@ function testHttps() {
+     }
+   }
+ 
+-  httpsServer.listen(common.PORT, function(er) {
++  httpsServer.listen(common.PORT, '127.0.0.1', function(er) {
+     if (er) throw er;
+ 
+     https.get({ method: 'GET',
+diff --git a/test/simple/test-http-keep-alive-close-on-header.js b/test/simple/test-http-keep-alive-close-on-header.js
+index 8fd7348..4f73bd2 100644
+--- a/test/simple/test-http-keep-alive-close-on-header.js
++++ b/test/simple/test-http-keep-alive-close-on-header.js
+@@ -36,7 +36,7 @@ var server = http.createServer(function(req, res) {
+ var connectCount = 0;
+ 
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var agent = new http.Agent({ maxSockets: 1 });
+   var request = http.request({
+     method: 'GET',
+diff --git a/test/simple/test-http-keep-alive.js b/test/simple/test-http-keep-alive.js
+index aa03639..ce9d02e 100644
+--- a/test/simple/test-http-keep-alive.js
++++ b/test/simple/test-http-keep-alive.js
+@@ -36,7 +36,7 @@ var name = 'localhost:' + common.PORT;
+ var agent = new http.Agent({maxSockets: 1});
+ var headers = {'connection': 'keep-alive'};
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   http.get({
+     path: '/', headers: headers, port: common.PORT, agent: agent
+   }, function(response) {
+diff --git a/test/simple/test-http-legacy.js b/test/simple/test-http-legacy.js
+index dd3eb6f..bf18c4d 100644
+--- a/test/simple/test-http-legacy.js
++++ b/test/simple/test-http-legacy.js
+@@ -65,7 +65,7 @@ var server = http.createServer(function(req, res) {
+   //assert.equal('127.0.0.1', res.connection.remoteAddress);
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var client = http.createClient(common.PORT);
+   var req = client.request('/hello', {'Accept': '*/*', 'Foo': 'bar'});
+   setTimeout(function() {
+diff --git a/test/simple/test-http-malformed-request.js b/test/simple/test-http-malformed-request.js
+index 52165a2..8d36ae5 100644
+--- a/test/simple/test-http-malformed-request.js
++++ b/test/simple/test-http-malformed-request.js
+@@ -40,7 +40,7 @@ var server = http.createServer(function(req, res) {
+ 
+   if (++nrequests_completed == nrequests_expected) server.close();
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ server.on('listening', function() {
+   var c = net.createConnection(common.PORT);
+diff --git a/test/simple/test-http-many-keep-alive-connections.js b/test/simple/test-http-many-keep-alive-connections.js
+index 4714cd5..4572ac4 100644
+--- a/test/simple/test-http-many-keep-alive-connections.js
++++ b/test/simple/test-http-many-keep-alive-connections.js
+@@ -39,7 +39,7 @@ server.once('connection', function(c) {
+   connection = c;
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var callee = arguments.callee;
+   var request = http.get({
+     port: common.PORT,
+diff --git a/test/simple/test-http-max-headers-count.js b/test/simple/test-http-max-headers-count.js
+index 97fce2c..52792e8 100644
+--- a/test/simple/test-http-max-headers-count.js
++++ b/test/simple/test-http-max-headers-count.js
+@@ -52,7 +52,7 @@ var server = http.createServer(function(req, res) {
+ });
+ server.maxHeadersCount = max;
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var maxAndExpected = [ // for client
+     [20, 20],
+     [1200, 1200],
+diff --git a/test/simple/test-http-multi-line-headers.js b/test/simple/test-http-multi-line-headers.js
+index a212a04..ab06a25 100644
+--- a/test/simple/test-http-multi-line-headers.js
++++ b/test/simple/test-http-multi-line-headers.js
+@@ -46,7 +46,7 @@ var server = net.createServer(function(conn) {
+   });
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   http.get({host: '127.0.0.1', port: common.PORT}, function(res) {
+     assert.equal(res.headers['content-type'],
+                  'text/plain;x-unix-mode=0600;name="hello.txt"');
+diff --git a/test/simple/test-http-mutable-headers.js b/test/simple/test-http-mutable-headers.js
+index 6106ac6..ca8b6b7 100644
+--- a/test/simple/test-http-mutable-headers.js
++++ b/test/simple/test-http-mutable-headers.js
+@@ -81,7 +81,7 @@ var s = http.createServer(function(req, res) {
+   res.end(content);
+ });
+ 
+-s.listen(common.PORT, nextTest);
++s.listen(common.PORT, '127.0.0.1', nextTest);
+ 
+ 
+ function nextTest() {
+diff --git a/test/simple/test-http-no-content-length.js b/test/simple/test-http-no-content-length.js
+index 8c565ae..7a8f39c 100644
+--- a/test/simple/test-http-no-content-length.js
++++ b/test/simple/test-http-no-content-length.js
+@@ -29,7 +29,7 @@ var body = '';
+ var server = net.createServer(function(socket) {
+   // Neither Content-Length nor Connection
+   socket.end('HTTP/1.1 200 ok\r\n\r\nHello');
+-}).listen(common.PORT, function() {
++}).listen(common.PORT, '127.0.0.1', function() {
+   var req = http.get({port: common.PORT}, function(res) {
+     res.setEncoding('utf8');
+     res.on('data', function(chunk) {
+diff --git a/test/simple/test-http-parser-free.js b/test/simple/test-http-parser-free.js
+index bbf4a50..b890d5d 100644
+--- a/test/simple/test-http-parser-free.js
++++ b/test/simple/test-http-parser-free.js
+@@ -29,7 +29,7 @@ var server = http.createServer(function(req, res) {
+   res.end('Hello');
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   http.globalAgent.maxSockets = 1;
+   var parser;
+   for (var i = 0; i < N; ++i) {
+diff --git a/test/simple/test-http-pause-resume-one-end.js b/test/simple/test-http-pause-resume-one-end.js
+index d5a4cb9..4b68431 100644
+--- a/test/simple/test-http-pause-resume-one-end.js
++++ b/test/simple/test-http-pause-resume-one-end.js
+@@ -32,7 +32,7 @@ var server = http.Server(function(req, res) {
+ 
+ var dataCount = 0, endCount = 0;
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var opts = {
+     port: common.PORT,
+     headers: { connection: 'close' }
+diff --git a/test/simple/test-http-pause.js b/test/simple/test-http-pause.js
+index 0edf6d6..f4e4aab 100644
+--- a/test/simple/test-http-pause.js
++++ b/test/simple/test-http-pause.js
+@@ -46,7 +46,7 @@ var server = http.createServer(function(req, res) {
+   }, 100);
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var req = http.request({
+     port: common.PORT,
+     path: '/',
+diff --git a/test/simple/test-http-pipe-fs.js b/test/simple/test-http-pipe-fs.js
+index bc033fe..cd12dda 100644
+--- a/test/simple/test-http-pipe-fs.js
++++ b/test/simple/test-http-pipe-fs.js
+@@ -36,7 +36,7 @@ var server = http.createServer(function(req, res) {
+     res.writeHead(200);
+     res.end();
+   });
+-}).listen(common.PORT, function() {
++}).listen(common.PORT, '127.0.0.1', function() {
+   http.globalAgent.maxSockets = 1;
+ 
+   for (var i = 0; i < 2; ++i) {
+diff --git a/test/simple/test-http-proxy.js b/test/simple/test-http-proxy.js
+index 099afb9..2d1bf77 100644
+--- a/test/simple/test-http-proxy.js
++++ b/test/simple/test-http-proxy.js
+@@ -99,10 +99,10 @@ function startReq() {
+ }
+ 
+ common.debug('listen proxy');
+-proxy.listen(PROXY_PORT, startReq);
++proxy.listen(PROXY_PORT, '127.0.0.1', startReq);
+ 
+ common.debug('listen backend');
+-backend.listen(BACKEND_PORT, startReq);
++backend.listen(BACKEND_PORT, '127.0.0.1', startReq);
+ 
+ process.on('exit', function() {
+   assert.equal(body, 'hello world\n');
+diff --git a/test/simple/test-http-request-end-twice.js b/test/simple/test-http-request-end-twice.js
+index f33cc6d..6717583 100644
+--- a/test/simple/test-http-request-end-twice.js
++++ b/test/simple/test-http-request-end-twice.js
+@@ -30,7 +30,7 @@ var server = http.Server(function(req, res) {
+   res.writeHead(200, {'Content-Type': 'text/plain'});
+   res.end('hello world\n');
+ });
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var req = http.get({port: common.PORT}, function(res) {
+     res.on('end', function() {
+       assert.ok(!req.end());
+diff --git a/test/simple/test-http-request-end.js b/test/simple/test-http-request-end.js
+index f5da0fa..85a5147 100644
+--- a/test/simple/test-http-request-end.js
++++ b/test/simple/test-http-request-end.js
+@@ -40,7 +40,7 @@ var server = http.Server(function(req, res) {
+   res.end('hello world\n');
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   http.request({
+     port: common.PORT,
+     path: '/',
+diff --git a/test/simple/test-http-request-methods.js b/test/simple/test-http-request-methods.js
+index f0be3a0..689ba5e 100644
+--- a/test/simple/test-http-request-methods.js
++++ b/test/simple/test-http-request-methods.js
+@@ -39,7 +39,7 @@ var http = require('http');
+     res.write('world\n');
+     res.end();
+   });
+-  server.listen(port);
++  server.listen(port, '127.0.0.1');
+ 
+   server.on('listening', function() {
+     var c = net.createConnection(port);
+diff --git a/test/simple/test-http-res-write-end-dont-take-array.js b/test/simple/test-http-res-write-end-dont-take-array.js
+index f4b3f8c..21f02e1 100644
+--- a/test/simple/test-http-res-write-end-dont-take-array.js
++++ b/test/simple/test-http-res-write-end-dont-take-array.js
+@@ -51,7 +51,7 @@ var server = http.createServer(function(req, res) {
+   }
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   // just make a request, other tests handle responses
+   http.get({port: common.PORT}, function() {
+     // lazy serial test, becuase we can only call end once per request
+diff --git a/test/simple/test-http-response-close.js b/test/simple/test-http-response-close.js
+index be89682..29909e6 100644
+--- a/test/simple/test-http-response-close.js
++++ b/test/simple/test-http-response-close.js
+@@ -39,7 +39,7 @@ var server = http.createServer(function(req, res) {
+     responseGotEnd = true;
+   });
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ server.on('listening', function() {
+   console.error('make req');
+diff --git a/test/simple/test-http-response-readable.js b/test/simple/test-http-response-readable.js
+index b31fcc3..f9bbd2a 100644
+--- a/test/simple/test-http-response-readable.js
++++ b/test/simple/test-http-response-readable.js
+@@ -28,7 +28,7 @@ var testServer = new http.Server(function(req, res) {
+   res.end('Hello world');
+ });
+ 
+-testServer.listen(common.PORT, function() {
++testServer.listen(common.PORT, '127.0.0.1', function() {
+   http.get({ port: common.PORT }, function(res) {
+     assert.equal(res.readable, true, 'res.readable initially true');
+     res.on('end', function() {
+diff --git a/test/simple/test-http-server-multiheaders.js b/test/simple/test-http-server-multiheaders.js
+index a94ea27..bc6c15b 100644
+--- a/test/simple/test-http-server-multiheaders.js
++++ b/test/simple/test-http-server-multiheaders.js
+@@ -42,7 +42,7 @@ var srv = http.createServer(function(req, res) {
+   srv.close();
+ });
+ 
+-srv.listen(common.PORT, function() {
++srv.listen(common.PORT, '127.0.0.1', function() {
+   http.get({
+     host: 'localhost',
+     port: common.PORT,
+diff --git a/test/simple/test-http-server.js b/test/simple/test-http-server.js
+index 7d97382..fc5c8c6 100644
+--- a/test/simple/test-http-server.js
++++ b/test/simple/test-http-server.js
+@@ -67,7 +67,7 @@ var server = http.createServer(function(req, res) {
+   }, 1);
+ 
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ server.httpAllowHalfOpen = true;
+ 
+diff --git a/test/simple/test-http-set-cookies.js b/test/simple/test-http-set-cookies.js
+index bff34d8..09f73d9 100644
+--- a/test/simple/test-http-set-cookies.js
++++ b/test/simple/test-http-set-cookies.js
+@@ -37,7 +37,7 @@ var server = http.createServer(function(req, res) {
+     res.end('two\n');
+   }
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ server.on('listening', function() {
+   //
+diff --git a/test/simple/test-http-set-timeout.js b/test/simple/test-http-set-timeout.js
+index 1feb946..9aab1ac 100644
+--- a/test/simple/test-http-set-timeout.js
++++ b/test/simple/test-http-set-timeout.js
+@@ -34,7 +34,7 @@ var server = http.createServer(function(req, res) {
+   });
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   console.log('Server running at http://127.0.0.1:' + common.PORT + '/');
+ 
+   var errorTimer = setTimeout(function() {
+diff --git a/test/simple/test-http-set-trailers.js b/test/simple/test-http-set-trailers.js
+index a0896df..91a9ecd 100644
+--- a/test/simple/test-http-set-trailers.js
++++ b/test/simple/test-http-set-trailers.js
+@@ -31,7 +31,7 @@ var server = http.createServer(function(req, res) {
+   res.addTrailers({'x-foo': 'bar'});
+   res.end('stuff' + '\n');
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ 
+ // first, we test an HTTP/1.0 request.
+diff --git a/test/simple/test-http-should-keep-alive.js b/test/simple/test-http-should-keep-alive.js
+index fc1f5c6..9055510 100644
+--- a/test/simple/test-http-should-keep-alive.js
++++ b/test/simple/test-http-should-keep-alive.js
+@@ -46,7 +46,7 @@ var responses = 0;
+ var server = net.createServer(function(socket) {
+   socket.write(SERVER_RESPONSES[requests]);
+   ++requests;
+-}).listen(common.PORT, function() {
++}).listen(common.PORT, '127.0.0.1', function() {
+   function makeRequest() {
+     var req = http.get({port: common.PORT}, function(res) {
+       assert.equal(req.shouldKeepAlive, SHOULD_KEEP_ALIVE[responses],
+diff --git a/test/simple/test-http-status-code.js b/test/simple/test-http-status-code.js
+index 3956238..aa89903 100644
+--- a/test/simple/test-http-status-code.js
++++ b/test/simple/test-http-status-code.js
+@@ -41,7 +41,7 @@ var s = http.createServer(function(req, res) {
+   res.end('hello world\n');
+ });
+ 
+-s.listen(common.PORT, nextTest);
++s.listen(common.PORT, '127.0.0.1', nextTest);
+ 
+ 
+ function nextTest() {
+diff --git a/test/simple/test-http-timeout.js b/test/simple/test-http-timeout.js
+index 5170d79..2cff663 100644
+--- a/test/simple/test-http-timeout.js
++++ b/test/simple/test-http-timeout.js
+@@ -33,7 +33,7 @@ var server = http.createServer(function(req, res) {
+ 
+ var agent = new http.Agent({maxSockets: 1});
+ 
+-server.listen(port, function() {
++server.listen(port, '127.0.0.1', function() {
+ 
+   for (var i = 0; i < 11; ++i) {
+     createRequest().end();
+diff --git a/test/simple/test-http-upgrade-client2.js b/test/simple/test-http-upgrade-client2.js
+index fa39f2a..828f6ec 100644
+--- a/test/simple/test-http-upgrade-client2.js
++++ b/test/simple/test-http-upgrade-client2.js
+@@ -37,7 +37,7 @@ server.on('upgrade', function(req, socket, head) {
+ 
+ var successCount = 0;
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+ 
+   function upgradeRequest(fn) {
+     console.log('req');
+diff --git a/test/simple/test-http-upgrade-server.js b/test/simple/test-http-upgrade-server.js
+index 6a14d39..38057c0 100644
+--- a/test/simple/test-http-upgrade-server.js
++++ b/test/simple/test-http-upgrade-server.js
+@@ -169,7 +169,7 @@ function test_standard_http() {
+ 
+ var server = createTestServer();
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   // All tests get chained after this:
+   test_upgrade_with_listener(server);
+ });
+diff --git a/test/simple/test-http-upgrade-server2.js b/test/simple/test-http-upgrade-server2.js
+index e617d3b..21b060f 100644
+--- a/test/simple/test-http-upgrade-server2.js
++++ b/test/simple/test-http-upgrade-server2.js
+@@ -46,7 +46,7 @@ process.on('uncaughtException', function(e) {
+ });
+ 
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var c = net.createConnection(common.PORT);
+ 
+   c.on('connect', function() {
+diff --git a/test/simple/test-http-url.parse-auth-with-header-in-request.js b/test/simple/test-http-url.parse-auth-with-header-in-request.js
+index 5ac7890..5f926f4 100644
+--- a/test/simple/test-http-url.parse-auth-with-header-in-request.js
++++ b/test/simple/test-http-url.parse-auth-with-header-in-request.js
+@@ -44,7 +44,7 @@ var server = http.createServer(function(request, response) {
+   server.close();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   // make the request
+   http.request(testURL).end();
+ });
+diff --git a/test/simple/test-http-url.parse-auth.js b/test/simple/test-http-url.parse-auth.js
+index 4c07d5f..b99c357 100644
+--- a/test/simple/test-http-url.parse-auth.js
++++ b/test/simple/test-http-url.parse-auth.js
+@@ -40,7 +40,7 @@ var server = http.createServer(function(request, response) {
+   server.close();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   // make the request
+   http.request(testURL).end();
+ });
+diff --git a/test/simple/test-http-url.parse-basic.js b/test/simple/test-http-url.parse-basic.js
+index 8bf12b1..2baf024 100644
+--- a/test/simple/test-http-url.parse-basic.js
++++ b/test/simple/test-http-url.parse-basic.js
+@@ -45,7 +45,7 @@ var server = http.createServer(function(request, response) {
+   server.close();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   // make the request
+   var clientRequest = http.request(testURL);
+   // since there is a little magic with the agent
+diff --git a/test/simple/test-http-url.parse-https.request.js b/test/simple/test-http-url.parse-https.request.js
+index 6756db5..8adbc66 100644
+--- a/test/simple/test-http-url.parse-https.request.js
++++ b/test/simple/test-http-url.parse-https.request.js
+@@ -47,7 +47,7 @@ var server = https.createServer(httpsOptions, function(request, response) {
+   server.close();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   // make the request
+   var clientRequest = https.request(testURL);
+   // since there is a little magic with the agent
+diff --git a/test/simple/test-http-url.parse-path.js b/test/simple/test-http-url.parse-path.js
+index 8ef0952..7ee3f51 100644
+--- a/test/simple/test-http-url.parse-path.js
++++ b/test/simple/test-http-url.parse-path.js
+@@ -39,7 +39,7 @@ var server = http.createServer(function(request, response) {
+   server.close();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   // make the request
+   http.request(testURL).end();
+ });
+diff --git a/test/simple/test-http-url.parse-post.js b/test/simple/test-http-url.parse-post.js
+index be93166..57d4e86 100644
+--- a/test/simple/test-http-url.parse-post.js
++++ b/test/simple/test-http-url.parse-post.js
+@@ -46,7 +46,7 @@ var server = http.createServer(function(request, response) {
+   server.close();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   // make the request
+   http.request(testURL).end();
+ });
+diff --git a/test/simple/test-http-url.parse-search.js b/test/simple/test-http-url.parse-search.js
+index 3b6727d..f81bbf9 100644
+--- a/test/simple/test-http-url.parse-search.js
++++ b/test/simple/test-http-url.parse-search.js
+@@ -40,7 +40,7 @@ var server = http.createServer(function(request, response) {
+   server.close();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   // make the request
+   http.request(testURL).end();
+ });
+diff --git a/test/simple/test-http-wget.js b/test/simple/test-http-wget.js
+index b6cf7d8..164e174 100644
+--- a/test/simple/test-http-wget.js
++++ b/test/simple/test-http-wget.js
+@@ -49,7 +49,7 @@ var server = http.createServer(function(req, res) {
+   res.write('world\n');
+   res.end();
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ server.on('listening', function() {
+   var c = net.createConnection(common.PORT);
+diff --git a/test/simple/test-http-write-empty-string.js b/test/simple/test-http-write-empty-string.js
+index baf9c27..bbf6276 100644
+--- a/test/simple/test-http-write-empty-string.js
++++ b/test/simple/test-http-write-empty-string.js
+@@ -44,7 +44,7 @@ process.on('exit', function() {
+ });
+ 
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   http.get({ port: common.PORT }, function(res) {
+     assert.equal(200, res.statusCode);
+     res.setEncoding('ascii');
+diff --git a/test/simple/test-http.js b/test/simple/test-http.js
+index 1915e24..29d9255 100644
+--- a/test/simple/test-http.js
++++ b/test/simple/test-http.js
+@@ -61,7 +61,7 @@ var server = http.Server(function(req, res) {
+ 
+   //assert.equal('127.0.0.1', res.connection.remoteAddress);
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ server.on('listening', function() {
+   var agent = new http.Agent({ port: common.PORT, maxSockets: 1 });
+diff --git a/test/simple/test-https-agent.js b/test/simple/test-https-agent.js
+index 41aa034..75b6dbd 100644
+--- a/test/simple/test-https-agent.js
++++ b/test/simple/test-https-agent.js
+@@ -48,7 +48,7 @@ var responses = 0;
+ var N = 10;
+ var M = 10;
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   for (var i = 0; i < N; i++) {
+     setTimeout(function() {
+       for (var j = 0; j < M; j++) {
+diff --git a/test/simple/test-https-client-reject.js b/test/simple/test-https-client-reject.js
+index 700caee..c740d0d 100644
+--- a/test/simple/test-https-client-reject.js
++++ b/test/simple/test-https-client-reject.js
+@@ -41,7 +41,7 @@ var server = https.createServer(options, function(req, res) {
+   ++reqCount;
+   res.writeHead(200);
+   res.end();
+-}).listen(common.PORT, function() {
++}).listen(common.PORT, '127.0.0.1', function() {
+   unauthorized();
+ });
+ 
+diff --git a/test/simple/test-https-connecting-to-http.js b/test/simple/test-https-connecting-to-http.js
+index 50bb2a8..5b01c25 100644
+--- a/test/simple/test-https-connecting-to-http.js
++++ b/test/simple/test-https-connecting-to-http.js
+@@ -44,7 +44,7 @@ var server = http.createServer(function(req, res) {
+ });
+ 
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var req = https.get({ port: common.PORT }, function(res) {
+     resCount++;
+   });
+diff --git a/test/simple/test-https-drain.js b/test/simple/test-https-drain.js
+index 314944b..4c5a177 100644
+--- a/test/simple/test-https-drain.js
++++ b/test/simple/test-https-drain.js
+@@ -44,7 +44,7 @@ var server = https.createServer(options, function(req, res) {
+   req.pipe(res);
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var resumed = false;
+   var req = https.request({
+     port: common.PORT,
+diff --git a/test/simple/test-https-eof-for-eom.js b/test/simple/test-https-eof-for-eom.js
+index d5b5111..5eae73a 100644
+--- a/test/simple/test-https-eof-for-eom.js
++++ b/test/simple/test-https-eof-for-eom.js
+@@ -72,7 +72,7 @@ var gotHeaders = false;
+ var gotEnd = false;
+ var bodyBuffer = '';
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   console.log('1) Making Request');
+   var req = https.get({ port: common.PORT }, function(res) {
+     server.close();
+diff --git a/test/simple/test-https-foafssl.js b/test/simple/test-https-foafssl.js
+index 2336e5c..fd4ca29 100644
+--- a/test/simple/test-https-foafssl.js
++++ b/test/simple/test-https-foafssl.js
+@@ -61,7 +61,7 @@ var server = https.createServer(options, function(req, res) {
+ });
+ 
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var cmd = 'curl --insecure https://127.0.0.1:' + common.PORT + '/';
+   cmd += ' --cert ' + join(common.fixturesDir, 'foafssl.crt');
+   cmd += ' --key ' + join(common.fixturesDir, 'foafssl.key');
+diff --git a/test/simple/test-https-invalid-key.js b/test/simple/test-https-invalid-key.js
+index 82e05a2..5b57dd4 100644
+--- a/test/simple/test-https-invalid-key.js
++++ b/test/simple/test-https-invalid-key.js
+@@ -46,7 +46,7 @@ server.on('clientError', function(err) {
+   server.close();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var req = https.get({port: common.PORT}, function(res) {
+     assert(false);
+   });
+diff --git a/test/simple/test-https-simple.js b/test/simple/test-https-simple.js
+index 552450c..6eb2b12 100644
+--- a/test/simple/test-https-simple.js
++++ b/test/simple/test-https-simple.js
+@@ -51,7 +51,7 @@ var server = https.createServer(options, function(req, res) {
+ });
+ 
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var cmd = 'curl --insecure https://127.0.0.1:' + common.PORT + '/';
+   console.error('executing %j', cmd);
+   exec(cmd, function(err, stdout, stderr) {
+diff --git a/test/simple/test-https-socket-options.js b/test/simple/test-https-socket-options.js
+index f021664..3f49718 100644
+--- a/test/simple/test-https-socket-options.js
++++ b/test/simple/test-https-socket-options.js
+@@ -52,7 +52,7 @@ var server_http = http.createServer(function(req, res) {
+ });
+ 
+ 
+-server_http.listen(common.PORT, function() {
++server_http.listen(common.PORT, '127.0.0.1', function() {
+   var req = http.request({ port: common.PORT }, function(res) {
+     server_http.close();
+   });
+@@ -71,8 +71,8 @@ var server_https = https.createServer(options, function(req, res) {
+   res.end(body);
+ });
+ 
+-server_https.listen(common.PORT+1, function() {
+-  var req = https.request({ port: common.PORT+1 }, function(res) {
++server_https.listen(common.PORT + 1, '127.0.0.1', function() {
++  var req = https.request({ port: common.PORT + 1 }, function(res) {
+     server_https.close();
+   });
+   // These methods should exist on the request and get passed down to the socket
+diff --git a/test/simple/test-https-timeout.js b/test/simple/test-https-timeout.js
+index 8a8ae00..03503ec 100644
+--- a/test/simple/test-https-timeout.js
++++ b/test/simple/test-https-timeout.js
+@@ -38,7 +38,7 @@ var options = {
+ // a server that never replies
+ var server = https.createServer(options, function() {
+   console.log('Got request.  Doing nothing.');
+-}).listen(common.PORT, function() {
++}).listen(common.PORT, '127.0.0.1', function() {
+   var req = https.request({
+     host: 'localhost',
+     port: common.PORT,
+diff --git a/test/simple/test-listen-fd-cluster.js b/test/simple/test-listen-fd-cluster.js
+index 0d6d774..08548bf 100644
+--- a/test/simple/test-listen-fd-cluster.js
++++ b/test/simple/test-listen-fd-cluster.js
+@@ -88,7 +88,7 @@ function parent() {
+   var server = net.createServer(function(conn) {
+     console.error('connection on parent');
+     conn.end('hello from parent\n');
+-  }).listen(PORT, function() {
++  }).listen(PORT, '127.0.0.1', function() {
+     console.error('server listening on %d', PORT);
+ 
+     var spawn = require('child_process').spawn;
+diff --git a/test/simple/test-listen-fd-detached-inherit.js b/test/simple/test-listen-fd-detached-inherit.js
+index dabc46c..cbcea13 100644
+--- a/test/simple/test-listen-fd-detached-inherit.js
++++ b/test/simple/test-listen-fd-detached-inherit.js
+@@ -86,7 +86,7 @@ function parent() {
+   var server = net.createServer(function(conn) {
+     throw new Error('Should not see connections on parent');
+     conn.end('HTTP/1.1 403 Forbidden\r\n\r\nI got problems.\r\n');
+-  }).listen(PORT, function() {
++  }).listen(PORT, '127.0.0.1', function() {
+     console.error('server listening on %d', PORT);
+ 
+     var child = spawn(process.execPath, [__filename, 'child'], {
+diff --git a/test/simple/test-listen-fd-detached.js b/test/simple/test-listen-fd-detached.js
+index 3d98abe..07f94ca 100644
+--- a/test/simple/test-listen-fd-detached.js
++++ b/test/simple/test-listen-fd-detached.js
+@@ -84,7 +84,7 @@ function parent() {
+   var server = net.createServer(function(conn) {
+     console.error('connection on parent');
+     conn.end('hello from parent\n');
+-  }).listen(PORT, function() {
++  }).listen(PORT, '127.0.0.1', function() {
+     console.error('server listening on %d', PORT);
+ 
+     var spawn = require('child_process').spawn;
+diff --git a/test/simple/test-listen-fd-server.js b/test/simple/test-listen-fd-server.js
+index 8f3454f..39a6535 100644
+--- a/test/simple/test-listen-fd-server.js
++++ b/test/simple/test-listen-fd-server.js
+@@ -95,7 +95,7 @@ function parent() {
+   var server = net.createServer(function(conn) {
+     console.error('connection on parent');
+     conn.end('hello from parent\n');
+-  }).listen(PORT, function() {
++  }).listen(PORT, '127.0.0.1', function() {
+     console.error('server listening on %d', PORT);
+ 
+     var spawn = require('child_process').spawn;
+diff --git a/test/simple/test-net-after-close.js b/test/simple/test-net-after-close.js
+index 65fda21..15648fe 100644
+--- a/test/simple/test-net-after-close.js
++++ b/test/simple/test-net-after-close.js
+@@ -28,7 +28,7 @@ var server = net.createServer(function(s) {
+   s.end();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var c = net.createConnection(common.PORT);
+   c.on('close', function() {
+     assert.strictEqual(c._handle, null);
+diff --git a/test/simple/test-net-binary.js b/test/simple/test-net-binary.js
+index 349e2da..3550df1 100644
+--- a/test/simple/test-net-binary.js
++++ b/test/simple/test-net-binary.js
+@@ -50,7 +50,7 @@ var echoServer = net.Server(function(connection) {
+     connection.end();
+   });
+ });
+-echoServer.listen(common.PORT);
++echoServer.listen(common.PORT, '127.0.0.1');
+ 
+ var recv = '';
+ 
+diff --git a/test/simple/test-net-bind-twice.js b/test/simple/test-net-bind-twice.js
+index 58086cc..1cb6ee6 100644
+--- a/test/simple/test-net-bind-twice.js
++++ b/test/simple/test-net-bind-twice.js
+@@ -34,7 +34,7 @@ function dontCall() {
+ }
+ 
+ var server1 = net.createServer(dontCall);
+-server1.listen(common.PORT, '127.0.0.1', function() {});
++server1.listen(common.PORT, '127.0.0.1',function() {});
+ 
+ var server2 = net.createServer(dontCall);
+ server2.listen(common.PORT, '127.0.0.1', dontCall);
+diff --git a/test/simple/test-net-bytes-stats.js b/test/simple/test-net-bytes-stats.js
+index a406e99..8342034 100644
+--- a/test/simple/test-net-bytes-stats.js
++++ b/test/simple/test-net-bytes-stats.js
+@@ -40,7 +40,7 @@ var tcp = net.Server(function(s) {
+   });
+ });
+ 
+-tcp.listen(common.PORT, function() {
++tcp.listen(common.PORT, '127.0.0.1', function() {
+   var socket = net.createConnection(tcpPort);
+ 
+   socket.on('connect', function() {
+diff --git a/test/simple/test-net-can-reset-timeout.js b/test/simple/test-net-can-reset-timeout.js
+index bb9b071..d087caa 100644
+--- a/test/simple/test-net-can-reset-timeout.js
++++ b/test/simple/test-net-can-reset-timeout.js
+@@ -43,7 +43,7 @@ var server = net.createServer(function(stream) {
+   });
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var c = net.createConnection(common.PORT);
+ 
+   c.on('data', function() {
+diff --git a/test/simple/test-net-connect-buffer.js b/test/simple/test-net-connect-buffer.js
+index 0950593..e857267 100644
+--- a/test/simple/test-net-connect-buffer.js
++++ b/test/simple/test-net-connect-buffer.js
+@@ -49,7 +49,7 @@ var tcp = net.Server(function(s) {
+   });
+ });
+ 
+-tcp.listen(common.PORT, function() {
++tcp.listen(common.PORT, '127.0.0.1', function() {
+   var socket = net.Stream();
+ 
+   console.log('Connecting to socket ');
+diff --git a/test/simple/test-net-connect-options.js b/test/simple/test-net-connect-options.js
+index 8df692e..3bd462d 100644
+--- a/test/simple/test-net-connect-options.js
++++ b/test/simple/test-net-connect-options.js
+@@ -33,7 +33,7 @@ var server = net.createServer({allowHalfOpen: true}, function(socket) {
+   socket.end();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var client = net.connect({
+     host: '127.0.0.1',
+     port: common.PORT,
+diff --git a/test/simple/test-net-during-close.js b/test/simple/test-net-during-close.js
+index 0bcdd4d..2bf0e0e 100644
+--- a/test/simple/test-net-during-close.js
++++ b/test/simple/test-net-during-close.js
+@@ -28,7 +28,7 @@ var server = net.createServer(function(socket) {
+   socket.end();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var client = net.createConnection(common.PORT);
+   server.close();
+   // server connection event has not yet fired
+diff --git a/test/simple/test-net-eaddrinuse.js b/test/simple/test-net-eaddrinuse.js
+index 2192ea2..40548d6 100644
+--- a/test/simple/test-net-eaddrinuse.js
++++ b/test/simple/test-net-eaddrinuse.js
+@@ -27,9 +27,9 @@ var server1 = net.createServer(function(socket) {
+ });
+ var server2 = net.createServer(function(socket) {
+ });
+-server1.listen(common.PORT);
++server1.listen(common.PORT, '127.0.0.1');
+ server2.on('error', function(error) {
+   assert.equal(true, error.message.indexOf('EADDRINUSE') >= 0);
+   server1.close();
+ });
+-server2.listen(common.PORT);
++server2.listen(common.PORT, '127.0.0.1');
+diff --git a/test/simple/test-net-keepalive.js b/test/simple/test-net-keepalive.js
+index b09d9d5..2f717c1 100644
+--- a/test/simple/test-net-keepalive.js
++++ b/test/simple/test-net-keepalive.js
+@@ -34,7 +34,7 @@ var echoServer = net.createServer(function(connection) {
+     connection.end();
+   });
+ });
+-echoServer.listen(common.PORT);
++echoServer.listen(common.PORT, '127.0.0.1');
+ 
+ echoServer.on('listening', function() {
+   var clientConnection = net.createConnection(common.PORT);
+diff --git a/test/simple/test-net-large-string.js b/test/simple/test-net-large-string.js
+index 877dc7c..84f27b6 100644
+--- a/test/simple/test-net-large-string.js
++++ b/test/simple/test-net-large-string.js
+@@ -41,7 +41,7 @@ var server = net.createServer(function(socket) {
+   });
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var client = net.createConnection(common.PORT);
+   client.on('end', function() {
+     server.close();
+diff --git a/test/simple/test-net-reconnect.js b/test/simple/test-net-reconnect.js
+index f7fcb8b..db9fded 100644
+--- a/test/simple/test-net-reconnect.js
++++ b/test/simple/test-net-reconnect.js
+@@ -44,7 +44,7 @@ var server = net.createServer(function(socket) {
+   });
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   console.log('listening');
+   var client = net.createConnection(common.PORT);
+ 
+diff --git a/test/simple/test-net-server-bind.js b/test/simple/test-net-server-bind.js
+index 0951aa2..56d3382 100644
+--- a/test/simple/test-net-server-bind.js
++++ b/test/simple/test-net-server-bind.js
+@@ -41,7 +41,7 @@ server0.listen(function() {
+ var address1;
+ var server1 = net.createServer(function(socket) { });
+ 
+-server1.listen(common.PORT);
++server1.listen(common.PORT, '127.0.0.1');
+ 
+ setTimeout(function() {
+   address1 = server1.address();
+@@ -55,7 +55,7 @@ setTimeout(function() {
+ var address2;
+ var server2 = net.createServer(function(socket) { });
+ 
+-server2.listen(common.PORT + 1, function() {
++server2.listen(common.PORT + 1, '127.0.0.1', function() {
+   address2 = server2.address();
+   console.log('address2 %j', address2);
+   server2.close();
+@@ -67,7 +67,7 @@ server2.listen(common.PORT + 1, function() {
+ var address3;
+ var server3 = net.createServer(function(socket) { });
+ 
+-server3.listen(common.PORT + 2, '0.0.0.0', 127, function() {
++server3.listen(common.PORT + 2, '127.0.0.1', 127, function() {
+   address3 = server3.address();
+   console.log('address3 %j', address3);
+   server3.close();
+diff --git a/test/simple/test-net-server-close.js b/test/simple/test-net-server-close.js
+index b87a84d..8b1dd01 100644
+--- a/test/simple/test-net-server-close.js
++++ b/test/simple/test-net-server-close.js
+@@ -48,7 +48,7 @@ server.on('close', function() {
+   events.push('server');
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   net.createConnection(common.PORT);
+   net.createConnection(common.PORT);
+ });
+diff --git a/test/simple/test-net-server-listen-remove-callback.js b/test/simple/test-net-server-listen-remove-callback.js
+index e10231d..559cefe 100644
+--- a/test/simple/test-net-server-listen-remove-callback.js
++++ b/test/simple/test-net-server-listen-remove-callback.js
+@@ -32,12 +32,12 @@ server.on('close', function() {
+   assert.equal(0, listeners.length);
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   server.close();
+ });
+ 
+ server.once('close', function() {
+-  server.listen(common.PORT + 1, function() {
++  server.listen(common.PORT + 1, '127.0.0.1', function() {
+     server.close();
+   });
+ });
+diff --git a/test/simple/test-net-server-max-connections.js b/test/simple/test-net-server-max-connections.js
+index 43bc2fe..2bea08a 100644
+--- a/test/simple/test-net-server-max-connections.js
++++ b/test/simple/test-net-server-max-connections.js
+@@ -41,7 +41,7 @@ var server = net.createServer(function(connection) {
+   waits.push(function() { connection.end(); });
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   makeConnection(0);
+ });
+ 
+diff --git a/test/simple/test-net-server-try-ports.js b/test/simple/test-net-server-try-ports.js
+index 5eca9d0..652ae4a 100644
+--- a/test/simple/test-net-server-try-ports.js
++++ b/test/simple/test-net-server-try-ports.js
+@@ -47,18 +47,18 @@ server2.on('error', function() {
+ });
+ 
+ 
+-server1.listen(common.PORT, function() {
++server1.listen(common.PORT, '127.0.0.1', function() {
+   console.error('server1 listening');
+   server1listening = true;
+   // This should make server2 emit EADDRINUSE
+-  server2.listen(common.PORT);
++  server2.listen(common.PORT, '127.0.0.1');
+ 
+   // Wait a bit, now try again.
+   // TODO, the listen callback should report if there was an error.
+   // Then we could avoid this very unlikely but potential race condition
+   // here.
+   setTimeout(function() {
+-    server2.listen(common.PORT + 1, function() {
++    server2.listen(common.PORT + 1, '127.0.0.1', function() {
+       console.error('server2 listening');
+       server2listening = true;
+ 
+diff --git a/test/simple/test-net-settimeout.js b/test/simple/test-net-settimeout.js
+index 5b14117..881907e 100644
+--- a/test/simple/test-net-settimeout.js
++++ b/test/simple/test-net-settimeout.js
+@@ -31,7 +31,7 @@ var T = 100;
+ var server = net.createServer(function(c) {
+   c.write('hello');
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, 'localhost');
+ 
+ var socket = net.createConnection(common.PORT, 'localhost');
+ 
+diff --git a/test/simple/test-net-socket-timeout.js b/test/simple/test-net-socket-timeout.js
+index 2256d68..a74e541 100644
+--- a/test/simple/test-net-socket-timeout.js
++++ b/test/simple/test-net-socket-timeout.js
+@@ -26,7 +26,7 @@ var assert = require('assert');
+ var timedout = false;
+ 
+ var server = net.Server();
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var socket = net.createConnection(common.PORT);
+   socket.setTimeout(100, function() {
+     timedout = true;
+diff --git a/test/simple/test-net-write-after-close.js b/test/simple/test-net-write-after-close.js
+index b77e9af..d3fbb86 100644
+--- a/test/simple/test-net-write-after-close.js
++++ b/test/simple/test-net-write-after-close.js
+@@ -44,7 +44,7 @@ var server = net.createServer(function(socket) {
+   }, 250);
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var client = net.connect(common.PORT, function() {
+     client.end();
+   });
+diff --git a/test/simple/test-net-write-connect-write.js b/test/simple/test-net-write-connect-write.js
+index cb65af8..d9c8cb1 100644
+--- a/test/simple/test-net-write-connect-write.js
++++ b/test/simple/test-net-write-connect-write.js
+@@ -27,7 +27,7 @@ var received = '';
+ 
+ var server = net.createServer(function(socket) {
+   socket.pipe(socket);
+-}).listen(common.PORT, function() {
++}).listen(common.PORT, '127.0.0.1', function() {
+   var conn = net.connect(common.PORT);
+   conn.setEncoding('utf8');
+   conn.write('before');
+diff --git a/test/simple/test-net-write-slow.js b/test/simple/test-net-write-slow.js
+index 468c311..2513e16 100644
+--- a/test/simple/test-net-write-slow.js
++++ b/test/simple/test-net-write-slow.js
+@@ -48,7 +48,7 @@ var server = net.createServer(function(socket) {
+   }
+   socket.end();
+ 
+-}).listen(common.PORT, function() {
++}).listen(common.PORT, '127.0.0.1', function() {
+   var conn = net.connect(common.PORT);
+   conn.on('data', function(buf) {
+     received += buf.length;
+diff --git a/test/simple/test-pipe-file-to-http.js b/test/simple/test-pipe-file-to-http.js
+index 99fad6e..4b1de78 100644
+--- a/test/simple/test-pipe-file-to-http.js
++++ b/test/simple/test-pipe-file-to-http.js
+@@ -55,7 +55,7 @@ var server = http.createServer(function(req, res) {
+     res.end();
+   });
+ });
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+ server.on('listening', function() {
+   var cmd = common.ddCommand(filename, 10240);
+diff --git a/test/simple/test-pipe.js b/test/simple/test-pipe.js
+index 3dd2437..e1fdd6a 100644
+--- a/test/simple/test-pipe.js
++++ b/test/simple/test-pipe.js
+@@ -71,7 +71,7 @@ var web = http.Server(function(req, res) {
+     process.exit(1);
+   });
+ });
+-web.listen(webPort, startClient);
++web.listen(webPort, '127.0.0.1', startClient);
+ 
+ 
+ 
+@@ -101,7 +101,7 @@ var tcp = net.Server(function(s) {
+     process.exit(1);
+   });
+ });
+-tcp.listen(tcpPort, startClient);
++tcp.listen(tcpPort, '127.0.0.1', startClient);
+ 
+ 
+ function startClient() {
+diff --git a/test/simple/test-pump-file2tcp-noexist.js b/test/simple/test-pump-file2tcp-noexist.js
+index 8017db7..01e39d3 100644
+--- a/test/simple/test-pump-file2tcp-noexist.js
++++ b/test/simple/test-pump-file2tcp-noexist.js
+@@ -45,7 +45,7 @@ var server = net.createServer(function(stream) {
+   });
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var conn = net.createConnection(common.PORT);
+   conn.setEncoding('utf8');
+   conn.on('data', function(chunk) {
+diff --git a/test/simple/test-pump-file2tcp.js b/test/simple/test-pump-file2tcp.js
+index 60c0fdd..3d28e60 100644
+--- a/test/simple/test-pump-file2tcp.js
++++ b/test/simple/test-pump-file2tcp.js
+@@ -38,7 +38,7 @@ var server = net.createServer(function(stream) {
+   });
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var conn = net.createConnection(common.PORT);
+   conn.setEncoding('utf8');
+   conn.on('data', function(chunk) {
+diff --git a/test/simple/test-regress-GH-1531.js b/test/simple/test-regress-GH-1531.js
+index 58086e0..d52fed9 100644
+--- a/test/simple/test-regress-GH-1531.js
++++ b/test/simple/test-regress-GH-1531.js
+@@ -41,7 +41,7 @@ var server = https.createServer(options, function(req, res) {
+   res.end('hello world\n');
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   https.get({
+     path: '/',
+     port: common.PORT,
+diff --git a/test/simple/test-regress-GH-746.js b/test/simple/test-regress-GH-746.js
+index 29f1456..8d1caab 100644
+--- a/test/simple/test-regress-GH-746.js
++++ b/test/simple/test-regress-GH-746.js
+@@ -37,7 +37,7 @@ var server = net.createServer(function(socket) {
+ });
+ 
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   console.log('listening...');
+ 
+   net.createConnection(common.PORT);
+diff --git a/test/simple/test-regress-GH-784.js b/test/simple/test-regress-GH-784.js
+index c2039a9..db76248 100644
+--- a/test/simple/test-regress-GH-784.js
++++ b/test/simple/test-regress-GH-784.js
+@@ -53,7 +53,7 @@ server.on('listening', pingping);
+ 
+ function serverOn() {
+   console.error('Server ON');
+-  server.listen(common.PORT);
++  server.listen(common.PORT, '127.0.0.1');
+ }
+ 
+ 
+diff --git a/test/simple/test-repl.js b/test/simple/test-repl.js
+index 6cf2aaa..f827ef4 100644
+--- a/test/simple/test-repl.js
++++ b/test/simple/test-repl.js
+@@ -169,7 +169,7 @@ function tcp_test() {
+     repl.start(prompt_tcp, socket);
+   });
+ 
+-  server_tcp.listen(common.PORT, function() {
++  server_tcp.listen(common.PORT, '127.0.0.1', function() {
+     var read_buffer = '';
+ 
+     client_tcp = net.createConnection(common.PORT);
+diff --git a/test/simple/test-tcp-wrap-connect.js b/test/simple/test-tcp-wrap-connect.js
+index b8ac6aa..242dc01 100644
+--- a/test/simple/test-tcp-wrap-connect.js
++++ b/test/simple/test-tcp-wrap-connect.js
+@@ -62,7 +62,7 @@ var server = require('net').Server(function(s) {
+   });
+ });
+ 
+-server.listen(common.PORT, makeConnection);
++server.listen(common.PORT, '127.0.0.1', makeConnection);
+ 
+ process.on('exit', function() {
+   assert.equal(1, shutdownCount);
+diff --git a/test/simple/test-tcp-wrap-listen.js b/test/simple/test-tcp-wrap-listen.js
+index a272a19..1941c68 100644
+--- a/test/simple/test-tcp-wrap-listen.js
++++ b/test/simple/test-tcp-wrap-listen.js
+@@ -26,7 +26,7 @@ var TCP = process.binding('tcp_wrap').TCP;
+ 
+ var server = new TCP();
+ 
+-var r = server.bind('0.0.0.0', common.PORT);
++var r = server.bind('127.0.0.1', common.PORT);
+ assert.equal(0, r);
+ 
+ server.listen(128);
+diff --git a/test/simple/test-tcp-wrap.js b/test/simple/test-tcp-wrap.js
+index 1e9e115..273a0d9 100644
+--- a/test/simple/test-tcp-wrap.js
++++ b/test/simple/test-tcp-wrap.js
+@@ -27,11 +27,11 @@ var TCP = process.binding('tcp_wrap').TCP;
+ var handle = new TCP();
+ 
+ // Should be able to bind to the common.PORT
+-var r = handle.bind('0.0.0.0', common.PORT);
++var r = handle.bind('127.0.0.1', common.PORT);
+ assert.equal(0, r);
+ 
+ // Should not be able to bind to the same port again
+-var r = handle.bind('0.0.0.0', common.PORT);
++var r = handle.bind('127.0.0.1', common.PORT);
+ assert.equal(-1, r);
+ console.log(errno);
+ assert.equal(errno, 'EINVAL');
+diff --git a/test/simple/test-tls-client-reject.js b/test/simple/test-tls-client-reject.js
+index 5f5056e..3225fc7 100644
+--- a/test/simple/test-tls-client-reject.js
++++ b/test/simple/test-tls-client-reject.js
+@@ -43,7 +43,7 @@ var server = tls.createServer(options, function(socket) {
+     common.debug(data.toString());
+     assert.equal(data, 'ok');
+   });
+-}).listen(common.PORT, function() {
++}).listen(common.PORT, '127.0.0.1', function() {
+   unauthorized();
+ });
+ 
+diff --git a/test/simple/test-tls-client-resume.js b/test/simple/test-tls-client-resume.js
+index 9fc84da..335e7d6 100644
+--- a/test/simple/test-tls-client-resume.js
++++ b/test/simple/test-tls-client-resume.js
+@@ -47,7 +47,7 @@ var server = tls.Server(options, function(socket) {
+ });
+ 
+ // start listening
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+ 
+   var session1 = null;
+   var client1 = tls.connect({port: common.PORT}, function() {
+diff --git a/test/simple/test-tls-client-verify.js b/test/simple/test-tls-client-verify.js
+index 4e5c4ab..503d6e9 100644
+--- a/test/simple/test-tls-client-verify.js
++++ b/test/simple/test-tls-client-verify.js
+@@ -96,7 +96,7 @@ function testServers(index, servers, clientOptions, cb) {
+     s.end('hello world\n');
+   });
+ 
+-  server.listen(common.PORT, function() {
++  server.listen(common.PORT, '127.0.0.1', function() {
+     var b = '';
+ 
+     console.error('connecting...');
+diff --git a/test/simple/test-tls-connect-given-socket.js b/test/simple/test-tls-connect-given-socket.js
+index e341dfc..903a706 100644
+--- a/test/simple/test-tls-connect-given-socket.js
++++ b/test/simple/test-tls-connect-given-socket.js
+@@ -37,7 +37,7 @@ var options = {
+ var server = tls.createServer(options, function(socket) {
+   serverConnected = true;
+   socket.end('Hello');
+-}).listen(common.PORT, function() {
++}).listen(common.PORT, '127.0.0.1', function() {
+   var socket = net.connect(common.PORT, function() {
+     var client = tls.connect({socket: socket}, function() {
+       clientConnected = true;
+diff --git a/test/simple/test-tls-connect-simple.js b/test/simple/test-tls-connect-simple.js
+index 6c07f4c..4eea74a 100644
+--- a/test/simple/test-tls-connect-simple.js
++++ b/test/simple/test-tls-connect-simple.js
+@@ -38,7 +38,7 @@ var server = tls.Server(options, function(socket) {
+   }
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var client1 = tls.connect({port: common.PORT}, function() {
+     ++clientConnected;
+     client1.end();
+diff --git a/test/simple/test-tls-invalid-key.js b/test/simple/test-tls-invalid-key.js
+index b4d842f..7c72d55 100644
+--- a/test/simple/test-tls-invalid-key.js
++++ b/test/simple/test-tls-invalid-key.js
+@@ -46,7 +46,7 @@ server.on('clientError', function(err) {
+   server.close();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var client = tls.connect(common.PORT, function() {
+     assert(false);
+   });
+diff --git a/test/simple/test-tls-junk-closes-server.js b/test/simple/test-tls-junk-closes-server.js
+index d4f9f1d..5d33092 100644
+--- a/test/simple/test-tls-junk-closes-server.js
++++ b/test/simple/test-tls-junk-closes-server.js
+@@ -39,7 +39,7 @@ var server = tls.createServer(function(s) {
+   s.pipe(s);
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var c = net.createConnection(common.PORT);
+ 
+   c.on('connect', function() {
+diff --git a/test/simple/test-tls-npn-server-client.js b/test/simple/test-tls-npn-server-client.js
+index cf8014a..7df0e90 100644
+--- a/test/simple/test-tls-npn-server-client.js
++++ b/test/simple/test-tls-npn-server-client.js
+@@ -73,7 +73,7 @@ var serverResults = [],
+ var server = tls.createServer(serverOptions, function(c) {
+   serverResults.push(c.npnProtocol);
+ });
+-server.listen(serverPort, startTest);
++server.listen(serverPort, '127.0.0.1', startTest);
+ 
+ function startTest() {
+   function connectClient(options, callback) {
+diff --git a/test/simple/test-tls-over-http-tunnel.js b/test/simple/test-tls-over-http-tunnel.js
+index 4a5e221..72a6042 100644
+--- a/test/simple/test-tls-over-http-tunnel.js
++++ b/test/simple/test-tls-over-http-tunnel.js
+@@ -98,9 +98,9 @@ var proxy = net.createServer(function(clientSocket) {
+   });
+ });
+ 
+-server.listen(common.PORT);
++server.listen(common.PORT, '127.0.0.1');
+ 
+-proxy.listen(proxyPort, function() {
++proxy.listen(proxyPort, '127.0.0.1', function() {
+   console.log('CLIENT: Making CONNECT request');
+ 
+   var req = http.request({
+diff --git a/test/simple/test-tls-passphrase.js b/test/simple/test-tls-passphrase.js
+index e3c0f2a..6d2b13d 100644
+--- a/test/simple/test-tls-passphrase.js
++++ b/test/simple/test-tls-passphrase.js
+@@ -45,7 +45,7 @@ var server = tls.Server({
+ });
+ 
+ var connectCount = 0;
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var c = tls.connect({
+     port: common.PORT,
+     key: key,
+diff --git a/test/simple/test-tls-pause-close.js b/test/simple/test-tls-pause-close.js
+index a53d017..cfd75b4 100644
+--- a/test/simple/test-tls-pause-close.js
++++ b/test/simple/test-tls-pause-close.js
+@@ -65,7 +65,7 @@ var server = tls.createServer(options, function(s) {
+   s.end();
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var c = tls.connect({port: common.PORT}, function() {
+     console.log('client connected');
+     c.socket.on('end', function() {
+diff --git a/test/simple/test-tls-pause.js b/test/simple/test-tls-pause.js
+index 9ca3dfb..90d9d66 100644
+--- a/test/simple/test-tls-pause.js
++++ b/test/simple/test-tls-pause.js
+@@ -43,7 +43,7 @@ var server = tls.Server(options, function(socket) {
+   socket.pipe(socket);
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var resumed = false;
+   var client = tls.connect({port: common.PORT}, function() {
+     client.pause();
+diff --git a/test/simple/test-tls-peer-certificate-multi-keys.js b/test/simple/test-tls-peer-certificate-multi-keys.js
+index 070b528..f6b36d8 100644
+--- a/test/simple/test-tls-peer-certificate-multi-keys.js
++++ b/test/simple/test-tls-peer-certificate-multi-keys.js
+@@ -41,7 +41,7 @@ var verified = false;
+ var server = tls.createServer(options, function(cleartext) {
+   cleartext.end('World');
+ });
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var socket = tls.connect({port: common.PORT}, function() {
+     var peerCert = socket.getPeerCertificate();
+     common.debug(util.inspect(peerCert));
+diff --git a/test/simple/test-tls-peer-certificate.js b/test/simple/test-tls-peer-certificate.js
+index ea3245a..e71c889 100644
+--- a/test/simple/test-tls-peer-certificate.js
++++ b/test/simple/test-tls-peer-certificate.js
+@@ -41,7 +41,7 @@ var verified = false;
+ var server = tls.createServer(options, function(cleartext) {
+   cleartext.end('World');
+ });
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var socket = tls.connect({port: common.PORT}, function() {
+     var peerCert = socket.getPeerCertificate();
+     common.debug(util.inspect(peerCert));
+diff --git a/test/simple/test-tls-request-timeout.js b/test/simple/test-tls-request-timeout.js
+index c44ecef..6a98cc8 100644
+--- a/test/simple/test-tls-request-timeout.js
++++ b/test/simple/test-tls-request-timeout.js
+@@ -41,7 +41,7 @@ var server = tls.Server(options, function(socket) {
+   });
+ });
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var socket = tls.connect({port: common.PORT});
+ });
+ 
+diff --git a/test/simple/test-tls-server-verify.js b/test/simple/test-tls-server-verify.js
+index 2b09d82..bd5d2d4 100644
+--- a/test/simple/test-tls-server-verify.js
++++ b/test/simple/test-tls-server-verify.js
+@@ -272,7 +272,7 @@ function runTest(testIndex) {
+     }
+   }
+ 
+-  server.listen(common.PORT, function() {
++  server.listen(common.PORT, '127.0.0.1', function() {
+     if (tcase.debug) {
+       console.error('TLS server running on port ' + common.PORT);
+     } else {
+diff --git a/test/simple/test-tls-session-cache.js b/test/simple/test-tls-session-cache.js
+index 64e4199..55a22e3 100644
+--- a/test/simple/test-tls-session-cache.js
++++ b/test/simple/test-tls-session-cache.js
+@@ -55,7 +55,7 @@ function doTest() {
+     ++requestCount;
+     cleartext.end();
+   });
+-  server.listen(common.PORT, function() {
++  server.listen(common.PORT, '127.0.0.1', function() {
+     var client = spawn('openssl', [
+       's_client',
+       '-connect', 'localhost:' + common.PORT,
+diff --git a/test/simple/test-tls-set-encoding.js b/test/simple/test-tls-set-encoding.js
+index 8850a67..9c6977e 100644
+--- a/test/simple/test-tls-set-encoding.js
++++ b/test/simple/test-tls-set-encoding.js
+@@ -40,7 +40,7 @@ var server = tls.Server(options, function(socket) {
+ });
+ 
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   var client = tls.connect({port: common.PORT});
+ 
+   var buffer = '';
+diff --git a/test/simple/test-tls-sni-server-client.js b/test/simple/test-tls-sni-server-client.js
+index 721c2c0..3029197 100644
+--- a/test/simple/test-tls-sni-server-client.js
++++ b/test/simple/test-tls-sni-server-client.js
+@@ -89,7 +89,7 @@ var server = tls.createServer(serverOptions, function(c) {
+ server.addContext('a.example.com', SNIContexts['a.example.com']);
+ server.addContext('*.test.com', SNIContexts['asterisk.test.com']);
+ 
+-server.listen(serverPort, startTest);
++server.listen(serverPort, '127.0.0.1', startTest);
+ 
+ function startTest() {
+   function connectClient(options, callback) {
+diff --git a/test/simple/test-zerolengthbufferbug.js b/test/simple/test-zerolengthbufferbug.js
+index 395e35b..4b5ecfb 100644
+--- a/test/simple/test-zerolengthbufferbug.js
++++ b/test/simple/test-zerolengthbufferbug.js
+@@ -36,7 +36,7 @@ var server = http.createServer(function(req, res) {
+ var gotResponse = false;
+ var resBodySize = 0;
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, '127.0.0.1', function() {
+   http.get({ port: common.PORT }, function(res) {
+     gotResponse = true;
+ 
+-- 
+1.7.10.4
+
