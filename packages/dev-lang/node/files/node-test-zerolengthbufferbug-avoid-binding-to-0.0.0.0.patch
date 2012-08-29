@@ -1,0 +1,15 @@
+Upstream: No, disables parts of test suite
+Source: William Orr <will@worrbase.com>
+Reason: test/simple/test-zerolengthbufferbug doesn't pass a host in listen - listens on 0.0.0.0
+
+--- node-orig/test/simple/test-zerolengthbufferbug.js	2012-08-22 14:03:20.000000000 -0400
++++ node-v0.8.8/test/simple/test-zerolengthbufferbug.js	2012-08-29 18:23:31.997041657 -0400
+@@ -36,7 +36,7 @@
+ var gotResponse = false;
+ var resBodySize = 0;
+ 
+-server.listen(common.PORT, function() {
++server.listen(common.PORT, "127.0.0.1", function() {
+   http.get({ port: common.PORT }, function(res) {
+     gotResponse = true;
+ 
