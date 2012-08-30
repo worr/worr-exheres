@@ -15,7 +15,7 @@ MYOPTIONS="
 "
 
 DEPENDENCIES="
-    build+run:
+    build:
         dev-ruby/rake-compiler[>=0.7.6]
 "
 
