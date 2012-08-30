@@ -19,12 +19,8 @@ DOWNLOADS="http://savannah.nongnu.org/download/autocutsel/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="amd64"
+PLATFORMS="~amd64"
 MYOPTIONS=""
-
-DEPENDENCIES="
-    build+run:
-"
 
 BUGS_TO="will@worrbase.com"
 
