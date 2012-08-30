@@ -35,7 +35,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( mysql postgresql libvirt )
 src_install() {
     default
 
-    edo rm -r "${IMAGE}/var"
     keepdir /var/cfengine/{inputs,masterfiles,modules,outputs,ppkeys}
 }
 
