@@ -37,6 +37,6 @@ WORK="${WORK}/linux"
 src_install() {
     default
 
-    dosym "/usr/bin/spectrwm" "/usr/bin/scrotwm"
+    dosym spectrwm /usr/bin/scrotwm
 }
 
