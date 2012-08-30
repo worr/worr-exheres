@@ -1,0 +1,22 @@
+Title:  app-vim/gist has been renamed to app-vim/gist-vim
+Author: William Orr <will@worrbase.com>
+Content-Type: text/plain
+Posted: 29/08/2012
+Revision: 1
+News-Item-Format: 1.0
+Display-If-Installed: app-vim/gist
+
+Please install app-vim/gist-vim and *afterwards* uninstall app-vim/gist
+
+1. Take note of any packages depending on app-vim/gist:
+cave resolve \!app-vim/gist
+
+2. Install app-vim/gist-vim:
+cave resolve app-vim/gist-vim -x
+
+3. Re-install the packages from step 1.
+
+4. Uninstall app-vim/gist
+cave resolve \!app-vim/gist -x
+
+Do it in *this* order or you'll potentially *break* your system.
