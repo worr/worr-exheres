@@ -1,7 +1,7 @@
 # Copyright 2011 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require scons launchpad [ suffix=tar.bz2 ]
+require gtk-icon-cache scons launchpad [ suffix=tar.bz2 ]
 
 SUMMARY="Direct Connect client for linux"
 DESCRIPTION="
