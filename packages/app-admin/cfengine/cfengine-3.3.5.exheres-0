@@ -11,7 +11,7 @@ DOWNLOADS="http://cfengine.com/source-code/download?file=${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="amd64"
+PLATFORMS="~amd64"
 MYOPTIONS="libvirt mysql postgresql"
 
 DEPENDENCIES="
