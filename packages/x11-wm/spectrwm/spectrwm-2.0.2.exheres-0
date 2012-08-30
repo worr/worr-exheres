@@ -19,6 +19,10 @@ DEPENDENCIES="
     build+run:
         x11-libs/libXrandr
         x11-libs/libXtst
+        x11-libs/libxcb
+        x11-utils/xcb-util
+        x11-utils/xcb-util-keysyms
+        x11-utils/xcb-util-wm
     recommendation:
         x11-misc/dmenu
 "
