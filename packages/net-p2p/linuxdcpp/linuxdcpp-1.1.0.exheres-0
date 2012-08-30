@@ -1,8 +1,33 @@
 # Copyright 2011 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require scons launchpad [ suffix=tar.bz2 ]
 
+SUMMARY="Direct Connect client for linux"
+DESCRIPTION="
+Utilizing the latest DC++ core, LinuxDC++ offers similar functionality to the Windows client like
+segmented downloading, TTH based file integrity, etc. with a GTK+ user interface. LinuxDC++ is free
+and open source software licensed under the GPL.
+"
+
+LICENCES="GPL-2"
+SLOT="0"
 PLATFORMS="~x86 ~amd64"
+MYOPTIONS=""
 
-require linuxdcpp launchpad [ suffix=tar.bz2 ]
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        app-arch/libarchive
+        dev-libs/boost
+        dev-libs/openssl
+        gnome-platform/libglade[>=2.4]
+        x11-libs/gtk+[>=2.10]
+        x11-libs/libnotify
+"
+
+BUGS_TO="will@worrbase.com"
+
+SCONS_SRC_INSTALL_PARAMS=( "PREFIX=/usr" )
 
