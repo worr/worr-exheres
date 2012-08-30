@@ -29,7 +29,7 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-DEFAULT_SRC_INSTALL_PARAMS=( LIBDIR="${IMAGE}/usr/${LIBDIR:-lib}" )
+DEFAULT_SRC_INSTALL_PARAMS=( LIBDIR="${IMAGE}/usr/${LIBDIR}" )
 
 src_compile() {
     :
