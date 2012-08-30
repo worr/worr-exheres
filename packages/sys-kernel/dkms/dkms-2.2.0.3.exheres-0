@@ -16,7 +16,7 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
-    build+run:
+    run:
         app-shells/bash
     suggestion:
         app-arch/dpkg [[
