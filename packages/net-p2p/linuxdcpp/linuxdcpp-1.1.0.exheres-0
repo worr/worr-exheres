@@ -12,7 +12,7 @@ and open source software licensed under the GPL.
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~x86 ~amd64"
+PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
