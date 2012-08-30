@@ -16,13 +16,13 @@ MYOPTIONS="libvirt mysql postgresql"
 
 DEPENDENCIES="
     build+run:
-        libvirt? ( virtualization-lib/libvirt )
-        mysql? ( dev-db/mysql )
-        postgresql? ( dev-db/postgresql )
-
         dev-db/tokyocabinet
         dev-libs/openssl
         dev-libs/pcre
+
+        mysql? ( dev-db/mysql )
+        postgresql? ( dev-db/postgresql )
+        libvirt? ( virtualization-lib/libvirt )
 "
 
 BUGS_TO="will@worrbase.com"
