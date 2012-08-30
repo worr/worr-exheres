@@ -14,7 +14,8 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
-    dev-ruby/fast-stemmer[>=1.0.0]
+    build+run:
+        dev-ruby/fast-stemmer[>=1.0.0]
 "
 
 BUGS_TO="will@worrbase.com"
