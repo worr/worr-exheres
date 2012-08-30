@@ -36,10 +36,6 @@ src_install() {
     default
 
     edo rm -r "${IMAGE}/var"
-}
-
-pkg_postinst() {
-    mkdir -p /var/cfengine/{inputs,masterfiles,modules,outputs,ppkeys}
-    default
+    keepdir /var/cfengine/{inputs,masterfiles,modules,outputs,ppkeys}
 }
 
