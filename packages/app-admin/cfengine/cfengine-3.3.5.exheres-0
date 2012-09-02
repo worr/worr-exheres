@@ -19,10 +19,9 @@ DEPENDENCIES="
         dev-db/tokyocabinet
         dev-libs/openssl
         dev-libs/pcre
-
+        libvirt? ( virtualization-lib/libvirt )
         mysql? ( dev-db/mysql )
         postgresql? ( dev-db/postgresql )
-        libvirt? ( virtualization-lib/libvirt )
 "
 
 BUGS_TO="will@worrbase.com"
