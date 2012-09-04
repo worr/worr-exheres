@@ -12,5 +12,6 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-perl/CPAN-Meta-YAML
+        dev-perl/JSON
 "
 
