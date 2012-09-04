@@ -1,0 +1,17 @@
+Source: William Orr <will@worrbase.com>
+Upstream: https://rt.cpan.org/Public/Bug/Display.html?id=79392
+Reason: JSON::PP version check fails when parsing JSON files
+
+--- Parse-CPAN-Meta-1.4404/lib/Parse/CPAN/Meta.pm	2012-04-05 17:01:57.000000000 -0400
++++ Parse-CPAN-Meta-1.4404-new/lib/Parse/CPAN/Meta.pm	2012-09-04 03:59:58.327073820 -0400
+@@ -71,8 +71,8 @@
+ sub json_backend {
+   local $Module::Load::Conditional::CHECK_INC_HASH = 1;
+   if (! $ENV{PERL_JSON_BACKEND} or $ENV{PERL_JSON_BACKEND} eq 'JSON::PP') {
+-    _can_load( 'JSON::PP' => 2.27103 )
+-      or croak "JSON::PP 2.27103 is not available\n";
++    _can_load( 'JSON::PP' => 2.27200 )
++      or croak "JSON::PP 2.27200 is not available\n";
+     return 'JSON::PP';
+   }
+   else {

@@ -15,3 +15,5 @@ DEPENDENCIES="
         dev-perl/JSON
 "
 
+DEFAULT_SR_PREPARE_PATHES=( -p1 "${FILES}/${PN}-JSON::PP-version.patch" )
+
