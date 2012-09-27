@@ -1,0 +1,36 @@
+# Copyright 2012 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ suffix=tgz pn=suite3270 ]
+
+SUMMARY="A x11 and ncurses 3270 terminal emulator"
+DESCRIPTION="
+x3270 runs over a TELNET connection, emulating either an IBM 3279 (color) or 3278 (monochrome). It
+supports:
+
+* The full TN3270E protocol
+* SSL/TLS (via the OpenSSL library) for encrypted sessions
+* APL2 characters
+* Non-English character sets, including Russian, Turkish, Hebrew and DBCS Chinese and Japanese
+* IND\$FILE file transfer
+* NVT mode (emulating a color xterm)
+* A pop-up keypad for 3270-specific keys
+* A scrollbar
+* Printer session integration
+* Extensive debugging and scripting facilities
+"
+HOMEPAGE="http://x3270.bgp.nu/index.html"
+DOWNLOADS=""
+
+LICENCES="BSD"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+    build+run:
+"
+
+BUGS_TO="will@worrbase.com"
+
