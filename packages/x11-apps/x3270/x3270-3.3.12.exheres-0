@@ -23,16 +23,18 @@ supports:
 * Extensive debugging and scripting facilities
 "
 HOMEPAGE="http://x3270.bgp.nu/index.html"
-DOWNLOADS=""
 
 LICENCES="BSD"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS=""
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --with-iconv
+)
 
 DEPENDENCIES="
-    build:
     build+run:
+        dev-libs/openssl
 "
 
 BUGS_TO="will@worrbase.com"
