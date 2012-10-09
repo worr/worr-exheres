@@ -44,7 +44,7 @@ BUGS_TO="will@worrbase.com"
 MY_MV=$(ever range 1-2 ${PV})
 WORK="${WORKBASE}/c3270-${MY_MV}"
 
-src_configure {
+src_configure() {
     if optionq X; then
         OLDWORK=${WORK}
         WORK="${WORKBASE}/x3270-${MY_MV}"
@@ -64,7 +64,7 @@ src_configure {
     default
 }
 
-src_compile {
+src_compile() {
     if optionq X; then
         OLDWORK=${WORK}
         WORK="${WORKBASE}/x3270-${MY_MV}"
@@ -84,7 +84,7 @@ src_compile {
     default
 }
 
-src_install {
+src_install() {
     if optionq X; then
         OLDWORK=${WORK}
         WORK="${WORKBASE}/x3270-${MY_MV}"
