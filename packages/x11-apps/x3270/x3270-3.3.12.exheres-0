@@ -27,7 +27,7 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="
     tcl [[ description = [ TCL bindings ] ]]
-    X   [[ description = [ build x3270 ] ]]
+    X   [[ description = [ build x11 components of x3270 ] ]]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
@@ -41,5 +41,66 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-WORK="${WORKBASE}/c3270-3.3"
+MY_MV=$(ever range 1-2 ${PV})
+WORK="${WORKBASE}/c3270-${MY_MV}"
+
+src_configure {
+    if optionq X; then
+        OLDWORK=${WORK}
+        WORK="${WORKBASE}/x3270-${MY_MV}"
+
+        default
+        WORK=${OLDWORK}
+    fi
+
+    if optionq tcl; then
+        OLDWORK=${WORK}
+        WORK="${WORKBASE}/tcl3270-${MY_MV}"
+
+        default
+        WORK=${OLDWORK}
+    fi
+
+    default
+}
+
+src_compile {
+    if optionq X; then
+        OLDWORK=${WORK}
+        WORK="${WORKBASE}/x3270-${MY_MV}"
+
+        default
+        WORK=${OLDWORK}
+    fi
+
+    if optionq tcl; then
+        OLDWORK=${WORK}
+        WORK="${WORKBASE}/tcl3270-${MY_MV}"
+
+        default
+        WORK=${OLDWORK}
+    fi
+
+    default
+}
+
+src_install {
+    if optionq X; then
+        OLDWORK=${WORK}
+        WORK="${WORKBASE}/x3270-${MY_MV}"
+
+        default
+        WORK=${OLDWORK}
+    fi
+
+    if optionq tcl; then
+        OLDWORK=${WORK}
+        WORK="${WORKBASE}/tcl3270-${MY_MV}"
+
+        default
+        WORK=${OLDWORK}
+    fi
+
+    default
+}
 
