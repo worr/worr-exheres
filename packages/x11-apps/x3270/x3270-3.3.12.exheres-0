@@ -65,6 +65,7 @@ src_configure() {
         WORK=${OLDWORK}
     fi
 
+    cd ${WORK}
     default
 }
 
@@ -90,6 +91,7 @@ src_compile() {
         WORK=${OLDWORK}
     fi
 
+    cd ${WORK}
     default
 }
 
@@ -114,6 +116,7 @@ src_install() {
         WORK=${OLDWORK}
     fi
 
+    cd ${WORK}
     default
 }
 
