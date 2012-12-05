@@ -34,6 +34,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( libvirt mysql postgresql )
 src_install() {
     default
 
-    keepdir /var/cfengine/{inputs,masterfiles,modules,outputs,ppkeys}
+    keepdir /var/lib/cfengine/{inputs,masterfiles,modules,outputs,ppkeys}
 }
 
