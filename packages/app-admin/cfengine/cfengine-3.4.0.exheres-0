@@ -28,7 +28,7 @@ BUGS_TO="will@worrbase.com"
 
 # works around bug in cfengine build system
 # pull request #144 in upstream repo
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-fhs )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-fhs --hates=localstatedir --localstatedir=/var )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( libvirt mysql postgresql )
 
 src_install() {
