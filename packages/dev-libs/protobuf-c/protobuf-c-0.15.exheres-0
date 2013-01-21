@@ -20,7 +20,7 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-src_test {
+src_test() {
     esandbox allow_net --connect "unix:test-sock"
     esandbox allow_net "unix:test-sock"
     default
