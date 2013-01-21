@@ -21,10 +21,10 @@ DEPENDENCIES="
 BUGS_TO="will@worrbase.com"
 
 src_test() {
-    esandbox allow_net --connect "unix:test.sock"
-    esandbox allow_net "unix:test.sock"
+    esandbox allow_net --connect "unix:test.socket"
+    esandbox allow_net "unix:test.socket"
     default
-    esandbox disallow_net "unix:test.sock"
-    esandbox disallow_net --conne-t "unix:test.sock"
+    esandbox disallow_net "unix:test.socket"
+    esandbox disallow_net --conne-t "unix:test.socket"
 }
 
