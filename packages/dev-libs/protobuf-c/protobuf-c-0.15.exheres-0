@@ -1,0 +1,22 @@
+# Copyright 2013 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require googlecode [ suffix=tar.gz ]
+
+SUMMARY="C bindings for the protobuf library"
+DESCRIPTION="
+Allows you to use protobuf library in C. Provides both a library and the code generator.
+"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/protobuf
+"
+
+BUGS_TO="will@worrbase.com"
+
