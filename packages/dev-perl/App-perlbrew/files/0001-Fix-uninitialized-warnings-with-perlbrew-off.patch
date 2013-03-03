@@ -1,0 +1,31 @@
+Source: William Orr <will@worrbase.com>
+Upstream: https://github.com/gugod/App-perlbrew/pull/289
+Reason: Fix warnings thrown by perlbrew off
+---
+ lib/App/perlbrew.pm | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/lib/App/perlbrew.pm b/lib/App/perlbrew.pm
+index 48f1888..8015cb3 100644
+--- a/lib/App/perlbrew.pm
++++ b/lib/App/perlbrew.pm
+@@ -1359,6 +1359,7 @@ WARNINGONMAC
+ 
+     my $command = "env ";
+     while (my ($k, $v) = each(%env)) {
++        no warnings "uninitialized";
+         $command .= "$k=\"$v\" ";
+     }
+     $command .= " $shell $shell_opt";
+@@ -1423,7 +1424,7 @@ sub switch_to {
+ 
+ sub run_command_off {
+     my $self = shift;
+-    $self->launch_sub_shell;
++    $self->launch_sub_shell("the default perl");
+ }
+ 
+ sub run_command_switch_off {
+-- 
+1.8.1.3
+
