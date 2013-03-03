@@ -31,5 +31,9 @@ DEPENDENCIES="
         dev-perl/Test-Spec
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    -p1 "${FILES}/0001-Fixed-bug-with-perlbrew-env-where-PERL5LIB-would-be-.patch"
+)
+
 BUGS_TO="will@worrbase.com"
 

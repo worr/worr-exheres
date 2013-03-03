@@ -1,0 +1,23 @@
+Source: William Orr <will@worrbase.com>
+Upstream: https://github.com/gugod/App-perlbrew/pull/287
+Reason: Fixes PERL5LIB bug and tests
+---
+ lib/App/perlbrew.pm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/App/perlbrew.pm b/lib/App/perlbrew.pm
+index 48f1888..0ad6cc0 100644
+--- a/lib/App/perlbrew.pm
++++ b/lib/App/perlbrew.pm
+@@ -1248,7 +1248,7 @@ sub perlbrew_env {
+                 @ENV{keys %env} = values %env;
+                 my %lib_env = local::lib->build_environment_vars_for($base, 0, 1);
+ 
+-                $lib_env{PERL5LIB} = (split($Config{path_sep}, $lib_env{PERL5LIB}, 2))[1];
++                $lib_env{PERL5LIB} = (split($Config{path_sep}, $lib_env{PERL5LIB}, 2))[-1];
+ 
+                 $env{PERLBREW_PATH}    = catdir($base, "bin") . ":" . $env{PERLBREW_PATH};
+                 $env{PERLBREW_MANPATH} = catdir($base, "man") . ":" . $env{PERLBREW_MANPATH};
+-- 
+1.8.1.3
+
