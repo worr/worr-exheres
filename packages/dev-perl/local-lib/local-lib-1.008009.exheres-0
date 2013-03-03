@@ -1,0 +1,22 @@
+# Copyright 2013 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v3
+
+require perl-module [ module_author=APEIRON ]
+
+SUMMARY="create and use a local lib/ for perl modules with PERL5LIB"
+DESCRIPTION="
+The version of a Perl package on your machine is not always the version
+you need. Obviously, the best thing to do would be to update to the
+version you need. However, you might be in a situation where you're
+prevented from doing this.
+local::lib solves this problem by allowing you to create your own
+directory of Perl packages downloaded from CPAN (in a multi-user system,
+this would typically be within your own home directory).
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+BUGS_TO="will@worrbase.com"
+
