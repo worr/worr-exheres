@@ -1,7 +1,7 @@
 # Copyright 2013 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v3
 
-require perl-module [ module_author=DAGOLDEN ]
+require perl-module [ module_author=PHILIP ]
 
 SUMMARY="Write tests in a declarative specification style"
 DESCRIPTION="
