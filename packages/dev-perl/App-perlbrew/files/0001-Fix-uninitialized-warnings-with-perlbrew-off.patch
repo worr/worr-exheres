@@ -1,15 +1,15 @@
 Source: William Orr <will@worrbase.com>
 Upstream: https://github.com/gugod/App-perlbrew/pull/289
-Reason: Fix warnings thrown by perlbrew off
+Reason: Fixes uninitialized warnings
 ---
- lib/App/perlbrew.pm | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ lib/App/perlbrew.pm | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/lib/App/perlbrew.pm b/lib/App/perlbrew.pm
-index 48f1888..8015cb3 100644
+index 48f1888..2064ec1 100644
 --- a/lib/App/perlbrew.pm
 +++ b/lib/App/perlbrew.pm
-@@ -1359,6 +1359,7 @@ WARNINGONMAC
+@@ -1359,11 +1359,13 @@ WARNINGONMAC
  
      my $command = "env ";
      while (my ($k, $v) = each(%env)) {
@@ -17,15 +17,13 @@ index 48f1888..8015cb3 100644
          $command .= "$k=\"$v\" ";
      }
      $command .= " $shell $shell_opt";
-@@ -1423,7 +1424,7 @@ sub switch_to {
  
- sub run_command_off {
-     my $self = shift;
--    $self->launch_sub_shell;
-+    $self->launch_sub_shell("the default perl");
+-    print "\nA sub-shell is launched with $name as the activated perl. Run 'exit' to finish it.\n\n";
++    my $pretty_name = defined($name) ? $name : "the default perl";
++    print "\nA sub-shell is launched with $pretty_name as the activated perl. Run 'exit' to finish it.\n\n";
+     exec($command);
  }
  
- sub run_command_switch_off {
 -- 
 1.8.1.3
 
