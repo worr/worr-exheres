@@ -1,0 +1,24 @@
+# Copyright 2013 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v3
+
+require perl-module [ module_author=DAGOLDEN ]
+
+SUMMARY="Write tests in a declarative specification style"
+DESCRIPTION="
+This is a declarative specification-style testing system for behavior-driven development (BDD) in Perl. The tests (a.k.a. examples) are named with strings instead of subroutine names, so your fingers will suffer less fatigue from underscore-itis, with the side benefit that the test reports are more legible.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Package-Stash
+        dev-perl/Test-Deep
+        dev-perl/Test-Trap
+        dev-perl/Tie-IxHash
+"
+
+BUGS_TO="will@worrbase.com"
+
