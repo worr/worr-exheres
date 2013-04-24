@@ -17,6 +17,8 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
+        x11-libs/libXcursor
+        x11-libs/libXft
         x11-libs/libXrandr
         x11-libs/libXtst
         x11-libs/libxcb
