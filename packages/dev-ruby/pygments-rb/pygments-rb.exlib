@@ -13,6 +13,7 @@ of pygments.rb that used an embedded Python interpreter.
 "
 
 HOMEPAGE="http://github.com/tmm1/pygments.rb"
+DOWNLOADS="http://rubygems.org/downloads/${MY_PNV}.gem"
 LICENCES="MIT"
 MYOPTIONS="
 "
