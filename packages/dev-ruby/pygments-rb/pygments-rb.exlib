@@ -1,6 +1,8 @@
 # Copyright 2013 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
+MY_PNV="pygments.rb-${PV}"
+GEM_FILENAME="${MY_PNV}.gem"
 require gem [ has_rdoc=true ]
 
 SUMMARY="pygments.rb exposes the pygments syntax highlighter to Ruby"
@@ -10,10 +12,7 @@ child process. This library replaces github/albino, as well as a version
 of pygments.rb that used an embedded Python interpreter.
 "
 
-MYPN="pygments.rb"
-DOWNLOADS="http://gems.rubyforge.org/gems/${MYPN}-${PV}.gem"
-REMOTE_IDS="rubyforge:${MYPN}"
-HOMEPAGE="http://${MYPN}.rubyforge.org"
+HOMEPAGE="http://github.com/tmm1/pygments.rb"
 LICENCES="MIT"
 MYOPTIONS="
 "
