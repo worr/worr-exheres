@@ -8,5 +8,3 @@ PLATFORMS="~amd64"
 
 BUGS_TO=will@worrbase.com
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-Moved-last_update_times-outside-main-for-unit-tests.patch" )
-
