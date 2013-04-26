@@ -25,7 +25,7 @@ DEPENDENCIES="
         dev-ruby/kramdown[~>0.14.0]
         dev-ruby/liquid[>=1.9.0]
         dev-ruby/maruku[>=0.5.9]
-        dev-ruby/pygments.rb[~>0.3.2]
+        dev-ruby/pygments-rb[~>0.3.2]
         rdiscount? ( dev-ruby/rdiscount )
 "
 
