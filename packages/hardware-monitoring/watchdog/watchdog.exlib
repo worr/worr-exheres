@@ -3,6 +3,13 @@
 
 export_exlib_phases src_install
 
+if ever is_scm scm; then
+    SCM_REPOSITORY="git://git.code.sf.net/p/watchdog/code"
+    require scm-git
+else
+    require sourceforge [ suffix=tar.gz ]
+fi
+
 require systemd-service [ systemd_files=[ watchdog.service ] ]
 
 SUMMARY="watchdog daemon"
