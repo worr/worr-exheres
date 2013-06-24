@@ -1,6 +1,7 @@
-
 # Copyright 2013 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
+
+export_exlib_phases src_install
 
 require systemd-service [ systemd_files=[ watchdog.service ] ]
 
