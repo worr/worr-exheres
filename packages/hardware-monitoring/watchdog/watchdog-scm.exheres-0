@@ -1,9 +1,17 @@
 # Copyright 2013 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require watchdog
+require watchdog autotools [ supported_autoconf=[ none ] supported_automake=[ none ] ]
 
 PLATFORMS="~amd64"
 
 BUGS_TO="will@worrbase.com"
+
+src_prepare() {
+    default
+    eaclocal
+    eautoheader
+    eautomake
+    eautoconf
+}
 
