@@ -1,0 +1,21 @@
+
+# Copyright 2013 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="watchdog daemon"
+DESCRIPTION="
+Daemon that communicates with hardware watchdog timers to reboot the system on error
+"
+HOMEPAGE="http://www.linux-watchdog.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    nfs [[ description = [ NFS support ] ]]
+"
+
+BUGS_TO="will@worrbase.com"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( nfs )
+

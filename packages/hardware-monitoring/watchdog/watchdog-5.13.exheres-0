@@ -1,0 +1,7 @@
+# Copyright 2013 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require watchdog sourceforge [ suffix=tar.gz ]
+
+BUGS_TO="will@worrbase.com"
+
