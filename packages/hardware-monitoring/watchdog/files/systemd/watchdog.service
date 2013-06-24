@@ -1,0 +1,8 @@
+[Unit]
+Description=watchdog daemon
+
+[Service]
+ExecStart=/usr/sbin/watchdog -F
+
+[Install]
+WantedBy=multi-user.target
