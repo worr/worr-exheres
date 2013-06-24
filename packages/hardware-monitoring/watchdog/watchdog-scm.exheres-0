@@ -4,5 +4,7 @@
 SCM_REPOSITORY="git://git.code.sf.net/p/watchdog/code"
 require watchdog scm-git
 
+PLATFORMS="~amd64"
+
 BUGS_TO="will@worrbase.com"
 

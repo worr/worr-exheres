@@ -3,5 +3,7 @@
 
 require watchdog sourceforge [ suffix=tar.gz ]
 
+PLATFORMS="~amd64"
+
 BUGS_TO="will@worrbase.com"
 
