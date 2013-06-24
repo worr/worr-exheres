@@ -3,7 +3,7 @@
 
 export_exlib_phases src_install
 
-if ever is_scm scm; then
+if ever is_scm ; then
     SCM_REPOSITORY="git://git.code.sf.net/p/watchdog/code"
     require scm-git
 else
@@ -22,7 +22,6 @@ LICENCES="GPL-2"
 SLOT="0"
 MYOPTIONS="
     nfs [[ description = [ NFS support ] ]]
-    systemd
 "
 
 BUGS_TO="will@worrbase.com"
@@ -32,8 +31,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( nfs )
 watchdog_src_install() {
     default
 
-    if option systemd; then
-        install_systemd_files
-    fi
+    install_systemd_files
 }
 
