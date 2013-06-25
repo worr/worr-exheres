@@ -1,9 +1,0 @@
-# Copyright 2013 William Orr <will@worrbase.com>
-# Distributed under the terms of the GNU General Public License v2
-
-require fcron
-
-PLATFORMS="~amd64"
-
-BUGS_TO="will@worrbase.com"
-
