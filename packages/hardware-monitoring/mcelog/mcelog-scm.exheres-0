@@ -18,3 +18,7 @@ MYOPTIONS=""
 
 BUGS_TO="will@worrbase.com"
 
+mcelog_src_test() {
+    : # Disabled, as tests can only run as root
+}
+
