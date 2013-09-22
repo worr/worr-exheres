@@ -1,7 +1,7 @@
 # Copyright 2012 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge [ suffix=tgz project=x3270 pn=suite3270 pv=${PV}ga11 pnv=suite3270-${PV}ga11-src ]
+require sourceforge [ suffix=tgz project=x3270 pn=suite3270 pv=${PV}ga7 pnv=suite3270-${PV}ga7-src ]
 
 SUMMARY="A x11 and ncurses 3270 terminal emulator"
 DESCRIPTION="
