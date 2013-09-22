@@ -1,0 +1,8 @@
+[Unit]
+Description=mcelog daemon
+
+[Service]
+ExecStart=/usr/sbin/mcelog --daemon --foreground
+
+[Install]
+WantedBy=multi-user.target
