@@ -1,0 +1,18 @@
+# Copyright 2013 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Daemon for sending bootparams over the network"
+DESCRIPTION="
+Daemon for sending BSD-style bootparams over the network for diskless,
+netbooting systems
+"
+HOMEPAGE="ftp://ftp.uk.linux.org/pub/linux/Networking/netkit/"
+DOWNLOADS="http://www6.frugalware.org/mirrors/linux/frugalware/frugalware-testing/source/network/netkit-bootparamd/${PNV}.tar.gz"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+BUGS_TO="will@worrbase.com"
+
