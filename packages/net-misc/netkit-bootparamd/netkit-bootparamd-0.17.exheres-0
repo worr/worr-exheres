@@ -28,7 +28,7 @@ src_configure() {
 }
 
 src_install() {
-    dodir /usr/bin /usr/sbin /usr/share/man/man{5,8}
+    dodir /usr/bin /usr/sbin /usr/share/man/man8
     default
 }
 
