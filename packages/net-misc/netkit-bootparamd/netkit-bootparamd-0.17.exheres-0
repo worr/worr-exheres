@@ -16,3 +16,19 @@ MYOPTIONS=""
 
 BUGS_TO="will@worrbase.com"
 
+# Lovingly ripped from net-mist/bsd-finger::pioto
+src_configure() {
+    edo ./configure --prefix=/usr || die "edo failed. old paludis?"
+
+    edo sed -i -e "s,CFLAGS=\(.*\),CFLAGS=\1 ${CFLAGS}," \
+               -e "s,LDFLAGS=\(.*\),LDFLAGS=\1 ${CFLAGS}," \
+               -e "s,MANDIR=\(.*\),MANDIR=/usr/share/man," \
+               -e "s,INSTALLROOT=\(.*\),INSTALLROOT=${IMAGE}," MCONFIG
+    edo sed -i -e 's/install -s/install/' finger{,d}/Makefile
+}
+
+src_install() {
+    dodir /usr/bin /usr/sbin /usr/share/man/man{1,8}
+    default
+}
+
