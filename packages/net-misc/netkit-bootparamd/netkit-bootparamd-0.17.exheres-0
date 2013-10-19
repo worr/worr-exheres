@@ -24,7 +24,7 @@ src_configure() {
                -e "s,LDFLAGS=\(.*\),LDFLAGS=\1 ${CFLAGS}," \
                -e "s,MANDIR=\(.*\),MANDIR=/usr/share/man," \
                -e "s,INSTALLROOT=\(.*\),INSTALLROOT=${IMAGE}," MCONFIG
-    edo sed -i -e 's/install -s/install/' finger{,d}/Makefile
+    edo sed -i -e 's/install -s/install/' rpc.bootparamd/Makefile
 }
 
 src_install() {
