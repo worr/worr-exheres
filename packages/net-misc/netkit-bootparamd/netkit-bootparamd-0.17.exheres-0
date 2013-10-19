@@ -20,7 +20,7 @@ BUGS_TO="will@worrbase.com"
 src_configure() {
     edo ./configure --prefix=/usr || die "edo failed. old paludis?"
 
-    edo sed -i -e "s,CFLAGS=\(.*\),CFLAGS=\1 ${CFLAGS}," \
+    edo sed -i -e "s,CFLAGS=\(.*\),CFLAGS=\1 ${CFLAGS} -g," \
                -e "s,LDFLAGS=\(.*\),LDFLAGS=\1 ${CFLAGS}," \
                -e "s,MANDIR=\(.*\),MANDIR=/usr/share/man," \
                -e "s,INSTALLROOT=\(.*\),INSTALLROOT=${IMAGE}," MCONFIG
