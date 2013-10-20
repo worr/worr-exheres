@@ -16,7 +16,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        rpcbind[>=0.2.1]
+        net-nds/rpcbind[>=0.2.1]
 "
 
 BUGS_TO="will@worrbase.com"
