@@ -14,6 +14,11 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
+DEPENDENCIES="
+    build+run:
+        rpcbind[>=0.2.1]
+"
+
 BUGS_TO="will@worrbase.com"
 
 # Lovingly ripped from net-mist/bsd-finger::pioto
