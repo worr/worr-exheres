@@ -1,0 +1,14 @@
+Reason: Otherwise spectrwm can't find libswmhack.so.*, which isolates applications to the specified desktop
+Source: http://github.com/lsm5/spectrwm/commit/0dfe7e55f092b48bab4ae528a48d6f75eb150c5
+Upstream: http://github.com/lsm5/spectrwm/commit/0dfe7e55f092b48bab4ae528a48d6f75eb150c5
+
+---
+--- Makefile.orig	2013-11-27 23:10:39.078392271 -0800
++++ Makefile	2013-11-27 23:14:14.935465610 -0800
+@@ -1,5 +1,5 @@
+ CFLAGS+= -std=c99 -Wmissing-prototypes -Wall -Wextra -Wshadow -Wno-uninitialized -g
+-CFLAGS+= -D_GNU_SOURCE -I. -I/usr/include/freetype2 -DSWM_LIB=\"libswmhack.so.$(LVERS)\"
++CFLAGS+= -D_GNU_SOURCE -I. -I/usr/include/freetype2 -DSWM_LIB=\"$(LIBDIR)/libswmhack.so.$(LVERS)\"
+ LDADD+= -lX11 -lX11-xcb -lxcb -lxcb-icccm -lxcb-randr -lxcb-keysyms -lxcb-util -lxcb-xtest -lXft -lXcursor
+ 
+ PREFIX?= /usr/local

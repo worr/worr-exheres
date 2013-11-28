@@ -33,6 +33,8 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
+DEFAULT_SRC_PREPARE_PATCHES=( -Np0 "${FILES}"/libswmhack-libdir-cflags.patch )
+
 DEFAULT_SRC_COMPILE_PARAMS=( "PREFIX=/usr" LIBDIR="/usr/${LIBDIR}" )
 DEFAULT_SRC_INSTALL_PARAMS=( "PREFIX=/usr" LIBDIR="/usr/${LIBDIR}" )
 
