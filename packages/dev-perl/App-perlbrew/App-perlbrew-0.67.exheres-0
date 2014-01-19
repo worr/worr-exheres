@@ -1,4 +1,4 @@
-# Copyright 2013 William Orr <will@worrbase.com>
+# Copyright 2014 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v3
 
 require perl-module [ module_author=GUGOD ]
