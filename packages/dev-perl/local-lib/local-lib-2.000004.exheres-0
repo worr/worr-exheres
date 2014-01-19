@@ -1,7 +1,7 @@
-# Copyright 2013 William Orr <will@worrbase.com>
+# Copyright 2014 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v3
 
-require perl-module [ module_author=ETHER ]
+require perl-module [ module_author=HAARG ]
 
 SUMMARY="create and use a local lib/ for perl modules with PERL5LIB"
 DESCRIPTION="
@@ -17,6 +17,9 @@ this would typically be within your own home directory).
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
+
+# tests will fail, as perl-5.18.1 is shipped with a broken EU::MM
+RESTRICT="test"
 
 BUGS_TO="will@worrbase.com"
 
