@@ -1,11 +1,17 @@
-# Copyright 2011 William Orr <will@worrbase.com>
+# Copyright 2014 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
 require vim-plugin [ vim_version=7.0 script_id=4019 src_id=17780 src_suffix=zip script_type=utility ]
 
-SUMMARY="vim plugin to interact with gist.github.com"
+SUMMARY="vim plugin that interacts with webapis"
 DESCRIPTION="
-    A vim plugin to view, post and edit gists on gist.github.com
+    A vim plugin that interfaces with web apis
+    
+Includes:
+* XML parser
+* HTML parser
+* JSON parser
+* HTTP client
 "
 
 SLOT="0"
