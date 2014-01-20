@@ -11,6 +11,8 @@ supporting several common extensions.
 
 LICENCES="GPL-3"
 MYOPTIONS=""
+SLOT="0"
+PLATFORMS="~amd64"
 
 BUGS_TO="will@worrbase.com"
 
