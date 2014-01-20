@@ -1,5 +1,7 @@
-# Copyright 2012 William Orr <will@worrbase.com>
+# Copyright 2014 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
+
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 ] ] github [ user=sigmike ]
 
 SUMMARY="Unite multiple x copy paste buffers"
 DESCRIPTION="
@@ -15,14 +17,9 @@ middle button. The CLIPBOARD selection is used when you copy text by using, for 
 Edit/Copy menu. You may paste it using the Edit/Paste menu.
 "
 HOMEPAGE="http://www.nongnu.org/autocutsel/"
-DOWNLOADS="http://savannah.nongnu.org/download/autocutsel/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
-SLOT="0"
-PLATFORMS="~amd64"
 MYOPTIONS=""
 
 BUGS_TO="will@worrbase.com"
-
-DEFAULT_SRC_CONFIGURE_PARAMS=( --hates=docdir )
 

@@ -1,0 +1,11 @@
+# Copyright 2012-2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require autocutsel
+DOWNLOADS=https://github.com/sigmike/autocutsel/releases/download/0.9.1/autocutsel-0.9.1.tar.gz
+
+SLOT="0"
+PLATFORMS="~amd64"
+
+BUGS_TO="will@worrbase.com"
+
