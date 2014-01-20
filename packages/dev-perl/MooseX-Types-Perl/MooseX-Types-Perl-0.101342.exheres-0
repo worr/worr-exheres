@@ -1,0 +1,25 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="Moose types that check against Perl syntax"
+DESCRIPTION="
+This library provides Moose types for checking things (mostly strings)
+against syntax that is, or is a reasonable subset of, Perl syntax.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/MooseX-Types
+        dev-perl/Params-Util
+        dev-perl/PathTools
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
