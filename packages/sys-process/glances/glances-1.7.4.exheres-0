@@ -1,0 +1,11 @@
+# Copyright 2012-2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+GITHUB_REVISION=73418eadd8d7ea0bcb29adcc997d96ad75a5ca02
+require glances
+
+SLOT="0"
+PLATFORMS="~amd64"
+
+BUGS_TO="will@worrbase.com"
+
