@@ -1,0 +1,22 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=CHOCOLATE ]
+
+SUMMARY="Call methods on native types"
+DESCRIPTION="
+Automatically puts native perl types into objects, so you can call
+methods off of them.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Scope-Guard
+"
+
+BUGS_TO="will@worrbase.com"
+
