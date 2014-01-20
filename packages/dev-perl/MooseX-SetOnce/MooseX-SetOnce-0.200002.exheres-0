@@ -1,0 +1,29 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="write-once, read-many attributes for Moose"
+DESCRIPTION="
+The 'SetOnce' attribute lets your class have attributes that are not
+lazy and not set, but that cannot be altered once set. The logic is very
+simple: if you try to alter the value of an attribute with the SetOnce
+trait, either by accessor or writer, and the attribute has a value, it
+will throw an exception. If the attribute has a clearer, you may clear
+the attribute and set it again.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Moose
+        dev-perl/PathTools
+        dev-perl/Test-Fatal
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
