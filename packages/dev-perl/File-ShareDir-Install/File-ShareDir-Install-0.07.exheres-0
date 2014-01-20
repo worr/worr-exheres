@@ -1,0 +1,27 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=GWYN ]
+
+SUMMARY="Install shared files"
+DESCRIPTION="
+File::ShareDir::Install allows you to install read-only data files
+from a distribution. It is a companion module to File::ShareDir, which
+allows you to locate these files after installation. It is a port of
+Module::Install::Share to ExtUtils::MakeMaker with the improvement of only
+installing the files you want; ".svn", ".git" and other source-control
+junk will be ignored. Please note that this module installs read-only
+data files; empty directories will be ignored.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/PathTools
+"
+
+BUGS_TO="will@worrbase.com"
+
