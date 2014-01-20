@@ -1,0 +1,23 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=ANDYA ]
+
+SUMMARY="Parse and manipulate Perl version strings"
+DESCRIPTION="
+Perl::Version provides a simple interface for parsing, manipulating and
+formatting Perl version strings.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/File-Slurp
+        dev-perl/Scalar-List-Utils
+"
+
+BUGS_TO="will@worrbase.com"
+
