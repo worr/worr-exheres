@@ -1,0 +1,26 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="Provides templated software licenses"
+DESCRIPTION="
+Enables easy creation of standard software licenses through templating
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Data-Section
+        dev-perl/PathTools
+        dev-perl/Sub-Install
+        dev-perl/Test-Pod
+        dev-perl/Text-Template
+        dev-perl/Try-Tiny
+"
+
+BUGS_TO="will@worrbase.com"
+
