@@ -1,0 +1,30 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="Getopt::Long, but simpler and more powerful"
+DESCRIPTION="
+Getopt::Long::Descriptive is yet another Getopt library. It's built atop
+Getopt::Long, and gets a lot of its features, but tries to avoid making
+you think about its huge array of options. It also provides usage (help)
+messages, data validation, and a few other useful features.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Params-Validate
+        dev-perl/PathTools
+        dev-perl/Scalar-List-Utils
+        dev-perl/Sub-Exporter
+        dev-perl/Test-Fatal
+        dev-perl/Test-Pod
+        dev-perl/Test-Warnings
+"
+
+BUGS_TO="will@worrbase.com"
+
