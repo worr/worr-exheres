@@ -1,0 +1,25 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=OVID ]
+
+SUMMARY="Most commonly needed test functions and features."
+DESCRIPTION="
+Test::Most exists to reduce boilerplate and to make your testing life easier.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Test-Deep
+        dev-perl/Test-Differences
+        dev-perl/Test-Exception
+        dev-perl/Test-Harness
+        dev-perl/Test-Warn
+"
+
+BUGS_TO="will@worrbase.com"
+
