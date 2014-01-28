@@ -1,0 +1,23 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="read a POD document as a series of trivial events"
+DESCRIPTION="
+A dumber, faster POD parser for Perl
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Mixin-Linewise[>=0.102]
+        dev-perl/Test-Deep
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
