@@ -1,0 +1,24 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="read multiple hunks of data out of your DATA section"
+DESCRIPTION="
+Data::Section provides an easy way to access multiple named chunks of line-oriented data in your module's DATA section. It was written to allow modules to store their own templates, but probably has other uses.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/MRO-Compat
+        dev-perl/Sub-Exporter
+        dev-perl/Test-FailWarnings
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
