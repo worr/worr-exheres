@@ -1,0 +1,23 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=BARBIE ]
+
+SUMMARY="Validate your CPAN META.yml files."
+DESCRIPTION="
+This distribution was written to ensure that a META.yml file, provided
+with a standard distribution uploaded to CPAN, meets the specifications
+that are slowly being introduced to module uploads, via the use of package
+makers and installers such as ExtUtils::MakeMaker, Module::Build and
+Module::Install. See CPAN::Meta for further details of the CPAN Meta
+Specification.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+BUGS_TO="will@worrbase.com"
+
