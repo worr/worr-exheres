@@ -1,0 +1,23 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=ROKR ]
+
+SUMMARY="Recursively merge two or more hashes, simply"
+DESCRIPTION="
+Hash::Merge::Simple will recursively merge two or more hashes and return
+the result as a new hash reference.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Clone
+        dev-perl/Test-Most
+"
+
+BUGS_TO="will@worrbase.com"
+
