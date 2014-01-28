@@ -1,0 +1,36 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="write command line apps with less suffering"
+DESCRIPTION="
+App::Cmd is intended to make it easy to write complex command-line
+applications without having to think about most of the annoying things
+usually involved. For information on how to start using App::Cmd,
+see App::Cmd::Tutorial.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Capture-Tiny
+        dev-perl/Class-Load
+        dev-perl/Data-OptList
+        dev-perl/Getopt-Long-Descriptive
+        dev-perl/IO-TieCombine
+        dev-perl/IPC-Cmd
+        dev-perl/Module-Pluggable
+        dev-perl/String-RewritePrefix
+        dev-perl/Sub-Exporter
+        dev-perl/Sub-Install
+        dev-perl/Test-Fatal
+        dev-perl/Test-Pod
+        dev-perl/Text-Abbrev
+"
+
+BUGS_TO="will@worrbase.com"
+
