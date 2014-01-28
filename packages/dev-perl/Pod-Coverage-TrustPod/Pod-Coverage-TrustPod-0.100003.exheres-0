@@ -1,0 +1,24 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="allow a module's pod to contain Pod::Coverage hints"
+DESCRIPTION="
+This is a Pod::Coverage subclass (actually, a subclass of Pod::Coverage::CountParents) that allows the POD itself to declare certain symbol names trusted.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Pod-Coverage
+        dev-perl/Pod-Eventual
+        dev-perl/Pod-Parser
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
