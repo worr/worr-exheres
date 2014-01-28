@@ -1,0 +1,32 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=DAGOLDEN ]
+
+SUMMARY="Add test failures if warnings are caught"
+DESCRIPTION="
+This module hooks $SIG{__WARN__} and converts warnings to Test::More
+'fail()' calls. It is designed to be used with 'done_testing',
+when you don't need to know the test count in advance. Just as with
+Test::NoWarnings, this does not catch warnings if other things localize
+$SIG{__WARN__}, as this is designed to catch *unhandled* warnings.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Capture-Tiny
+        dev-perl/File-Temp
+        dev-perl/PathTools
+        dev-perl/Pod-Coverage-TrustPod
+        dev-perl/Scalar-List-Utils
+        dev-perl/Test-CPAN-Meta
+        dev-perl/Test-Pod
+        dev-perl/Test-Pod-Coverage
+"
+
+BUGS_TO="will@worrbase.com"
+
