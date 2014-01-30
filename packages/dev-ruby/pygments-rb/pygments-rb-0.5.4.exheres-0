@@ -21,8 +21,8 @@ MYOPTIONS="
 DEPENDENCIES="
     build+run:
         dev-python/Pygments
-        dev-ruby/posix-spawn
-        dev-ruby/yajl-ruby
+        dev-ruby/posix-spawn[~>0.3.6]
+        dev-ruby/yajl-ruby[~>1.1.0]
 "
 
 SLOT="0"
