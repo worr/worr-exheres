@@ -25,5 +25,8 @@ DEPENDENCIES="
         dev-ruby/yajl-ruby
 "
 
+SLOT="0"
+PLATFORMS="~amd64"
+
 BUGS_TO="will@worrbase.com"
 
