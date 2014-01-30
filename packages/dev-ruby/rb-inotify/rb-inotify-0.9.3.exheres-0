@@ -1,0 +1,24 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="ruby inotify hooks"
+DESCRIPTION="
+A Ruby wrapper for Linux's inotify, using FFI
+"
+
+LICENCES="MIT"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+HOMEPAGE="http://github.com/nex3/rb-inotify"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/ffi
+"
+
+BUGS_TO="will@worrbase.com"
+
