@@ -15,10 +15,7 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 HOMEPAGE="https://github.com/celluloid/timers"
 
-DEPENDENCIES="
-    build+run:
-        dev-ruby/hitimes
-"
+DEPENDENCIES=""
 
 BUGS_TO="will@worrbase.com"
 
