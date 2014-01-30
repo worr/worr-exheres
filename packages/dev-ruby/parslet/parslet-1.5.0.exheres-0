@@ -1,0 +1,24 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=false ]
+
+SUMMARY="Parser construction library"
+DESCRIPTION="
+Parser construction library with great error reporting in Ruby.
+"
+
+LICENCES="MIT"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+HOMEPAGE="http://kschiess.github.com/parslet"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/blankslate[~>2.0]
+"
+
+BUGS_TO="will@worrbase.com"
+
