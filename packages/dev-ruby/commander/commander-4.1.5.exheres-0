@@ -1,0 +1,23 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="Complete solution for command-line executables"
+DESCRIPTION="
+Wraps common command-line utility tasks behind an elegant API
+"
+
+LICENCES="MIT"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+HOMEPAGE="http://visionmedia.github.io/commander/"
+
+DEPENDENCIES="
+    dev-ruby/highline[~>1.6.11]
+"
+
+BUGS_TO="will@worrbase.com"
+
