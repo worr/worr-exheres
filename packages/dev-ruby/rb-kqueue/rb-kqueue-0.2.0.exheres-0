@@ -1,0 +1,23 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=false ]
+
+SUMMARY="Ruby interface to kqueue"
+DESCRIPTION="
+A Ruby wrapper for BSD's kqueue, using FFI
+"
+
+LICENCES="MIT"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/ffi[>=0.5.0]
+"
+
+BUGS_TO="will@worrbase.com"
+
