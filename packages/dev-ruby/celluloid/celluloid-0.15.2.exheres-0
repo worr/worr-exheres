@@ -1,0 +1,26 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="Build concurrent programs"
+DESCRIPTION="
+Celluloid enables people to build concurrent programs out of concurrent
+objects just as easily as they build sequential programs out of sequential
+objects
+"
+
+LICENCES="MIT"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+HOMEPAGE="https://github.com/celluloid/celluloid"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/timers[~>1.1.0]
+"
+
+BUGS_TO="will@worrbase.com"
+
