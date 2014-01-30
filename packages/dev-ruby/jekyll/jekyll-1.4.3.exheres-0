@@ -11,7 +11,7 @@ and add features like syntax highlighting.
 It's the engine behind Github pages.
 "
 
-LICENCES="BSD-4"
+LICENCES="MIT"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="
@@ -20,12 +20,16 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build+run:
-        dev-ruby/classifier[>=1.3.1]
-        dev-ruby/directory_watcher[>=1.1.1]
-        dev-ruby/kramdown[~>0.14.0]
-        dev-ruby/liquid[>=1.9.0]
-        dev-ruby/maruku[>=0.5.9]
-        dev-ruby/pygments-rb[~>0.3.2]
+        dev-ruby/classifier[~>1.3]
+        dev-ruby/colorator[~>0.1]
+        dev-ruby/commander[~>4.1.3]
+        dev-ruby/liquid[~>2.5.5]
+        dev-ruby/listen[~>1.3]
+        dev-ruby/maruku[~>0.7.0]
+        dev-ruby/pygments-rb[~>0.5.0]
+        dev-ruby/redcarpet[~>2.3.0]
+        dev-ruby/safe_yaml[~>0.9.7]
+        dev-ruby/toml[~>0.1.0]
         rdiscount? ( dev-ruby/rdiscount )
 "
 
