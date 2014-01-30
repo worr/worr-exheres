@@ -1,0 +1,22 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="A blank object for ruby for proxying"
+DESCRIPTION="
+BlankSlate provides a base class where almost all of the methods from Object
+and Kernel have been removed.
+"
+
+LICENCES="MIT"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+HOMEPAGE="http://onestepback.org/"
+
+DEPENDENCIES=""
+
+BUGS_TO="will@worrbase.com"
+
