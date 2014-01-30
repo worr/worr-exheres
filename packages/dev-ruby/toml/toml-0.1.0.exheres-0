@@ -1,0 +1,24 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="A toml parser for Ruby"
+DESCRIPTION="
+Parse your TOML, seriously.
+"
+
+LICENCES="MIT"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+HOMEPAGE="https://github.com/jm/toml"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/parslet[~>1.5.0]
+"
+
+BUGS_TO="will@worrbase.com"
+
