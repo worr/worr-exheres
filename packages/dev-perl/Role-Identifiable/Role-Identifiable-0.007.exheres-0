@@ -1,0 +1,23 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="A Perl role that provies an ident attribute"
+DESCRIPTION="
+This is an incredibly simple role. It adds a required 'ident' attribute that stores a simple string, meant to identify exceptions. The string has to contain at least one character, and it can't start or end with whitespace.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Moose
+        dev-perl/PathTools
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
