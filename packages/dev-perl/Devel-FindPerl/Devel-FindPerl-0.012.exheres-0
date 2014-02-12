@@ -1,0 +1,25 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=LEONT ]
+
+SUMMARY="Find the path to your perl"
+DESCRIPTION="
+This module tries to find the path to the currently running perl.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/PathTools
+        dev-perl/Pod-Coverage-TrustPod
+        dev-perl/Scalar-List-Utils
+        dev-perl/Test-Pod
+        dev-perl/Test-Pod-Coverage
+"
+
+BUGS_TO="will@worrbase.com"
+
