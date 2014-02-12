@@ -1,0 +1,26 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="teach ->new to accept single, non-hashref arguments"
+DESCRIPTION="
+MooseX::OneArgNew lets your constructor take a single argument,
+which will be translated into the value for a one-entry hashref.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Moose
+        dev-perl/MooseX-Role-Parameterized
+        dev-perl/namespace-autoclean
+        dev-perl/PathTools
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
