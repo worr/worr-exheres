@@ -1,0 +1,33 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=ETHER ]
+
+SUMMARY="Required attributes which fail only when trying to use them"
+DESCRIPTION="
+This module adds a 'lazy_required' option to Moose attribute declarations. The
+reader methods for all attributes with that option will throw an exception
+unless a value for the attributes was provided earlier by a constructor
+parameter or through a writer method.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/aliased
+        dev-perl/File-Temp
+        dev-perl/Moose
+        dev-perl/namespace-autoclean
+        dev-perl/Pod-Coverage-TrustPod
+        dev-perl/Test-CheckDeps
+        dev-perl/Test-CPAN-Meta
+        dev-perl/Test-Fatal
+        dev-perl/Test-Pod
+        dev-perl/Test-Pod-Coverage
+"
+
+BUGS_TO="will@worrbase.com"
+
