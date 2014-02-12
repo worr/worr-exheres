@@ -1,0 +1,23 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=NEILB ]
+
+SUMMARY="get the full path to a locally installed module"
+DESCRIPTION="
+Module::Path provides a single function, 'module_path()', which will find
+where a module is installed locally.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Devel-FindPerl
+        dev-perl/PathTools
+"
+
+BUGS_TO="will@worrbase.com"
+
