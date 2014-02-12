@@ -1,0 +1,38 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="object to read config from storage into an assembler"
+DESCRIPTION="
+A Config::MVP::Reader exists to read configuration data from
+storage (like a file) and convert that data into instructions to
+a Config::MVP::Assembler, which will in turn convert them into a
+Config::MVP::Sequence, the final product.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Capture-Tiny
+        dev-perl/Class-Load
+        dev-perl/Module-Pluggable
+        dev-perl/Module-Runtime
+        dev-perl/Moose
+        dev-perl/MooseX-OneArgNew
+        dev-perl/Params-Util
+        dev-perl/PathTools
+        dev-perl/Role-HasMessage
+        dev-perl/Role-Identifiable
+        dev-perl/Test-Fatal
+        dev-perl/Test-Pod
+        dev-perl/Throwable
+        dev-perl/Tie-IxHash
+        dev-perl/Try-Tiny
+"
+
+BUGS_TO="will@worrbase.com"
+
