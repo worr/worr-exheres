@@ -1,0 +1,25 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=ADAMK ]
+
+SUMMARY="Thoroughly testing objects via registered handlers"
+DESCRIPTION="
+In situations where you have deep trees of classes, there is a common
+situation in which you test a module 4 or 5 subclasses down, which should
+follow the correct behaviour of not just the subclass, but of all the parent
+classes.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/PathTools
+        dev-perl/Scalar-List-Utils
+"
+
+BUGS_TO="will@worrbase.com"
+
