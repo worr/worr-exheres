@@ -1,0 +1,25 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="Autoboxed wrappers for Native Perl datatypes"
+DESCRIPTION="
+Moose::Autobox provides an implementation of SCALAR, ARRAY, HASH & CODE for
+use with autobox.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/autobox
+        dev-perl/Moose
+        dev-perl/Syntax-Keyword-Junction
+        dev-perl/Test-Exception
+"
+
+BUGS_TO="will@worrbase.com"
+
