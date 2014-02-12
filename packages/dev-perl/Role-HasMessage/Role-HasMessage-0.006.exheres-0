@@ -1,0 +1,30 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="Perl role providing message method"
+DESCRIPTION="
+This is another extremely simple role. A class that includes
+Role::HasMessage is promising to provide a 'message' method that returns
+a string summarizing the message or event represented by the object. It
+does *not* provide any actual behavior.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Moose
+        dev-perl/MooseX-Role-Parameterized
+        dev-perl/namespace-clean
+        dev-perl/PathTools
+        dev-perl/String-Errf
+        dev-perl/Test-Pod
+        dev-perl/Try-Tiny
+"
+
+BUGS_TO="will@worrbase.com"
+
