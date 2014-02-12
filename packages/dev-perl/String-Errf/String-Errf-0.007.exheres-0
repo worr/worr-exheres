@@ -1,0 +1,31 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="a simple sprintf-like dialect"
+DESCRIPTION="
+String::Errf provides 'errf', a simple string formatter that works
+something like 'sprintf'. It is implemented using String::Formatter and
+Sub::Exporter. Their documentation may be useful in understanding or
+extending String::Errf. The 'errf' subroutine is only available when
+imported. Calling String::Errf::errf will not do what you want.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/JSON
+        dev-perl/Params-Util
+        dev-perl/Scalar-List-Utils
+        dev-perl/String-Formatter
+        dev-perl/Sub-Exporter
+        dev-perl/Test-Pod
+        dev-perl/TimeDate
+"
+
+BUGS_TO="will@worrbase.com"
+
