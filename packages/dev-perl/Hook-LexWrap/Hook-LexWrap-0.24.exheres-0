@@ -1,0 +1,19 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=CHORNY ]
+
+SUMMARY="Lexically scoped subroutine wrappers"
+DESCRIPTION="
+Hook::LexWrap allows you to install a pre- or post-wrapper (or both) around
+an existing subroutine.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+BUGS_TO="will@worrbase.com"
+
