@@ -1,0 +1,27 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="a role for classes that can be thrown"
+DESCRIPTION="
+Throwable is a role for classes that are meant to be thrown as exceptions to
+standard program flow.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Class-Load
+        dev-perl/Devel-StackTrace
+        dev-perl/Moo
+        dev-perl/MooX-Types-MooseLike
+        dev-perl/Scalar-List-Utils
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
