@@ -1,0 +1,22 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=PHAYLON ]
+
+SUMMARY="Activate syntax extensions"
+DESCRIPTION="
+This module activates community provided syntax extensions to Perl.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Data-OptList
+        dev-perl/namespace-clean
+"
+
+BUGS_TO="will@worrbase.com"
+
