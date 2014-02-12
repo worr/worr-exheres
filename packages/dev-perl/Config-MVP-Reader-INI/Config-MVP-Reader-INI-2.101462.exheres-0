@@ -1,0 +1,25 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="an MVP config reader for .ini files"
+DESCRIPTION="
+Config::MVP::Reader::INI reads .ini files containing MVP-style configuration.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Config-INI
+        dev-perl/Config-MVP
+        dev-perl/File-Temp
+        dev-perl/Moose
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
