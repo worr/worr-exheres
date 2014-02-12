@@ -1,0 +1,23 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=MATEU ]
+
+SUMMARY="some Moosish types and a type builder"
+DESCRIPTION="
+See MooX::Types::MooseLike::Base for a list of available base types.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Module-Runtime
+        dev-perl/Moo
+        dev-perl/Test-Fatal
+"
+
+BUGS_TO="will@worrbase.com"
+
