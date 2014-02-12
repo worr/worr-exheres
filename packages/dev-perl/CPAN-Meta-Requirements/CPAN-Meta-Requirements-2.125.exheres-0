@@ -1,0 +1,27 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=DAGOLDEN ]
+
+SUMMARY="a set of version requirements for a CPAN dist"
+DESCRIPTION="
+A CPAN::Meta::Requirements object models a set of version constraints like
+those specified in the META.yml or META.json files in CPAN distributions.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/PathTools
+        dev-perl/Pod-Coverage-TrustPod
+        dev-perl/Scalar-List-Utils
+        dev-perl/Test-CPAN-Meta
+        dev-perl/Test-Pod
+        dev-perl/Test-Pod-Coverage
+"
+
+BUGS_TO="will@worrbase.com"
+
