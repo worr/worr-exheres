@@ -1,0 +1,25 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=DROLSKY ]
+
+SUMMARY="Dispatches messages to one or more outputs"
+DESCRIPTION="
+This module manages a set of Log::Dispatch::* output objects that can be
+logged to via a unified interface.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Class-Load
+        dev-perl/Dist-CheckConflicts
+        dev-perl/Params-Validate
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
