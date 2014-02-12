@@ -1,0 +1,25 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="build sprintf-like functions of your own"
+DESCRIPTION="
+String::Formatter is a tool for building sprintf-like formatting
+routines. It supports named or positional formatting, custom conversions,
+fixed string interpolation, and simple width-matching out of the box.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Params-Util
+        dev-perl/Sub-Exporter
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
