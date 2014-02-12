@@ -1,0 +1,24 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="log events to an array (reference)"
+DESCRIPTION="
+This provides a Log::Dispatch log output system that appends logged events to
+an array reference.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Log-Dispatch
+        dev-perl/Test-Deep
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
