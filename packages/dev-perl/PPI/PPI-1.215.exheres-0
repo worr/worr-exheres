@@ -1,0 +1,32 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=ADAMK ]
+
+SUMMARY="Parse, Analyze and Manipulate Perl (without perl)"
+DESCRIPTION="
+An isolated perl parser
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Class-Inspector
+        dev-perl/Clone
+        dev-perl/File-Remove
+        dev-perl/IO-String
+        dev-perl/List-MoreUtils
+        dev-perl/Params-Util
+        dev-perl/PathTools
+        dev-perl/Scalar-List-Utils
+        dev-perl/Task-Weaken
+        dev-perl/Test-NoWarnings
+        dev-perl/Test-Object
+        dev-perl/Test-SubCalls
+"
+
+BUGS_TO="will@worrbase.com"
+
