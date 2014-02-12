@@ -1,0 +1,28 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="Uploads distributions to CPAN"
+DESCRIPTION="
+Upload perl modules to CPAN
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/File-HomeDir
+        dev-perl/Getopt-Long-Descriptive
+        dev-perl/HTTP-Message
+        dev-perl/libwww-perl
+        dev-perl/LWP-Protocol-https
+        dev-perl/PathTools
+        dev-perl/TermReadKey
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
