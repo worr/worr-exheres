@@ -15,7 +15,6 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/File-Temp
         dev-perl/Test-Pod
 "
 
