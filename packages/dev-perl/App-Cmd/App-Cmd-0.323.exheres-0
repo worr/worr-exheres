@@ -22,14 +22,11 @@ DEPENDENCIES="
         dev-perl/Data-OptList
         dev-perl/Getopt-Long-Descriptive
         dev-perl/IO-TieCombine
-        dev-perl/IPC-Cmd
-        dev-perl/Module-Pluggable
         dev-perl/String-RewritePrefix
         dev-perl/Sub-Exporter
         dev-perl/Sub-Install
         dev-perl/Test-Fatal
         dev-perl/Test-Pod
-        dev-perl/Text-Abbrev
 "
 
 BUGS_TO="will@worrbase.com"
