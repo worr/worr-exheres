@@ -19,7 +19,6 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-perl/Capture-Tiny
-        dev-perl/File-Temp
         dev-perl/PathTools
         dev-perl/Pod-Coverage-TrustPod
         dev-perl/Scalar-List-Utils
