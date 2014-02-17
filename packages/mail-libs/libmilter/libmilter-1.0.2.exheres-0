@@ -17,7 +17,7 @@ mail servers.
 HOMEPAGE="http://www.sendmail.com/"
 DOWNLOADS="ftp://ftp.sendmail.org/pub/sendmail/${SENDMAIL_PNV/-/.}.tar.gz"
 
-LICENCES="sendmail"
+LICENCES="Sendmail"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
