@@ -1,0 +1,5 @@
+define(`confCC', `@@CC@@')
+define(`confLD', `@@LD@@')
+APPENDDEF(`confENVDEF', `-DNETINET -DNETUNIX -DNETINET6')
+APPENDDEF(`confCCOPTS', `@@CFLAGS@@')
+APPENDDEF(`confLDOPTS', `@@LDFLAGS@@')

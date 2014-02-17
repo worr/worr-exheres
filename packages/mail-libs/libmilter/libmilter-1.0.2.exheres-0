@@ -1,0 +1,56 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'libmilter-1.0.2.ebuild' from Gentoo, which is:
+#   Copyright 1999-2013 Gentoo Foundation
+
+SENDMAIL_PV="8.14.8"
+SENDMAIL_PNV="sendmail-${SENDMAIL_PV}"
+
+# Version defined as 0x01000002 in include/mfapi.h
+
+SUMMARY="Mail filtering library utilities"
+DESCRIPTION="
+libmilter provides library functions necessary for creating mail filters. MTAs
+like postfix and sendmail can use milters to filter mail on ingress from remote
+mail servers.
+"
+HOMEPAGE="http://www.sendmail.com/"
+DOWNLOADS="ftp://ftp.sendmail.org/pub/sendmail/${SENDMAIL_PNV/-/.}.tar.gz"
+
+LICENCES="sendmail"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+BUGS_TO="will@worrbase.com"
+
+DEFAULT_SRC_INSTALL_PARAMS=( "MILTER_SOVER=${PV}" \
+                             "MANROOT=/usr/share/man/man" \
+                             "LIBDIR=/usr/${LIBDIR}" )
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/sharedlib.m4.patch" )
+
+WORK="${WORKBASE}/${SENDMAIL_PNV}"
+
+src_compile() {
+    edo sed -e "s:@@CFLAGS@@:${CFLAGS}:" \
+            -e "s:@@LDFLAGS@@:${LDFLAGS}:" \
+            -e "s:@@CC@@:${CC}:" \
+            -e "s:@@LD@@:${LD}:" "${FILES}/exherbo.config.m4" > \
+            devtools/Site/site.config.m4
+
+    edo pushd "${WORK}/libmilter"
+    ./Build MILTER_SOVER=${PV}
+    edo popd
+}
+
+src_install() {
+    edo pushd "${WORK}/libmilter"
+    edo mkdir -p "${IMAGE}/usr/${LIBDIR}"
+    default
+    dodoc -r docs
+    edo popd
+}
+
