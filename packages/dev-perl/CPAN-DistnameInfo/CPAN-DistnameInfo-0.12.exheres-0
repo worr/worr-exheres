@@ -1,0 +1,18 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=GBARR ]
+
+SUMMARY="Extract distribution name and version from a distribution filename"
+DESCRIPTION="
+Uses heuristics to parse names and versions from distributions
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+BUGS_TO="will@worrbase.com"
+
