@@ -1,0 +1,20 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=REYNOLDS ]
+
+SUMMARY="Abstract Base Class to build modules to capture output."
+DESCRIPTION="
+The 'IO::Capture' Module defines an abstract base class that can be used to
+build modules that capture output being sent on a filehandle such as STDOUT or
+STDERR.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+BUGS_TO="will@worrbase.com"
+
