@@ -1,0 +1,19 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=MIYAGAWA ]
+
+SUMMARY="Detect encoding of the current terminal"
+DESCRIPTION="
+Term::Encoding is a simple module to detect an encoding the current terminal
+expects, in various ways.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+BUGS_TO="will@worrbase.com"
+
