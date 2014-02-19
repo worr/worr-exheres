@@ -1,0 +1,18 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=DOMM ]
+
+SUMMARY="Remove POD from Perl code"
+DESCRIPTION="
+Pod::Strip is a subclass of Pod::Simple that strips all POD from Perl Code.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+BUGS_TO="will@worrbase.com"
+
