@@ -16,7 +16,6 @@ DEPENDENCIES="
     build+run:
         dev-perl/Config-INI
         dev-perl/Config-MVP
-        dev-perl/File-Temp
         dev-perl/Moose
         dev-perl/Test-Pod
 "
