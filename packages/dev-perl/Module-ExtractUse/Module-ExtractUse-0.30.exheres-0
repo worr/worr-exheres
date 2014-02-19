@@ -1,0 +1,26 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=DOMM ]
+
+SUMMARY="Find out what modules are used"
+DESCRIPTION="
+Module::ExtractUse is basically a Parse::RecDescent grammar to parse Perl
+code. It tries very hard to find all modules (whether pragmas, Core, or from
+CPAN) used by the parsed code.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Parse-RecDescent
+        dev-perl/Pod-Strip
+        dev-perl/Test-Deep
+        dev-perl/Test-NoWarnings
+"
+
+BUGS_TO="will@worrbase.com"
+
