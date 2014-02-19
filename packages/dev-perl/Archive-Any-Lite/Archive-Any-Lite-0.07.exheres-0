@@ -1,0 +1,25 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=ISHIGAKI ]
+
+SUMMARY="simple CPAN package extractor"
+DESCRIPTION="
+This is a fork of Archive::Any by Michael Schwern and Clint Moore. The main
+difference is this works properly even when you fork(), and may require less
+memory to extract a tarball.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Archive-Zip
+        dev-perl/PathTools
+        dev-perl/Test-UseAllModules
+"
+
+BUGS_TO="will@worrbase.com"
+
