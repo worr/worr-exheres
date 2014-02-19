@@ -1,0 +1,35 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=KENTNL ]
+
+SUMMARY="Create a Fake ShareDir for your modules for testing."
+DESCRIPTION="
+This module only has support for creating 'new' style share dirs and are NOT
+compatible with old File::ShareDirs. For this reason, unless you have
+File::ShareDir 1.00 or later installed, this module will not be usable by you.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Class-Tiny
+        dev-perl/CPAN-Changes
+        dev-perl/File-Copy-Recursive
+        dev-perl/File-ShareDir
+        dev-perl/Path-Tiny
+        dev-perl/PathTools
+        dev-perl/Pod-Coverage-TrustPod
+        dev-perl/Scalar-List-Utils
+        dev-perl/Test-CPAN-Meta
+        dev-perl/Test-Fatal
+        dev-perl/Test-Kwalitee
+        dev-perl/Test-Pod
+        dev-perl/Test-Pod-Coverage
+"
+
+BUGS_TO="will@worrbase.com"
+
