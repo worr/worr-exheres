@@ -15,7 +15,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/JSON-PP
+        dev-perl/JSON
         dev-perl/PathTools
         dev-perl/Scalar-List-Utils
         dev-perl/Test-CPAN-Meta
