@@ -1,0 +1,37 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=ETHER ]
+
+SUMMARY="test the Kwalitee of a distribution before you release it"
+DESCRIPTION="
+Kwalitee is an automatically-measurable gauge of how good your software is.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/CPAN-Changes
+        dev-perl/Dist-CheckConflicts
+        dev-perl/Module-Build-Tiny
+        dev-perl/Module-CPANTS-Analyse
+        dev-perl/namespace-clean
+        dev-perl/PathTools
+        dev-perl/Pod-Coverage-TrustPod
+        dev-perl/Pod-Weaver-Section-Contributors
+        dev-perl/Scalar-List-Utils
+        dev-perl/Test-CleanNamespaces
+        dev-perl/Test-CPAN-Meta
+        dev-perl/Test-Deep
+        dev-perl/Test-NoTabs
+        dev-perl/Test-Pod
+        dev-perl/Test-Pod-Coverage
+        dev-perl/Test-Tester
+        dev-perl/Test-Warnings
+"
+
+BUGS_TO="will@worrbase.com"
+
