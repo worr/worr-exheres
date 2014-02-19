@@ -17,7 +17,6 @@ DEPENDENCIES="
     build+run:
         dev-perl/Algorithm-Diff
         dev-perl/Class-Accessor
-        dev-perl/Filter
 "
 
 BUGS_TO="will@worrbase.com"
