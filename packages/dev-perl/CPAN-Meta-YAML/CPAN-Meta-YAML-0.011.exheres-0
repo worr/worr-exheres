@@ -1,0 +1,26 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=DAGOLDEN ]
+
+SUMMARY="Read and write a subset of YAML for CPAN Meta files"
+DESCRIPTION="
+This module implements a subset of the YAML specification for use in reading
+and writing CPAN metadata files like META.yml and MYMETA.yml
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/JSON-PP
+        dev-perl/PathTools
+        dev-perl/Scalar-List-Utils
+        dev-perl/Test-CPAN-Meta
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
