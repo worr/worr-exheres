@@ -1,0 +1,28 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=KEEDI ]
+
+SUMMARY="a section listing contributors"
+DESCRIPTION="
+This section adds a listing of the documents contributors.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/List-MoreUtils
+        dev-perl/Moose
+        dev-perl/Moose-Autobox
+        dev-perl/Pod-Coverage-TrustPod
+        dev-perl/Pod-Elemental
+        dev-perl/Pod-Weaver
+        dev-perl/Test-Pod
+        dev-perl/Test-Pod-Coverage
+"
+
+BUGS_TO="will@worrbase.com"
+
