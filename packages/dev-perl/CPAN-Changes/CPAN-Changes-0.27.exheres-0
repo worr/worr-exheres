@@ -1,0 +1,22 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=BRICAS ]
+
+SUMMARY="Read and write Changes files"
+DESCRIPTION="
+This module helps users programmatically read and write Changes files
+that conform to the Perl specification.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Text-Tabs+Wrap
+"
+
+BUGS_TO="will@worrbase.com"
+
