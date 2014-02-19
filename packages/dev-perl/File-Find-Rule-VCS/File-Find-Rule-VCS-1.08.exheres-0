@@ -1,0 +1,27 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=ADAMK ]
+
+SUMMARY="Exclude files/directories for Version Control Systems"
+DESCRIPTION="
+Many tools need to be equally useful both on ordinary files, and on code that
+has been checked out from revision control systems. File::Find::Rule::VCS
+provides quick and convenient methods to exclude the version control directories
+of several major Version Control Systems (currently CVS, subversion, and
+Bazaar).
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/File-Find-Rule
+        dev-perl/PathTools
+        dev-perl/Text-Glob
+"
+
+BUGS_TO="will@worrbase.com"
+
