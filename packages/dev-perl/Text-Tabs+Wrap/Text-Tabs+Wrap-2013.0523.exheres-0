@@ -1,0 +1,19 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=MUIR ]
+
+SUMMARY="Expand and unexpand tabs and handle wrap"
+DESCRIPTION="
+Includes two perl modules that will expand and unexpand tabs, as well as
+handle word wrap
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+BUGS_TO="will@worrbase.com"
+
