@@ -1,0 +1,22 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=BOBTFISH ]
+
+SUMMARY="Check the presence of tabs in your project"
+DESCRIPTION="
+This module scans your project/distribution for any perl files (scripts,
+modules, etc) for the presence of tabs.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/PathTools
+"
+
+BUGS_TO="will@worrbase.com"
+
