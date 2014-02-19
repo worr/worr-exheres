@@ -1,0 +1,41 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="weave together a Pod document from an outline"
+DESCRIPTION="
+Pod::Weaver is a system for building Pod documents from templates.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Config-MVP
+        dev-perl/Config-MVP-Reader-INI
+        dev-perl/DateTime
+        dev-perl/List-MoreUtils
+        dev-perl/Log-Dispatchouli
+        dev-perl/Mixin-Linewise
+        dev-perl/Module-Runtime
+        dev-perl/Moose
+        dev-perl/Moose-Autobox
+        dev-perl/namespace-autoclean
+        dev-perl/Params-Util
+        dev-perl/PathTools
+        dev-perl/Pod-Elemental
+        dev-perl/PPI
+        dev-perl/Software-License
+        dev-perl/String-Flogger
+        dev-perl/String-Formatter
+        dev-perl/String-RewritePrefix
+        dev-perl/Test-Differences
+        dev-perl/Test-Pod
+        dev-perl/Text-Tabs+Wrap
+"
+
+BUGS_TO="will@worrbase.com"
+
