@@ -1,0 +1,38 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=ISHIGAKI ]
+
+SUMMARY="Generate Kwalitee ratings for a distribution"
+DESCRIPTION="
+Look at test information for quality
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Archive-Any-Lite
+        dev-perl/Array-Diff
+        dev-perl/Class-Accessor
+        dev-perl/CPAN-DistnameInfo
+        dev-perl/CPAN-Meta
+        dev-perl/CPAN-Meta-YAML
+        dev-perl/File-Find-Rule-VCS
+        dev-perl/IO-Capture
+        dev-perl/Module-ExtractUse
+        dev-perl/Module-Pluggable
+        dev-perl/PathTools
+        dev-perl/Set-Scalar
+        dev-perl/Software-License
+        dev-perl/Test-Deep
+        dev-perl/Test-NoWarnings
+        dev-perl/Test-Warn
+        dev-perl/Text-Balanced
+        dev-perl/YAML
+"
+
+BUGS_TO="will@worrbase.com"
+
