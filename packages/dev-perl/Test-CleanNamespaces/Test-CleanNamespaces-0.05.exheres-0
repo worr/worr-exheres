@@ -1,0 +1,40 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=ETHER ]
+
+SUMMARY="Check for uncleaned imports"
+DESCRIPTION="
+This module lets you check your module's namespaces for imported functions you
+might have forgotten to remove with namespace::autoclean or namespace::clean and
+are therefor available to be called as methods, which usually isn't want you
+want.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/CPAN-Changes
+        dev-perl/File-Find-Rule
+        dev-perl/File-Find-Rule-Perl
+        dev-perl/Module-Runtime
+        dev-perl/Moose
+        dev-perl/namespace-autoclean
+        dev-perl/PathTools
+        dev-perl/Pod-Coverage-TrustPod
+        dev-perl/Scalar-List-Utils
+        dev-perl/Sub-Exporter
+        dev-perl/Sub-Name
+        dev-perl/Test-CheckDeps
+        dev-perl/Test-CPAN-Meta
+        dev-perl/Test-NoTabs
+        dev-perl/Test-Pod
+        dev-perl/Test-Pod-Coverage
+        dev-perl/Test-Tester
+"
+
+BUGS_TO="will@worrbase.com"
+
