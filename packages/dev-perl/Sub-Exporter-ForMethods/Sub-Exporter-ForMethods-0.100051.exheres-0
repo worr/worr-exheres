@@ -1,0 +1,25 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=RJBS ]
+
+SUMMARY="helper routines for using Sub::Exporter to build methods"
+DESCRIPTION="
+Helps Sub::Exporter build methods
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/namespace-autoclean
+        dev-perl/PathTools
+        dev-perl/Sub-Exporter
+        dev-perl/Sub-Name
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
