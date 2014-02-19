@@ -18,15 +18,14 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/App-Cmd-Setup
+        dev-perl/App-Cmd
         dev-perl/Archive-Tar
         dev-perl/autobox
-        dev-perl/Config-MVP-Reader
+        dev-perl/Config-MVP
         dev-perl/Config-MVP-Reader-INI
         dev-perl/CPAN-Uploader
         dev-perl/Data-Section
         dev-perl/DateTime
-        dev-perl/ExtUtils-Manifest
         dev-perl/File-Copy-Recursive
         dev-perl/File-Find-Rule
         dev-perl/File-HomeDir
@@ -34,17 +33,36 @@ DEPENDENCIES="
         dev-perl/File-ShareDir
         dev-perl/File-ShareDir-Install
         dev-perl/Hash-Merge-Simple
+        dev-perl/List-AllUtils
+        dev-perl/List-MoreUtils
         dev-perl/Log-Dispatchouli
+        dev-perl/Mixin-Linewise
         dev-perl/Moose-Autobox
         dev-perl/MooseX-LazyRequire
+        dev-perl/MooseX-Role-Parameterized
         dev-perl/MooseX-SetOnce
+        dev-perl/MooseX-Types
         dev-perl/MooseX-Types-Path-Class
         dev-perl/MooseX-Types-Perl
+        dev-perl/namespace-autoclean
+        dev-perl/Params-Util
+        dev-perl/Path-Tiny
+        dev-perl/Perl-PrereqScanner
         dev-perl/Perl-Version
         dev-perl/Pod-Eventual
-        dev-perl/Prereq-Scanner
+        dev-perl/PPI
         dev-perl/Software-License
+        dev-perl/String-Formatter
+        dev-perl/String-RewritePrefix
+        dev-perl/Sub-Exporter
+        dev-perl/Sub-Exporter-ForMethods
+        dev-perl/Term-Encoding
+        dev-perl/Term-UI
         dev-perl/Test-Deep
+        dev-perl/Test-File-ShareDir
+        dev-perl/Text-Glob
+        dev-perl/Text-Template
+        dev-perl/Try-Tiny
         dev-perl/YAML-Tiny
 "
 
