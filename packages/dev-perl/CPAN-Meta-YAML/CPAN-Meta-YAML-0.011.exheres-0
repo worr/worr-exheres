@@ -22,5 +22,9 @@ DEPENDENCIES="
         dev-perl/Test-Pod
 "
 
+# Tests require newer version of Test::More, which is part of base
+# The newer version only exists in dev versions of perl
+RESTRICT="test"
+
 BUGS_TO="will@worrbase.com"
 
