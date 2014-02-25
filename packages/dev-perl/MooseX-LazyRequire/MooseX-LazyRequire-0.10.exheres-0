@@ -18,6 +18,7 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-perl/aliased
+        dev-perl/CPAN-Meta-Check
         dev-perl/Moose
         dev-perl/namespace-autoclean
         dev-perl/Pod-Coverage-TrustPod
