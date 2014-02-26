@@ -22,6 +22,7 @@ DEPENDENCIES="
         dev-perl/Moose
         dev-perl/namespace-autoclean
         dev-perl/Pod-Coverage-TrustPod
+        dev-perl/Scalar-List-Utils
         dev-perl/Test-CheckDeps
         dev-perl/Test-CPAN-Meta
         dev-perl/Test-Fatal
