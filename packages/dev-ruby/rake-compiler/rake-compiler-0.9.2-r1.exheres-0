@@ -15,8 +15,6 @@ MYOPTIONS="
 "
 
 DEPENDENCIES="
-    build+run:
-        dev-ruby/rake
 "
 
 BUGS_TO="will@worrbase.com"
