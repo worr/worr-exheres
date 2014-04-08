@@ -22,7 +22,7 @@ supports:
 
 HOMEPAGE="http://x3270.bgp.nu/index.html"
 
-LICENCES="BSD"
+LICENCES="BSD-3"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="
