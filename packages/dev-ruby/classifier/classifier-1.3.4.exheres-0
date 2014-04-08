@@ -15,7 +15,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-ruby/fast-stemmer[>=1.0.0]
+        dev-ruby/fast-stemmer[>=1.0.0][ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"

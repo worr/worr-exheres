@@ -17,7 +17,7 @@ MYOPTIONS="
 DEPENDENCIES="
     build+run:
         dev-python/Pygments
-        dev-ruby/posix-spawn[>=0.3.6]
+        dev-ruby/posix-spawn[>=0.3.6][ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"

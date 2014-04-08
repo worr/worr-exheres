@@ -25,7 +25,7 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build+run:
-        dev-libs/yajl
+        dev-libs/yajl[ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"

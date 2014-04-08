@@ -16,7 +16,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-ruby/ffi[>=0.5.0]
+        dev-ruby/ffi[>=0.5.0][ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"

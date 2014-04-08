@@ -17,7 +17,7 @@ HOMEPAGE="http://github.com/nex3/rb-inotify"
 
 DEPENDENCIES="
     build+run:
-        dev-ruby/ffi
+        dev-ruby/ffi[ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"

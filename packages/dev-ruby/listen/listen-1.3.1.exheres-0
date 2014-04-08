@@ -3,7 +3,7 @@
 
 require gem [ has_rdoc=true ]
 
-SUMMARY="Generic fs watcher gem" 
+SUMMARY="Generic fs watcher gem"
 DESCRIPTION="
 The Listen gem listens to file modifications and notifies you about the
 changes. Works everywhere!
@@ -18,9 +18,9 @@ HOMEPAGE="https://github.com/guard/listen"
 
 DEPENDENCIES="
     build+run:
-        dev-ruby/rb-fsevent[>=0.9.3]
-        dev-ruby/rb-inotify[>=0.9]
-        dev-ruby/rb-kqueue[>=0.2]
+        dev-ruby/rb-fsevent[>=0.9.3][ruby_abis:*(-)?]
+        dev-ruby/rb-inotify[>=0.9][ruby_abis:*(-)?]
+        dev-ruby/rb-kqueue[>=0.2][ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"

@@ -17,8 +17,8 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-ruby/maruku[>=0.5.9]
-        dev-ruby/yard[>=0.5.3]
+        dev-ruby/maruku[>=0.5.9][ruby_abis:*(-)?]
+        dev-ruby/yard[>=0.5.3][ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"

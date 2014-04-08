@@ -19,7 +19,7 @@ HOMEPAGE="https://github.com/celluloid/celluloid"
 
 DEPENDENCIES="
     build+run:
-        dev-ruby/timers[~>1.1.0]
+        dev-ruby/timers[~>1.1.0][ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"
