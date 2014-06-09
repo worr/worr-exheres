@@ -1,0 +1,23 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ project="gkernel" suffix=tar.gz ]
+
+SUMMARY="Tools for manipulating linux's PRNG"
+DESCRIPTION="
+Tools for manipulating linux's PRNG, include rngd which can add additional
+sources of entropy for the entropy pool.
+"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/libgcrypt
+"
+
+BUGS_TO="will@worrbase.com"
+
