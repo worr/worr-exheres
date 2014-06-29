@@ -14,7 +14,10 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
-DEPENDENCIES=""
+DEPENDENCIES="
+    build+run:
+        dev-perl/Log-Message-Simple
+"
 
 BUGS_TO="will@worrbase.com"
 
