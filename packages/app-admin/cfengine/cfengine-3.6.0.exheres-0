@@ -1,13 +1,14 @@
 # Copyright 2012 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require [ github [[ user=cfengine pn=core ]] ]
+
 SUMMARY="Configuration management engine"
 DESCRIPTION="
 cfengine is a configuration management tool designed to merge system configs
 to a known, desired state over time.
 "
 HOMEPAGE="http://cfengine.com/"
-DOWNLOADS="http://cfengine.com/source-code/download?file=${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -26,7 +27,7 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-fhs --hates=localstatedir --localstatedir=/var )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-fhs --with-tokyocabinet --hates=localstatedir --localstatedir=/var )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( libvirt mysql postgresql )
 
 src_install() {
