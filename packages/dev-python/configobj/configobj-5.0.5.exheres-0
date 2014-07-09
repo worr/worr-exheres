@@ -14,6 +14,11 @@ LICENCES="BSD-3"
 SLOT="0"
 PLATFORMS="~amd64"
 
+DEPENDENCIES="
+    build+run:
+        dev-python/six
+"
+
 BUGS_TO="will@worrbase.com"
 
 # Package doesn't have tests
