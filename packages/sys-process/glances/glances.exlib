@@ -16,8 +16,11 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-lang/python:*[>=2.6]
-        dev-python/psutil[>=0.6]
+        dev-python/psutil[>=2.0.0]
 "
 
 BUGS_TO="will@worrbase.com"
 
+src_test() {
+    python unitest.py
+}
