@@ -21,5 +21,13 @@ HOMEPAGE="http://www.nongnu.org/autocutsel/"
 LICENCES="GPL-2"
 MYOPTIONS=""
 
+DEPENDENCIES="
+    build+run:
+        x11-libs/libX11
+        x11-libs/libXext
+        x11-libs/libXmu
+        x11-libs/libXt
+"
+
 BUGS_TO="will@worrbase.com"
 
