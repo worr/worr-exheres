@@ -1,0 +1,846 @@
+diff -urN signify-portable-20140509/Makefile signify-portable/Makefile
+--- signify-portable-20140509/Makefile	2014-05-08 07:44:38.000000000 -0700
++++ signify-portable/Makefile	2014-07-14 22:15:19.954372914 -0700
+@@ -18,7 +18,7 @@
+ SIGNIFY_OBJS = signify.o fe25519.o sc25519.o smult_curve25519_ref.o \
+ 	mod_ed25519.o mod_ge25519.o crypto_api.o base64.o bcrypt_pbkdf.o \
+ 	explicit_bzero.o arc4random.o timingsafe_bcmp.o sha2.o blowfish.o \
+-	readpassphrase.o strlcpy.o helpers.o
++	readpassphrase.o strlcpy.o helpers.o ohash.o
+ 
+ all:	$(TARGET)
+ 
+diff -urN signify-portable-20140509/ohash.c signify-portable/ohash.c
+--- signify-portable-20140509/ohash.c	1969-12-31 16:00:00.000000000 -0800
++++ signify-portable/ohash.c	2014-07-14 22:14:50.348894119 -0700
+@@ -0,0 +1,327 @@
++/* $OpenBSD: ohash.c,v 1.1 2014/06/02 18:52:03 deraadt Exp $ */
++
++/* Copyright (c) 1999, 2004 Marc Espie <espie@openbsd.org>
++ *
++ * Permission to use, copy, modify, and distribute this software for any
++ * purpose with or without fee is hereby granted, provided that the above
++ * copyright notice and this permission notice appear in all copies.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
++ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
++ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
++ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
++ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
++ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
++ */
++
++#include <stddef.h>
++#include <stdint.h>
++#include <stdlib.h>
++#include <string.h>
++#include <limits.h>
++#include "ohash.h"
++
++struct _ohash_record {
++	uint32_t	hv;
++	const char	*p;
++};
++
++#define DELETED		((const char *)h)
++#define NONE		(h->size)
++
++/* Don't bother changing the hash table if the change is small enough.  */
++#define MINSIZE		(1UL << 4)
++#define MINDELETED	4
++
++static void ohash_resize(struct ohash *);
++
++
++/* This handles the common case of variable length keys, where the
++ * key is stored at the end of the record.
++ */
++void *
++ohash_create_entry(struct ohash_info *i, const char *start, const char **end)
++{
++	char *p;
++
++	if (!*end)
++		*end = start + strlen(start);
++	p = (i->alloc)(i->key_offset + (*end - start) + 1, i->data);
++	if (p) {
++		memcpy(p+i->key_offset, start, *end-start);
++		p[i->key_offset + (*end - start)] = '\0';
++	}
++	return (void *)p;
++}
++
++/* hash_delete only frees the hash structure. Use hash_first/hash_next
++ * to free entries as well.  */
++void
++ohash_delete(struct ohash *h)
++{
++	(h->info.free)(h->t, h->info.data);
++#ifndef NDEBUG
++	h->t = NULL;
++#endif
++}
++
++static void
++ohash_resize(struct ohash *h)
++{
++	struct _ohash_record *n;
++	size_t ns;
++	unsigned int	j;
++	unsigned int	i, incr;
++
++	if (4 * h->deleted < h->total) {
++		if (h->size >= (UINT_MAX >> 1U))
++			ns = UINT_MAX;
++		else
++			ns = h->size << 1U;
++	} else if (3 * h->deleted > 2 * h->total)
++		ns = h->size >> 1U;
++	else
++		ns = h->size;
++	if (ns < MINSIZE)
++		ns = MINSIZE;
++#ifdef STATS_HASH
++	STAT_HASH_EXPAND++;
++	STAT_HASH_SIZE += ns - h->size;
++#endif
++
++	n = (h->info.calloc)(ns, sizeof(struct _ohash_record), h->info.data);
++	if (!n)
++		return;
++
++	for (j = 0; j < h->size; j++) {
++		if (h->t[j].p != NULL && h->t[j].p != DELETED) {
++			i = h->t[j].hv % ns;
++			incr = ((h->t[j].hv % (ns - 2)) & ~1) + 1;
++			while (n[i].p != NULL) {
++				i += incr;
++				if (i >= ns)
++					i -= ns;
++			}
++			n[i].hv = h->t[j].hv;
++			n[i].p = h->t[j].p;
++		}
++	}
++	(h->info.free)(h->t, h->info.data);
++	h->t = n;
++	h->size = ns;
++	h->total -= h->deleted;
++	h->deleted = 0;
++}
++
++void *
++ohash_remove(struct ohash *h, unsigned int i)
++{
++	void		*result = (void *)h->t[i].p;
++
++	if (result == NULL || result == DELETED)
++		return NULL;
++
++#ifdef STATS_HASH
++	STAT_HASH_ENTRIES--;
++#endif
++	h->t[i].p = DELETED;
++	h->deleted++;
++	if (h->deleted >= MINDELETED && 4 * h->deleted > h->total)
++		ohash_resize(h);
++	return result;
++}
++
++void *
++ohash_find(struct ohash *h, unsigned int i)
++{
++	if (h->t[i].p == DELETED)
++		return NULL;
++	else
++		return (void *)h->t[i].p;
++}
++
++void *
++ohash_insert(struct ohash *h, unsigned int i, void *p)
++{
++#ifdef STATS_HASH
++	STAT_HASH_ENTRIES++;
++#endif
++	if (h->t[i].p == DELETED) {
++		h->deleted--;
++		h->t[i].p = p;
++	} else {
++		h->t[i].p = p;
++		/* Arbitrary resize boundary.  Tweak if not efficient enough.  */
++		if (++h->total * 4 > h->size * 3)
++			ohash_resize(h);
++	}
++	return p;
++}
++
++unsigned int
++ohash_entries(struct ohash *h)
++{
++	return h->total - h->deleted;
++}
++
++void *
++ohash_first(struct ohash *h, unsigned int *pos)
++{
++	*pos = 0;
++	return ohash_next(h, pos);
++}
++
++void *
++ohash_next(struct ohash *h, unsigned int *pos)
++{
++	for (; *pos < h->size; (*pos)++)
++		if (h->t[*pos].p != DELETED && h->t[*pos].p != NULL)
++			return (void *)h->t[(*pos)++].p;
++	return NULL;
++}
++
++void
++ohash_init(struct ohash *h, unsigned int size, struct ohash_info *info)
++{
++	h->size = 1UL << size;
++	if (h->size < MINSIZE)
++		h->size = MINSIZE;
++#ifdef STATS_HASH
++	STAT_HASH_CREATION++;
++	STAT_HASH_SIZE += h->size;
++#endif
++	/* Copy info so that caller may free it.  */
++	h->info.key_offset = info->key_offset;
++	h->info.calloc = info->calloc;
++	h->info.free = info->free;
++	h->info.alloc = info->alloc;
++	h->info.data = info->data;
++	h->t = (h->info.calloc)(h->size, sizeof(struct _ohash_record),
++		    h->info.data);
++	h->total = h->deleted = 0;
++}
++
++uint32_t
++ohash_interval(const char *s, const char **e)
++{
++	uint32_t k;
++
++	if (!*e)
++		*e = s + strlen(s);
++	if (s == *e)
++		k = 0;
++	else
++		k = *s++;
++	while (s != *e)
++		k =  ((k << 2) | (k >> 30)) ^ *s++;
++	return k;
++}
++
++unsigned int
++ohash_lookup_interval(struct ohash *h, const char *start, const char *end,
++    uint32_t hv)
++{
++	unsigned int	i, incr;
++	unsigned int	empty;
++
++#ifdef STATS_HASH
++	STAT_HASH_LOOKUP++;
++#endif
++	empty = NONE;
++	i = hv % h->size;
++	incr = ((hv % (h->size-2)) & ~1) + 1;
++	while (h->t[i].p != NULL) {
++#ifdef STATS_HASH
++		STAT_HASH_LENGTH++;
++#endif
++		if (h->t[i].p == DELETED) {
++			if (empty == NONE)
++				empty = i;
++		} else if (h->t[i].hv == hv &&
++		    strncmp(h->t[i].p+h->info.key_offset, start,
++			end - start) == 0 &&
++		    (h->t[i].p+h->info.key_offset)[end-start] == '\0') {
++			if (empty != NONE) {
++				h->t[empty].hv = hv;
++				h->t[empty].p = h->t[i].p;
++				h->t[i].p = DELETED;
++				return empty;
++			} else {
++#ifdef STATS_HASH
++				STAT_HASH_POSITIVE++;
++#endif
++				return i;
++			}
++		}
++		i += incr;
++		if (i >= h->size)
++			i -= h->size;
++	}
++
++	/* Found an empty position.  */
++	if (empty != NONE)
++		i = empty;
++	h->t[i].hv = hv;
++	return i;
++}
++
++unsigned int
++ohash_lookup_memory(struct ohash *h, const char *k, size_t size, uint32_t hv)
++{
++	unsigned int	i, incr;
++	unsigned int	empty;
++
++#ifdef STATS_HASH
++	STAT_HASH_LOOKUP++;
++#endif
++	empty = NONE;
++	i = hv % h->size;
++	incr = ((hv % (h->size-2)) & ~1) + 1;
++	while (h->t[i].p != NULL) {
++#ifdef STATS_HASH
++		STAT_HASH_LENGTH++;
++#endif
++		if (h->t[i].p == DELETED) {
++			if (empty == NONE)
++				empty = i;
++		} else if (h->t[i].hv == hv &&
++		    memcmp(h->t[i].p+h->info.key_offset, k, size) == 0) {
++			if (empty != NONE) {
++				h->t[empty].hv = hv;
++				h->t[empty].p = h->t[i].p;
++				h->t[i].p = DELETED;
++				return empty;
++			} else {
++#ifdef STATS_HASH
++				STAT_HASH_POSITIVE++;
++#endif
++			}	return i;
++		}
++		i += incr;
++		if (i >= h->size)
++			i -= h->size;
++	}
++
++	/* Found an empty position.  */
++	if (empty != NONE)
++		i = empty;
++	h->t[i].hv = hv;
++	return i;
++}
++
++unsigned int
++ohash_qlookup(struct ohash *h, const char *s)
++{
++	const char *e = NULL;
++	return ohash_qlookupi(h, s, &e);
++}
++
++unsigned int
++ohash_qlookupi(struct ohash *h, const char *s, const char **e)
++{
++	uint32_t hv;
++
++	hv = ohash_interval(s, e);
++	return ohash_lookup_interval(h, s, *e, hv);
++}
+diff -urN signify-portable-20140509/ohash.h signify-portable/ohash.h
+--- signify-portable-20140509/ohash.h	1969-12-31 16:00:00.000000000 -0800
++++ signify-portable/ohash.h	2014-07-14 22:14:50.348894119 -0700
+@@ -0,0 +1,74 @@
++/* $OpenBSD: ohash.h,v 1.2 2014/06/02 18:52:03 deraadt Exp $ */
++
++/* Copyright (c) 1999, 2004 Marc Espie <espie@openbsd.org>
++ *
++ * Permission to use, copy, modify, and distribute this software for any
++ * purpose with or without fee is hereby granted, provided that the above
++ * copyright notice and this permission notice appear in all copies.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
++ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
++ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
++ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
++ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
++ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
++ */
++
++#ifndef OHASH_H
++#define OHASH_H
++
++/* Open hashing support. 
++ * Open hashing was chosen because it is much lighter than other hash
++ * techniques, and more efficient in most cases.
++ */
++
++/* user-visible data structure */
++struct ohash_info {
++	ptrdiff_t key_offset;
++	void *data;	/* user data */
++	void *(*calloc)(size_t, size_t, void *);
++	void (*free)(void *, void *);
++	void *(*alloc)(size_t, void *);
++};
++
++struct _ohash_record;
++
++/* private structure. It's there just so you can do a sizeof */
++struct ohash {
++	struct _ohash_record 	*t;
++	struct ohash_info 	info;
++	unsigned int 		size;
++	unsigned int 		total;
++	unsigned int 		deleted;
++};
++
++/* For this to be tweakable, we use small primitives, and leave part of the
++ * logic to the client application.  e.g., hashing is left to the client
++ * application.  We also provide a simple table entry lookup that yields
++ * a hashing table index (opaque) to be used in find/insert/remove.
++ * The keys are stored at a known position in the client data.
++ */
++__BEGIN_DECLS
++void ohash_init(struct ohash *, unsigned, struct ohash_info *);
++void ohash_delete(struct ohash *);
++
++unsigned int ohash_lookup_interval(struct ohash *, const char *,
++	    const char *, uint32_t);
++unsigned int ohash_lookup_memory(struct ohash *, const char *,
++	    size_t, uint32_t)
++		__attribute__ ((__bounded__(__string__,2,3)));
++void *ohash_find(struct ohash *, unsigned int);
++void *ohash_remove(struct ohash *, unsigned int);
++void *ohash_insert(struct ohash *, unsigned int, void *);
++void *ohash_first(struct ohash *, unsigned int *);
++void *ohash_next(struct ohash *, unsigned int *);
++unsigned int ohash_entries(struct ohash *);
++
++void *ohash_create_entry(struct ohash_info *, const char *, const char **);
++uint32_t ohash_interval(const char *, const char **);
++
++unsigned int ohash_qlookupi(struct ohash *, const char *, const char **);
++unsigned int ohash_qlookup(struct ohash *, const char *);
++__END_DECLS
++#endif
+Binary files signify-portable-20140509/signify and signify-portable/signify differ
+diff -urN signify-portable-20140509/signify.1 signify-portable/signify.1
+--- signify-portable-20140509/signify.1	2014-05-08 08:10:13.000000000 -0700
++++ signify-portable/signify.1	2014-07-14 22:10:15.655261242 -0700
+@@ -1,4 +1,4 @@
+-.\" $OpenBSD: src/usr.bin/signify/signify.1,v 1.26 2014/03/16 22:49:56 tedu Exp $
++.\" $OpenBSD: signify.1,v 1.26 2014/03/16 22:49:56 tedu Exp $
+ .\"
+ .\"Copyright (c) 2013 Marc Espie <espie@openbsd.org>
+ .\"Copyright (c) 2013 Ted Unangst <tedu@openbsd.org>
+@@ -14,7 +14,7 @@
+ .\"WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ .\"ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ .\"OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+-.Dd $Mdocdate: May 8 2014 $
++.Dd $Mdocdate: March 16 2014 $
+ .Dt SIGNIFY 1
+ .Os
+ .Sh NAME
+@@ -151,14 +151,23 @@
+ Verify a signature, using the default signature name:
+ .Dl $ signify -V -p key.pub -m generalsorders.txt
+ .Pp
+-Verify a SHA256 digest list (created with sha256sum --tag)
+-.Dl $ signify -C -p key.pub -x SHA256SUMS.sig
++Verify a release directory containing
++.Pa SHA256.sig
++and a full set of release files:
++.Bd -literal -offset indent -compact
++$ signify -C -p /etc/signify/openbsd-55-base.pub -x SHA256.sig
++.Ed
++.Pp
++Verify a bsd.rd before an upgrade:
++.Bd -literal -offset indent -compact
++$ signify -C -p /etc/signify/openbsd-55-base.pub -x SHA256.sig bsd.rd
+ .Ed
+ .Sh SEE ALSO
+-.Xr sha256sum 1
++.Xr fw_update 1 ,
++.Xr pkg_add 1 ,
++.Xr sha256 1
+ .Sh HISTORY
+ The
+ .Nm
+ command first appeared in
+ .Ox 5.5 .
+-This is a portable version for use on Linux and other unixes.
+diff -urN signify-portable-20140509/signify.c signify-portable/signify.c
+--- signify-portable-20140509/signify.c	2014-05-07 23:15:31.000000000 -0700
++++ signify-portable/signify.c	2014-07-14 22:15:47.728768141 -0700
+@@ -1,4 +1,4 @@
+-/* $OpenBSD: src/usr.bin/signify/signify.c,v 1.78 2014/05/06 23:50:53 tedu Exp $ */
++/* $OpenBSD: signify.c,v 1.91 2014/07/13 18:59:40 tedu Exp $ */
+ /*
+  * Copyright (c) 2013 Ted Unangst <tedu@openbsd.org>
+  *
+@@ -31,6 +31,11 @@
+ #include <sha2.h>
+ 
+ #include "crypto_api.h"
++#ifndef VERIFY_ONLY
++#include <stdint.h>
++#include <stddef.h>
++#include <ohash.h>
++#endif
+ 
+ #define SIGBYTES crypto_sign_ed25519_BYTES
+ #define SECRETBYTES crypto_sign_ed25519_SECRETKEYBYTES
+@@ -115,8 +120,7 @@
+ {
+ 	void *p;
+ 
+-	p = malloc(len);
+-	if (!p)
++	if (!(p = malloc(len)))
+ 		err(1, "malloc %zu", len);
+ 	return p;
+ }
+@@ -138,12 +142,11 @@
+ 		    COMMENTMAXLEN) >= COMMENTMAXLEN)
+ 			errx(1, "comment too long");
+ 	}
+-	b64end = strchr(commentend + 1, '\n');
+-	if (!b64end)
+-		errx(1, "missing new line after b64 in %s", filename);
++	if (!(b64end = strchr(commentend + 1, '\n')))
++		errx(1, "missing new line after base64 in %s", filename);
+ 	*b64end = '\0';
+ 	if (b64_pton(commentend + 1, buf, buflen) != buflen)
+-		errx(1, "invalid b64 encoding in %s", filename);
++		errx(1, "invalid base64 encoding in %s", filename);
+ 	if (memcmp(buf, PKALG, 2) != 0)
+ 		errx(1, "unsupported file %s", filename);
+ 	return b64end - b64 + 1;
+@@ -156,8 +159,7 @@
+ 	int rv, fd;
+ 
+ 	fd = xopen(filename, O_RDONLY | O_NOFOLLOW, 0);
+-	rv = read(fd, b64, sizeof(b64) - 1);
+-	if (rv == -1)
++	if ((rv = read(fd, b64, sizeof(b64) - 1)) == -1)
+ 		err(1, "read from %s", filename);
+ 	b64[rv] = '\0';
+ 	parseb64file(filename, b64, buf, buflen, comment);
+@@ -214,8 +216,7 @@
+ 	ssize_t x;
+ 
+ 	while (buflen != 0) {
+-		x = write(fd, buf, buflen);
+-		if (x == -1)
++		if ((x = write(fd, buf, buflen)) == -1)
+ 			err(1, "write to %s", filename);
+ 		buflen -= x;
+ 		buf = (char *)buf + x;
+@@ -229,15 +230,15 @@
+ {
+ 	char header[1024];
+ 	char b64[1024];
+-	int fd, rv;
++	int fd, rv, nr;
+ 
+ 	fd = xopen(filename, O_CREAT|oflags|O_NOFOLLOW|O_WRONLY, mode);
+-	if (snprintf(header, sizeof(header), "%s%s\n",
+-	    COMMENTHDR, comment) >= sizeof(header))
++	if ((nr = snprintf(header, sizeof(header), "%s%s\n",
++	    COMMENTHDR, comment)) == -1 || nr >= sizeof(header))
+ 		errx(1, "comment too long");
+ 	writeall(fd, header, strlen(header), filename);
+ 	if ((rv = b64_ntop(buf, buflen, b64, sizeof(b64)-1)) == -1)
+-		errx(1, "b64 encode failed");
++		errx(1, "base64 encode failed");
+ 	b64[rv++] = '\n';
+ 	writeall(fd, b64, rv, filename);
+ 	explicit_bzero(b64, sizeof(b64));
+@@ -303,7 +304,7 @@
+ 	uint8_t fingerprint[FPLEN];
+ 	char commentbuf[COMMENTMAXLEN];
+ 	SHA2_CTX ctx;
+-	int i;
++	int i, nr;
+ 
+ 	crypto_sign_ed25519_keypair(pubkey.pubkey, enckey.seckey);
+ 	arc4random_buf(fingerprint, sizeof(fingerprint));
+@@ -324,8 +325,8 @@
+ 	explicit_bzero(digest, sizeof(digest));
+ 	explicit_bzero(xorkey, sizeof(xorkey));
+ 
+-	if (snprintf(commentbuf, sizeof(commentbuf), "%s secret key",
+-	    comment) >= sizeof(commentbuf))
++	if ((nr = snprintf(commentbuf, sizeof(commentbuf), "%s secret key",
++	    comment)) == -1 || nr >= sizeof(commentbuf))
+ 		errx(1, "comment too long");
+ 	writeb64file(seckeyfile, commentbuf, &enckey,
+ 	    sizeof(enckey), NULL, 0, O_EXCL, 0600);
+@@ -333,8 +334,8 @@
+ 
+ 	memcpy(pubkey.pkalg, PKALG, 2);
+ 	memcpy(pubkey.fingerprint, fingerprint, FPLEN);
+-	if (snprintf(commentbuf, sizeof(commentbuf), "%s public key",
+-	    comment) >= sizeof(commentbuf))
++	if ((nr = snprintf(commentbuf, sizeof(commentbuf), "%s public key",
++	    comment)) == -1 || nr >= sizeof(commentbuf))
+ 		errx(1, "comment too long");
+ 	writeb64file(pubkeyfile, commentbuf, &pubkey,
+ 	    sizeof(pubkey), NULL, 0, O_EXCL, 0666);
+@@ -352,7 +353,7 @@
+ 	char comment[COMMENTMAXLEN], sigcomment[COMMENTMAXLEN];
+ 	char *secname;
+ 	unsigned long long msglen;
+-	int i, rounds;
++	int i, rounds, nr;
+ 	SHA2_CTX ctx;
+ 
+ 	readb64file(seckeyfile, &enckey, sizeof(enckey), comment);
+@@ -379,13 +380,14 @@
+ 	explicit_bzero(&enckey, sizeof(enckey));
+ 
+ 	memcpy(sig.pkalg, PKALG, 2);
+-	if ((secname = strstr(seckeyfile, ".sec")) && strlen(secname) == 4) {
+-		if (snprintf(sigcomment, sizeof(sigcomment), VERIFYWITH "%.*s.pub",
+-		    (int)strlen(seckeyfile) - 4, seckeyfile) >= sizeof(sigcomment))
++	secname = strstr(seckeyfile, ".sec");
++	if (secname && strlen(secname) == 4) {
++		if ((nr = snprintf(sigcomment, sizeof(sigcomment), VERIFYWITH "%.*s.pub",
++		    (int)strlen(seckeyfile) - 4, seckeyfile)) == -1 || nr >= sizeof(sigcomment))
+ 			errx(1, "comment too long");
+ 	} else {
+-		if (snprintf(sigcomment, sizeof(sigcomment), "signature from %s",
+-		    comment) >= sizeof(sigcomment))
++		if ((nr = snprintf(sigcomment, sizeof(sigcomment), "signature from %s",
++		    comment)) == -1 || nr >= sizeof(sigcomment))
+ 			errx(1, "comment too long");
+ 	}
+ 	if (embedded)
+@@ -455,7 +457,8 @@
+ 	const char *safepath = "/etc/signify/";
+ 
+ 	if (!pubkeyfile) {
+-		if ((pubkeyfile = strstr(sigcomment, VERIFYWITH))) {
++		pubkeyfile = strstr(sigcomment, VERIFYWITH);
++		if (pubkeyfile) {
+ 			pubkeyfile += strlen(VERIFYWITH);
+ 			if (strncmp(pubkeyfile, safepath, strlen(safepath)) != 0 ||
+ 			    strstr(pubkeyfile, "/../") != NULL)
+@@ -531,95 +534,127 @@
+ }
+ 
+ #ifndef VERIFYONLY
++#define HASHBUFSIZE 224
+ struct checksum {
+ 	char file[1024];
+-	char hash[1024];
+-	char algo[256];
++	char hash[HASHBUFSIZE];
++	char algo[32];
+ };
+ 
++static void * 
++ecalloc(size_t s1, size_t s2, void *data)
++{
++	void *p;
++
++	if (!(p = calloc(s1, s2)))
++		err(1, "calloc");
++	return p;
++}
++
++static void
++efree(void *p, void *data)
++{
++	free(p);
++}
++
++static void
++recodehash(char *hash, size_t len)
++{
++	uint8_t data[HASHBUFSIZE / 2];
++	int i, rv;
++
++	if (strlen(hash) == len)
++		return;
++	if ((rv = b64_pton(hash, data, sizeof(data))) == -1)
++		errx(1, "invalid base64 encoding");
++	for (i = 0; i < rv; i++)
++		snprintf(hash + i * 2, HASHBUFSIZE - i * 2, "%2.2x", data[i]);
++}
++
++static int
++verifychecksum(struct checksum *c, int quiet)
++{
++	char buf[HASHBUFSIZE];
++
++	if (strcmp(c->algo, "SHA256") == 0) {
++		recodehash(c->hash, SHA256_DIGEST_STRING_LENGTH-1);
++		if (!SHA256File(c->file, buf))
++			return 0;
++	} else if (strcmp(c->algo, "SHA512") == 0) {
++		recodehash(c->hash, SHA512_DIGEST_STRING_LENGTH-1);
++		if (!SHA512File(c->file, buf))
++			return 0;
++	} else {
++		errx(1, "can't handle algorithm %s", c->algo);
++	}
++	if (strcmp(c->hash, buf) != 0) {
++		return 0;
++	}
++	if (!quiet)
++		printf("%s: OK\n", c->file);
++	return 1;
++}
++
+ static void
+ verifychecksums(char *msg, int argc, char **argv, int quiet)
+ {
+-	char buf[1024];
+-	char *line, *endline;
+-	struct checksum *checksums = NULL, *c = NULL;
+-	int nchecksums = 0;
+-	int i, j, rv, uselist, count, hasfailed;
+-	int *failures;
++	struct ohash_info info = { 0, NULL, ecalloc, efree, NULL };
++	struct ohash myh;
++	struct checksum c;
++	char *e, *line, *endline;
++	int hasfailed = 0;
++	int i, rv;
++	unsigned int slot;
++
++	ohash_init(&myh, 6, &info);
++	if (argc) {
++		for (i = 0; i < argc; i++) {
++			slot = ohash_qlookup(&myh, argv[i]);
++			e = ohash_find(&myh, slot);
++			if (e == NULL)
++				ohash_insert(&myh, slot, argv[i]);
++		}
++	}
+ 
+ 	line = msg;
+ 	while (line && *line) {
+-		if (!(checksums = realloc(checksums,
+-		    sizeof(*c) * (nchecksums + 1))))
+-			err(1, "realloc");
+-		c = &checksums[nchecksums++];
+ 		if ((endline = strchr(line, '\n')))
+ 			*endline++ = '\0';
+-		rv = sscanf(line, "%255s %1023s = %1023s",
+-		    c->algo, buf, c->hash);
+-		if (rv != 3 || buf[0] != '(' || buf[strlen(buf) - 1] != ')')
++		rv = sscanf(line, "%31s (%1023s = %223s",
++		    c.algo, c.file, c.hash);
++		if (rv != 3 || c.file[0] == 0 || c.file[strlen(c.file)-1] != ')')
+ 			errx(1, "unable to parse checksum line %s", line);
+-		buf[strlen(buf) - 1] = 0;
+-		strlcpy(c->file, buf + 1, sizeof(c->file));
++		c.file[strlen(c.file) - 1] = '\0';
+ 		line = endline;
+-	}
+-
+-	if (argc) {
+-		uselist = 0;
+-		count = argc;
+-	} else {
+-		uselist = 1;
+-		count = nchecksums;
+-	}
+-	if (!(failures = calloc(count, sizeof(*failures))))
+-		err(1, "calloc");
+-	for (i = 0; i < count; i++) {
+-		if (uselist) {
+-			c = &checksums[i];
+-		} else {
+-			for (j = 0; j < nchecksums; j++) {
+-				c = &checksums[j];
+-				if (strcmp(c->file, argv[i]) == 0)
+-					break;
+-			}
+-			if (j == nchecksums) {
+-				failures[i] = 1;
+-				continue;
+-			}
+-		}
+-
+-		if (strcmp(c->algo, "SHA256") == 0) {
+-			if (!SHA256File(c->file, buf)) {
+-				failures[i] = 1;
+-				continue;
+-			}
+-		} else if (strcmp(c->algo, "SHA512") == 0) {
+-			if (!SHA512File(c->file, buf)) {
+-				failures[i] = 1;
+-				continue;
++		if (argc) {
++			slot = ohash_qlookup(&myh, c.file);
++			e = ohash_find(&myh, slot);
++			if (e != NULL) {
++				if (verifychecksum(&c, quiet) != 0)
++					ohash_remove(&myh, slot);
+ 			}
+ 		} else {
+-			errx(1, "can't handle algorithm %s", c->algo);
+-		}
+-		if (strcmp(c->hash, buf) != 0) {
+-			failures[i] = 1;
+-			continue;
++			if (verifychecksum(&c, quiet) == 0) {
++				slot = ohash_qlookup(&myh, c.file);
++				e = ohash_find(&myh, slot);
++				if (e == NULL) {
++					if (!(e = strdup(c.file)))
++						err(1, "strdup");
++					ohash_insert(&myh, slot, e);
++				}
++			}
+ 		}
+-		if (!quiet)
+-			printf("%s: OK\n", c->file);
+ 	}
+-	hasfailed = 0;
+-	for (i = 0; i < count; i++) {
+-		if (failures[i]) {
+-			fprintf(stderr, "%s: FAIL\n",
+-			    uselist ? checksums[i].file : argv[i]);
+-			hasfailed = 1;
+-		}
++
++	for (e = ohash_first(&myh, &slot); e != NULL; e = ohash_next(&myh, &slot)) {
++		fprintf(stderr, "%s: FAIL\n", e);
++		hasfailed = 1;
++		if (argc == 0)
++			free(e);
+ 	}
++	ohash_delete(&myh);
+ 	if (hasfailed)
+ 		exit(1);
+-	free(checksums);
+-	free(failures);
+ }
+ 
+ static void
+@@ -721,8 +756,8 @@
+ 
+ #ifndef VERIFYONLY
+ 	if (verb == CHECK) {
+-		if (!pubkeyfile || !sigfile)
+-			usage("must specify pubkey and sigfile");
++		if (!sigfile)
++			usage("must specify sigfile");
+ 		check(pubkeyfile, sigfile, quiet, argc, argv);
+ 		return 0;
+ 	}
+@@ -732,10 +767,11 @@
+ 		usage(NULL);
+ 
+ 	if (!sigfile && msgfile) {
++		int nr;
+ 		if (strcmp(msgfile, "-") == 0)
+ 			usage("must specify sigfile with - message");
+-		if (snprintf(sigfilebuf, sizeof(sigfilebuf), "%s.sig",
+-		    msgfile) >= sizeof(sigfilebuf))
++		if ((nr = snprintf(sigfilebuf, sizeof(sigfilebuf), "%s.sig",
++		    msgfile)) == -1 || nr >= sizeof(sigfilebuf))
+ 			errx(1, "path too long");
+ 		sigfile = sigfilebuf;
+ 	}
