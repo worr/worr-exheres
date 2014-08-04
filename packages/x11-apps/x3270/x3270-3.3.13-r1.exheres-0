@@ -36,7 +36,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 
 DEPENDENCIES="
     build+run:
-        dev-libs/openssl
+        virtual/libssl
 "
 
 BUGS_TO="will@worrbase.com"
