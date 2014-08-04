@@ -21,8 +21,8 @@ DEPENDENCIES="
     build+run:
         app-arch/libarchive
         dev-libs/boost
-        dev-libs/openssl
         gnome-platform/libglade:2[>=2.4]
+        virtual/libssl
         x11-libs/gtk+:2[>=2.10]
         x11-libs/libnotify
 "
