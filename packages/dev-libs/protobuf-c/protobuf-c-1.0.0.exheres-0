@@ -1,7 +1,7 @@
 # Copyright 2013 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require googlecode [ suffix=tar.gz ]
+require github [ tag=v${PV} ] autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 ] ]
 
 SUMMARY="C bindings for the protobuf library"
 DESCRIPTION="
@@ -19,12 +19,4 @@ DEPENDENCIES="
 "
 
 BUGS_TO="will@worrbase.com"
-
-src_test() {
-    esandbox allow_net --connect "unix:${WORK}/src/test/test.socket"
-    esandbox allow_net "unix:${WORK}/src/test/test.socket"
-    default
-    esandbox disallow_net "unix:${WORK}/src/test/test.socket"
-    esandbox disallow_net --conne-t "unix:${WORK}/src/test/test.socket"
-}
 
