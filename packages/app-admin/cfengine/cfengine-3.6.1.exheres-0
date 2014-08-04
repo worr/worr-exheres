@@ -18,8 +18,8 @@ MYOPTIONS="libvirt mysql postgresql"
 DEPENDENCIES="
     build+run:
         dev-db/tokyocabinet
-        dev-libs/openssl
         dev-libs/pcre
+        virtual/libssl
         libvirt? ( virtualization-lib/libvirt )
         mysql? ( dev-db/mysql )
         postgresql? ( dev-db/postgresql )
