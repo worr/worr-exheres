@@ -1,4 +1,4 @@
-# Copyright 2011 William Orr <will@worrbase.com>
+# Copyright 2014 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
 require gem [ has_rdoc=true ]
@@ -15,11 +15,7 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
-DEPENDENCIES="
-    build+run:
-        dev-ruby/maruku[>=0.5.9][ruby_abis:*(-)?]
-        dev-ruby/yard[>=0.5.3][ruby_abis:*(-)?]
-"
+DEPENDENCIES=""
 
 BUGS_TO="will@worrbase.com"
 
