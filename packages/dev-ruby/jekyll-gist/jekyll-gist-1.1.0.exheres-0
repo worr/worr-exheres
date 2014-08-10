@@ -1,0 +1,19 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="Liquid tag for displaying GitHub Gists in Jekyll sites."
+DESCRIPTION="
+Easy way to embed gists into your jekyll sites
+"
+
+LICENCES="MIT"
+MYOPTIONS=""
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES=""
+
+BUGS_TO="will@worrbase.com"
+
