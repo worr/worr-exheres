@@ -1,11 +1,13 @@
-# Copyright 2013 William Orr <will@worrbase.com>
+# Copyright 2014 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
 require gem [ has_rdoc=true ]
 
 SUMMARY="ExecJS lets you run Javascript from Ruby"
 DESCRIPTION="
-ExecJS lets you run JavaScript code from Ruby. It automatically picks the best runtime available to evaluate your JavaScript program, then returns the result to you as a Ruby object.
+ExecJS lets you run JavaScript code from Ruby. It automatically picks
+the best runtime available to evaluate your JavaScript program, then
+returns the result to you as a Ruby object.
 "
 
 LICENCES="MIT"
