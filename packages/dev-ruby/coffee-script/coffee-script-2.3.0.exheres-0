@@ -1,0 +1,22 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=false ]
+
+SUMMARY="Ruby CoffeeScript is a bridge to the JS CoffeeScript compiler."
+DESCRIPTION="
+Ruby interface to the CoffeeScript compiler
+"
+
+LICENCES="MIT"
+MYOPTIONS=""
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    dev-ruby/coffee-script-source
+    dev-ruby/execjs
+"
+
+BUGS_TO="will@worrbase.com"
+
