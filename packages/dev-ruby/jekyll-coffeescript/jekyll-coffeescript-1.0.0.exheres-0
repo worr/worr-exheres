@@ -15,7 +15,7 @@ SLOT="0"
 PLATFORMS="~amd64"
 
 DEPENDENCIES="
-    dev-ruby/coffee-script
+    dev-ruby/coffee-script[ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"
