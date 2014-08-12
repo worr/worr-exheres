@@ -18,9 +18,9 @@ HOMEPAGE="https://github.com/guard/listen"
 
 DEPENDENCIES="
     build+run:
+        dev-ruby/celluloid[>=0.15.2][ruby_abis:*(-)?]
         dev-ruby/rb-fsevent[>=0.9.3][ruby_abis:*(-)?]
         dev-ruby/rb-inotify[>=0.9][ruby_abis:*(-)?]
-        dev-ruby/rb-kqueue[>=0.2][ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"
