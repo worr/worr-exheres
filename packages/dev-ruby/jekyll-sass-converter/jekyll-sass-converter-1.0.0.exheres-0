@@ -1,0 +1,22 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="A CoffeeScript converter for Jekyll."
+DESCRIPTION="
+A CoffeeScript converter for Jekyll, to convert from CoffeeScript to
+Javascript.
+"
+
+LICENCES="MIT"
+MYOPTIONS=""
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    dev-ruby/sass[~>3.2][ruby_abis:*(-)?]
+"
+
+BUGS_TO="will@worrbase.com"
+
