@@ -3,10 +3,9 @@
 
 require gem [ has_rdoc=true ]
 
-SUMMARY="A CoffeeScript converter for Jekyll."
+SUMMARY="A Sass compiler for Jekyll."
 DESCRIPTION="
-A CoffeeScript converter for Jekyll, to convert from CoffeeScript to
-Javascript.
+Allow jekyll to automatically build sass on site build
 "
 
 LICENCES="MIT"
