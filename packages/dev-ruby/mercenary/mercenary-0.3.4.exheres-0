@@ -1,0 +1,19 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="Lightweight and flexible library for writing command-line apps in Ruby."
+DESCRIPTION="
+Command-line parser and more for Ruby programs
+"
+
+LICENCES="MIT"
+MYOPTIONS=""
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES=""
+
+BUGS_TO="will@worrbase.com"
+
