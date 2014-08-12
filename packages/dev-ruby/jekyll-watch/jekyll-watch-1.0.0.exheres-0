@@ -1,0 +1,22 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ has_rdoc=true ]
+
+SUMMARY="Rebuild your Jekyll site when a file changes with the --watch switch."
+DESCRIPTION="
+Allows jekyll to take the --watch option to enable development mode and auto-
+site rebuilding
+"
+
+LICENCES="MIT"
+MYOPTIONS=""
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    dev-ruby/listen[~>2.7][ruby_abis:*(-)?]
+"
+
+BUGS_TO="will@worrbase.com"
+
