@@ -19,7 +19,6 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-perl/App-Cmd
-        dev-perl/Archive-Tar
         dev-perl/autobox
         dev-perl/Config-MVP
         dev-perl/Config-MVP-Reader-INI
