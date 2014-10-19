@@ -24,7 +24,7 @@ DEPENDENCIES="
         dev-perl/File-Find-Rule-VCS
         dev-perl/IO-Capture
         dev-perl/JSON-MaybeXS
-        dev-perl/Module-ExtractUse[>=0.330]
+        dev-perl/Module-ExtractUse[>=0.33]
         dev-perl/Module-Pluggable
         dev-perl/Set-Scalar
         dev-perl/Software-License
