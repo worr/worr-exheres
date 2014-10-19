@@ -14,9 +14,9 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/PathTools
         dev-perl/Sub-Exporter
         dev-perl/Sub-Install
+    test:
         dev-perl/Test-Pod
 "
 
