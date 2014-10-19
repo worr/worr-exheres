@@ -14,15 +14,14 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/Class-Inspector
         dev-perl/Clone
-        dev-perl/File-Remove
         dev-perl/IO-String
         dev-perl/List-MoreUtils
         dev-perl/Params-Util
         dev-perl/PathTools
-        dev-perl/Scalar-List-Utils
-        dev-perl/Task-Weaken
+    test:
+        dev-perl/Class-Inspector
+        dev-perl/File-Remove
         dev-perl/Test-NoWarnings
         dev-perl/Test-Object
         dev-perl/Test-SubCalls
