@@ -17,9 +17,10 @@ DEPENDENCIES="
         dev-perl/List-MoreUtils
         dev-perl/Moose
         dev-perl/Moose-Autobox
-        dev-perl/Pod-Coverage-TrustPod
         dev-perl/Pod-Elemental
         dev-perl/Pod-Weaver
+    test:
+        dev-perl/Pod-Coverage-TrustPod
         dev-perl/Test-Pod
         dev-perl/Test-Pod-Coverage
 "
