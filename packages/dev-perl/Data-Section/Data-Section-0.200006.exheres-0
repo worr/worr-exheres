@@ -16,6 +16,7 @@ DEPENDENCIES="
     build+run:
         dev-perl/MRO-Compat
         dev-perl/Sub-Exporter
+    test:
         dev-perl/Test-FailWarnings
         dev-perl/Test-Pod
 "
