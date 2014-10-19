@@ -16,8 +16,8 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-perl/PathTools[>=3.40]
+    test:
         dev-perl/Pod-Coverage-TrustPod
-        dev-perl/Scalar-List-Utils
         dev-perl/Test-CPAN-Meta
         dev-perl/Test-Pod
         dev-perl/Test-Pod-Coverage
