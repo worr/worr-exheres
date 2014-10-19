@@ -1,7 +1,7 @@
 # Copyright 2014 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require perl-module [ module_author=SARTAK ]
+require perl-module [ module_author=ETHER ]
 
 SUMMARY="roles with composition parameters"
 DESCRIPTION="
