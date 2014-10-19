@@ -15,9 +15,10 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/Class-Load
+        dev-perl/Devel-GlobalDestruction
         dev-perl/Dist-CheckConflicts
         dev-perl/Params-Validate
+    test:
         dev-perl/Test-Pod
 "
 
