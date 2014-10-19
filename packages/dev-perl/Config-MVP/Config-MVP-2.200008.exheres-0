@@ -17,7 +17,6 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/Capture-Tiny
         dev-perl/Class-Load
         dev-perl/Module-Pluggable
         dev-perl/Module-Runtime
