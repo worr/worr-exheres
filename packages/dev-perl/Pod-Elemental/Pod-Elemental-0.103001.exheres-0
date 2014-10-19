@@ -25,6 +25,7 @@ DEPENDENCIES="
         dev-perl/String-Truncate
         dev-perl/Sub-Exporter
         dev-perl/Sub-Exporter-ForMethods
+    test:
         dev-perl/Test-Deep
         dev-perl/Test-Differences
         dev-perl/Test-Pod
