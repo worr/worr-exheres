@@ -21,6 +21,7 @@ DEPENDENCIES="
         dev-perl/LWP-Protocol-https
         dev-perl/PathTools
         dev-perl/TermReadKey
+    test:
         dev-perl/Test-Pod
 "
 
