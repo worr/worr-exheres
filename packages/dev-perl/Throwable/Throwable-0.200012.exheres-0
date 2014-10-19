@@ -17,7 +17,6 @@ DEPENDENCIES="
     build+run:
         dev-perl/Devel-StackTrace
         dev-perl/Moo
-        dev-perl/Sub-Quote
 "
 
 BUGS_TO="will@worrbase.com"
