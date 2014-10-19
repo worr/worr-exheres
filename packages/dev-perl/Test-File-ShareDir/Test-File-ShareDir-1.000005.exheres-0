@@ -17,18 +17,11 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-perl/Class-Tiny
-        dev-perl/CPAN-Changes
         dev-perl/File-Copy-Recursive
         dev-perl/File-ShareDir
         dev-perl/Path-Tiny
-        dev-perl/PathTools
-        dev-perl/Pod-Coverage-TrustPod
-        dev-perl/Scalar-List-Utils
-        dev-perl/Test-CPAN-Meta
+    test:
         dev-perl/Test-Fatal
-        dev-perl/Test-Kwalitee
-        dev-perl/Test-Pod
-        dev-perl/Test-Pod-Coverage
 "
 
 BUGS_TO="will@worrbase.com"
