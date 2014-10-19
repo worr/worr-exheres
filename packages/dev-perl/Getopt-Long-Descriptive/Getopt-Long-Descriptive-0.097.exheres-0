@@ -21,6 +21,7 @@ DEPENDENCIES="
         dev-perl/PathTools
         dev-perl/Scalar-List-Utils
         dev-perl/Sub-Exporter
+    test:
         dev-perl/Test-Fatal
         dev-perl/Test-Pod
         dev-perl/Test-Warnings
