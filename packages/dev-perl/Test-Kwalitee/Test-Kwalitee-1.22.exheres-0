@@ -14,21 +14,12 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/CPAN-Changes
-        dev-perl/Dist-CheckConflicts
-        dev-perl/Module-Build-Tiny
         dev-perl/Module-CPANTS-Analyse
         dev-perl/namespace-clean
-        dev-perl/PathTools
-        dev-perl/Pod-Coverage-TrustPod
-        dev-perl/Pod-Weaver-Section-Contributors
-        dev-perl/Scalar-List-Utils
+    test:
         dev-perl/Test-CleanNamespaces
         dev-perl/Test-CPAN-Meta
         dev-perl/Test-Deep
-        dev-perl/Test-NoTabs
-        dev-perl/Test-Pod
-        dev-perl/Test-Pod-Coverage
         dev-perl/Test-Tester
         dev-perl/Test-Warnings
 "
