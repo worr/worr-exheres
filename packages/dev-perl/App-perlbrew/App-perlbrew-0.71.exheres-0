@@ -23,9 +23,9 @@ DEPENDENCIES="
         dev-perl/Capture-Tiny
         dev-perl/CPAN-Perl-Releases
         dev-perl/Devel-PatchPerl
-        dev-perl/IO-All
         dev-perl/local-lib
     test:
+        dev-perl/IO-All
         dev-perl/Path-Class
         dev-perl/Test-NoWarnings
         dev-perl/Test-Spec
