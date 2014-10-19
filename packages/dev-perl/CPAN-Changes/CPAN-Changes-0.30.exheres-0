@@ -12,11 +12,5 @@ that conform to the Perl specification.
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
-
-DEPENDENCIES="
-    build+run:
-        dev-perl/Text-Tabs+Wrap
-"
-
 BUGS_TO="will@worrbase.com"
 
