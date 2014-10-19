@@ -20,14 +20,14 @@ DEPENDENCIES="
         dev-perl/Log-Dispatch-Array
         dev-perl/Params-Util
         dev-perl/PathTools
-        dev-perl/Scalar-List-Utils
         dev-perl/String-Flogger
         dev-perl/Sub-Exporter
         dev-perl/Sub-Exporter-GlobExporter
+        dev-perl/Try-Tiny
+    test:
         dev-perl/Test-Deep
         dev-perl/Test-Fatal
         dev-perl/Test-Pod
-        dev-perl/Try-Tiny
 "
 
 BUGS_TO="will@worrbase.com"
