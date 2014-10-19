@@ -17,6 +17,7 @@ DEPENDENCIES="
     build+run:
         dev-perl/Sub-Exporter-Progressive
         dev-perl/syntax
+    test:
         dev-perl/Test-Pod
         dev-perl/Test-Requires
 "
