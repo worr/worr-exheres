@@ -15,12 +15,9 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/Class-Load
         dev-perl/Devel-StackTrace
         dev-perl/Moo
-        dev-perl/MooX-Types-MooseLike
-        dev-perl/Scalar-List-Utils
-        dev-perl/Test-Pod
+        dev-perl/Sub-Quote
 "
 
 BUGS_TO="will@worrbase.com"
