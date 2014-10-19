@@ -1,7 +1,7 @@
 # Copyright 2014 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require perl-module [ module_author=ADAMK ]
+require perl-module [ module_author=REHSACK ]
 
 SUMMARY="Locate per-dist and per-module shared files"
 DESCRIPTION="
