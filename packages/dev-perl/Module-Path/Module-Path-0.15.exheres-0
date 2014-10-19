@@ -16,7 +16,6 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-perl/Devel-FindPerl
-        dev-perl/PathTools
 "
 
 BUGS_TO="will@worrbase.com"
