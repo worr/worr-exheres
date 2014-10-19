@@ -24,10 +24,10 @@ DEPENDENCIES="
         dev-perl/Params-Util
         dev-perl/PathTools
         dev-perl/PPI
-        dev-perl/Scalar-List-Utils
         dev-perl/String-RewritePrefix
-        dev-perl/Test-Pod
         dev-perl/Try-Tiny
+    test:
+        dev-perl/Test-Pod
 "
 
 BUGS_TO="will@worrbase.com"
