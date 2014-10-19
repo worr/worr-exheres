@@ -16,7 +16,6 @@ DEPENDENCIES="
     build+run:
         dev-perl/Pod-Coverage
         dev-perl/Pod-Eventual
-        dev-perl/Pod-Parser
         dev-perl/Test-Pod
 "
 
