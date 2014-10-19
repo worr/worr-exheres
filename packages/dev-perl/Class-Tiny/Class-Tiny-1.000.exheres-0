@@ -13,15 +13,7 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
-DEPENDENCIES="
-    build+run:
-        dev-perl/PathTools
-        dev-perl/Pod-Coverage-TrustPod
-        dev-perl/Scalar-List-Utils
-        dev-perl/Test-CPAN-Meta
-        dev-perl/Test-Pod
-        dev-perl/Test-Pod-Coverage
-"
+DEPENDENCIES=""
 
 BUGS_TO="will@worrbase.com"
 
