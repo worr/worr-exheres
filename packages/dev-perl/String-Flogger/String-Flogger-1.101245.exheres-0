@@ -14,11 +14,10 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/JSON
+        dev-perl/JSON-MaybeXS
         dev-perl/Params-Util
-        dev-perl/PathTools
-        dev-perl/Scalar-List-Utils
         dev-perl/Sub-Exporter
+    test:
         dev-perl/Test-Pod
 "
 
