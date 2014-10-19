@@ -18,6 +18,7 @@ DEPENDENCIES="
     build+run:
         dev-perl/Module-Runtime
         dev-perl/Moose
+    test:
         dev-perl/Test-Fatal
 "
 
