@@ -20,6 +20,7 @@ DEPENDENCIES="
         dev-perl/CPAN-DistnameInfo
         dev-perl/CPAN-Meta
         dev-perl/CPAN-Meta-YAML
+        dev-perl/ExtUtils-MakeMaker-CPANfile
         dev-perl/File-Find-Rule-VCS
         dev-perl/IO-Capture
         dev-perl/JSON-MaybeXS
