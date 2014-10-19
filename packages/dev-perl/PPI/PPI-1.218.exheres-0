@@ -1,7 +1,7 @@
 # Copyright 2014 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require perl-module [ module_author=ADAMK ]
+require perl-module [ module_author=MITHALDU ]
 
 SUMMARY="Parse, Analyze and Manipulate Perl (without perl)"
 DESCRIPTION="
