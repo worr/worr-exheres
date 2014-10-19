@@ -18,6 +18,7 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-perl/File-pushd
+        dev-perl/Module-Pluggable
 "
 
 BUGS_TO="will@worrbase.com"
