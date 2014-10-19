@@ -1,7 +1,7 @@
 # Copyright 2014 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require perl-module [ module_author=ANDYA ]
+require perl-module [ module_author=BDFOY ]
 
 SUMMARY="Parse and manipulate Perl version strings"
 DESCRIPTION="
@@ -15,8 +15,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-perl/File-Slurp
-        dev-perl/Scalar-List-Utils
+        dev-perl/File-Slurp-Tiny
 "
 
 BUGS_TO="will@worrbase.com"
