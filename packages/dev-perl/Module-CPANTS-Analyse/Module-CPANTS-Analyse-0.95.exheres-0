@@ -22,16 +22,16 @@ DEPENDENCIES="
         dev-perl/CPAN-Meta-YAML
         dev-perl/File-Find-Rule-VCS
         dev-perl/IO-Capture
+        dev-perl/JSON-MaybeXS
         dev-perl/Module-ExtractUse
         dev-perl/Module-Pluggable
-        dev-perl/PathTools
         dev-perl/Set-Scalar
         dev-perl/Software-License
+        dev-perl/Text-Balanced
+    test:
         dev-perl/Test-Deep
         dev-perl/Test-NoWarnings
         dev-perl/Test-Warn
-        dev-perl/Text-Balanced
-        dev-perl/YAML
 "
 
 BUGS_TO="will@worrbase.com"
