@@ -16,6 +16,7 @@ DEPENDENCIES="
     build+run:
         dev-perl/Module-Runtime
         dev-perl/Moo
+    test:
         dev-perl/Test-Fatal
 "
 
