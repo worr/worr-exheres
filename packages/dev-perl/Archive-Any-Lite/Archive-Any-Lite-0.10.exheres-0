@@ -17,7 +17,7 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-perl/Archive-Zip
-        dev-perl/PathTools
+        dev-perl/ExtUtils-MakeMaker-CPANfile
         dev-perl/Test-UseAllModules
 "
 
