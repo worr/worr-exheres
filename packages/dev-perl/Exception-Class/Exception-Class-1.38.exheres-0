@@ -17,9 +17,9 @@ DEPENDENCIES="
     build+run:
         dev-perl/Class-Data-Inheritable
         dev-perl/Devel-StackTrace
-        dev-perl/PathTools
         dev-perl/Scalar-List-Utils
-        dev-perl/Test-Pod
+    test:
+        dev-perl/PathTools
 "
 
 BUGS_TO="will@worrbase.com"
