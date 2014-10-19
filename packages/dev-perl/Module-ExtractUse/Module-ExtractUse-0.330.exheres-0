@@ -18,6 +18,7 @@ DEPENDENCIES="
     build+run:
         dev-perl/Parse-RecDescent
         dev-perl/Pod-Strip
+    test:
         dev-perl/Test-Deep
         dev-perl/Test-NoWarnings
 "
