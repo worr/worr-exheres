@@ -16,10 +16,7 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-perl/PathTools
-        dev-perl/Pod-Coverage-TrustPod
         dev-perl/Scalar-List-Utils
-        dev-perl/Test-Pod
-        dev-perl/Test-Pod-Coverage
 "
 
 BUGS_TO="will@worrbase.com"
