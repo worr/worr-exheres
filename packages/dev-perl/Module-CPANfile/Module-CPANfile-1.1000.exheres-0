@@ -1,0 +1,24 @@
+# Copyright 2014 William Orr <will@worrbase.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=MIYAGAWA ]
+
+SUMMARY="Parse cpanfile"
+DESCRIPTION="
+Module::CPANfile is a tool to handle cpanfile format to load application specific
+dependencies, not just for CPAN distributions.
+"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/CPAN-Meta
+    test:
+        dev-perl/Test-Pod
+"
+
+BUGS_TO="will@worrbase.com"
+
