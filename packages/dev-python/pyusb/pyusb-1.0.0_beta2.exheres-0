@@ -29,3 +29,7 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
+src_test() {
+    PYTHONPATH=$(ls -d ${PWD}/build/lib*) edo ${PYTHON} -m tests.testall
+}
+
