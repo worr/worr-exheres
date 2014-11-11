@@ -14,7 +14,7 @@ usb backend library (currently, libusb 0.1.x, libusb 1.x, and OpenUSB).
 "
 
 HOMEPAGE="http://walac.github.io/pyusb/"
-DOWNLOADS="http://pypi.python.org/packages/source/${PN}/${PN}/${MYPNV}.tar.gz"
+DOWNLOADS="http://pypi.python.org/packages/source/${PN}/${MYPNV}.tar.gz"
 
 LICENCES="BSD-3"
 SLOT="0"
