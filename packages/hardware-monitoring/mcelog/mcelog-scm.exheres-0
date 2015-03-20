@@ -16,6 +16,10 @@ LICENCES="GPL-2.0"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
+DEPENDENCIES="
+    build:
+        dev-lang/python:* [[ note = [ building mcelog.conf.5 ] ]]
+"
 
 BUGS_TO="will@worrbase.com"
 
@@ -24,8 +28,8 @@ src_test() {
 }
 
 src_install() {
+    edo mkdir -p "${IMAGE}"/usr/share/man/man{5,8}
     default
-
     install_systemd_files
 }
 
