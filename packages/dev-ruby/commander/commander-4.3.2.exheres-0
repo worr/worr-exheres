@@ -16,7 +16,7 @@ MYOPTIONS=""
 HOMEPAGE="http://visionmedia.github.io/commander/"
 
 DEPENDENCIES="
-    dev-ruby/highline[~>1.6.11][ruby_abis:*(-)?]
+    dev-ruby/highline[~>1.7.1][ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"
