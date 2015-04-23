@@ -4,7 +4,7 @@
 MY_PV="1.0.0b2"
 MY_PNV="${PN}-${MY_PV}"
 
-require setuptools pypi
+require pypi setup-py [ import=distutils blacklist='none' work=${MY_PNV} ]
 
 SUMMARY="Python USB Access Module"
 DESCRIPTION="
@@ -20,17 +20,13 @@ LICENCES="BSD-3"
 SLOT="0"
 PLATFORMS="~amd64"
 
-WORK="${WORKBASE}/${MY_PNV}"
-
 DEPENDENCIES="
     build+run:
-        dev-libs/libusb
+        dev-libs/libusb:1
 "
 
 BUGS_TO="will@worrbase.com"
 
-src_test() {
-    cd "${WORK}/tests"
-    PYTHONPATH=$(ls -d ${WORK}/build/lib*) edo ${PYTHON} testall.py
-}
+# they want to access the USB ports
+RESTRICT="test"
 
