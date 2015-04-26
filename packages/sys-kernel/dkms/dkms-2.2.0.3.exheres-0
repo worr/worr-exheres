@@ -1,6 +1,8 @@
 # Copyright 2012 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require bash-completion
+
 SUMMARY="Dynamically rebuild kernel modules"
 DESCRIPTION="
 DKMS includes utilities to dynamically rebuild kernel modules when the kernel is updated. It also
@@ -29,12 +31,24 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
+MY_BASHDIR="${TEMP}/.${PNV}-bash_completion.d"
+
 DEFAULT_SRC_INSTALL_PARAMS=(
     SBIN="${IMAGE}/usr/$(exhost --target)/bin"
     LIBDIR="${IMAGE}/usr/$(exhost --target)/lib/dkms"
+    BASHDIR="${MY_BASHDIR}"
 )
 
 src_compile() {
     :
+}
+
+src_install() {
+    default
+
+    local c
+    for c in "${MY_BASHDIR}"/*; do
+        dobashcompletion "$c"
+    done
 }
 
