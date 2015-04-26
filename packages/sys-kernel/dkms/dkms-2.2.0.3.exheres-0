@@ -29,7 +29,10 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-DEFAULT_SRC_INSTALL_PARAMS=( LIBDIR="${IMAGE}/usr/${LIBDIR}" )
+DEFAULT_SRC_INSTALL_PARAMS=(
+    SBIN="${IMAGE}/usr/$(exhost --target)/bin"
+    LIBDIR="${IMAGE}/usr/$(exhost --target)/lib/dkms"
+)
 
 src_compile() {
     :
