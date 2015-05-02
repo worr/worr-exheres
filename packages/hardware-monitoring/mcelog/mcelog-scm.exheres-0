@@ -23,12 +23,15 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
+src_prepare() {
+    edo sed -i -e "s:sbin:$(exhost --target)/bin:" Makefile
+}
+
 src_test() {
     : # Disabled, as tests can only run as root
 }
 
 src_install() {
-    edo mkdir -p "${IMAGE}"/usr/share/man/man{5,8}
     default
     install_systemd_files
 }
