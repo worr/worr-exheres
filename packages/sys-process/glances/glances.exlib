@@ -26,3 +26,12 @@ src_test() {
     python unitest.py
     esandbox disallow_net --connect "inet:127.0.0.1/0@7634"
 }
+
+src_install() {
+    distutils_src_install
+
+    # XXX: Remove duplicate doc installed by emagicdocs (distutils)
+    edo rm -r ${IMAGE}/usr/share/doc/${PNVR}
+    # And move the original doc
+    edo mv ${IMAGE}/usr/share/doc/{${PN},${PNVR}}
+}
