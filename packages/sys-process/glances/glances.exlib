@@ -1,7 +1,7 @@
 # Copyright 2012 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require setuptools github [ user=nicolargo ]
+require github [ user=nicolargo ] setup-py [ import=setuptools ]
 
 SUMMARY="A curses monitoring tool for linux"
 DESCRIPTION="
@@ -15,20 +15,19 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-lang/python:*[>=2.6]
-        dev-python/psutil[>=2.0.0]
+        dev-python/psutil[>=3.2.2][python_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"
 
-src_test() {
+test_one_multibuild() {
     esandbox allow_net --connect "inet:127.0.0.1/0@7634"
-    python unitest.py
+    PYTHONPATH="$(ls -d ${PWD}/build/lib*)" edo ${PYTHON} unitest.py
     esandbox disallow_net --connect "inet:127.0.0.1/0@7634"
 }
 
 src_install() {
-    distutils_src_install
+    setup-py_src_install
 
     # XXX: Remove duplicate doc installed by emagicdocs (distutils)
     edo rm -r ${IMAGE}/usr/share/doc/${PNVR}
