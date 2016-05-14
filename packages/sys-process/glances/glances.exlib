@@ -16,7 +16,48 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-python/psutil[>=3.2.2][python_abis:*(-)?]
+    suggestion:
+        (
+            dev-python/bottle[python_abis:*(-)?]
+            dev-python/requests[python_abis:*(-)?]
+        ) [[
+            *group-name = web
+            description = [ Web plugin ]
+        ]]
+        (
+            dev-python/matplotlib[python_abis:*(-)?]
+        ) [[
+            *group-name = chart
+            description = [ Chart plugin ]
+        ]]
+        (
+            dev-python/zeroconf[>=0.17][python_abis:*(-)?]
+        ) [[
+            *group-name = browser
+            description = [ Browser plugin ]
+        ]]
+        (
+            dev-python/netifaces
+        ) [[
+            *group-name = ip
+            description = [ IP plugin ]
+        ]]
+        (
+            dev-python/docker-py[python_abis:*(-)?]
+        ) [[
+            *group-name = docker
+            description = [ Docker plugin ]
+        ]]
 "
+# sensors - py3sensors
+# batinfo - batinfo
+# snmp - pysnmp
+# chart - matplotlib
+# raid - pymdstat
+# export - influxdb, potsdb, statsd, pika
+# action - pystache
+# cpuinfo - py-cpuinfo
+# folders - scandir
 
 BUGS_TO="will@worrbase.com"
 
