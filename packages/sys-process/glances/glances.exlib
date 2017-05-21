@@ -3,6 +3,8 @@
 
 require github [ user=nicolargo ] setup-py [ import=setuptools ]
 
+export_exlib_phases src_install
+
 SUMMARY="A curses monitoring tool for linux"
 DESCRIPTION="
 Glances is a CLI curses based monitoring tool for GNU/Linux and BSD OS.
@@ -67,7 +69,7 @@ test_one_multibuild() {
     esandbox disallow_net --connect "inet:127.0.0.1/0@7634"
 }
 
-src_install() {
+glances_src_install() {
     setup-py_src_install
 
     # XXX: Remove duplicate doc installed by emagicdocs (distutils)
