@@ -27,7 +27,6 @@ DEPENDENCIES="
     test:
         dev-perl/Test-Deep
         dev-perl/Test-Requires
-        dev-perl/Test-Tester
         dev-perl/Test-Warnings
 "
 
