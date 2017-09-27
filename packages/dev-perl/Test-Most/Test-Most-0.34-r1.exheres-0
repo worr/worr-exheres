@@ -18,7 +18,6 @@ DEPENDENCIES="
         dev-perl/Test-Deep
         dev-perl/Test-Differences
         dev-perl/Test-Exception
-        dev-perl/Test-Harness
         dev-perl/Test-Warn
 "
 
