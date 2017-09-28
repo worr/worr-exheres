@@ -27,7 +27,6 @@ DEPENDENCIES="
         dev-perl/Module-Pluggable
         dev-perl/Set-Scalar
         dev-perl/Software-License
-        dev-perl/Text-Balanced
     test:
         dev-perl/Test-Deep
         dev-perl/Test-NoWarnings
