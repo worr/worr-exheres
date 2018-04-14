@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require bash-completion
+require github [ user=dell tag="v${PV}" ]
 
 SUMMARY="Dynamically rebuild kernel modules"
 DESCRIPTION="
@@ -10,7 +11,6 @@ allows developers to build DKMS-enabled tarballs, rpms and debs that will be reb
 update.
 "
 HOMEPAGE="http://linux.dell.com/dkms/"
-DOWNLOADS="http://linux.dell.com/dkms/permalink/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
