@@ -1,10 +1,7 @@
 # Copyright 2012 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-MY_PV="1.0.0b2"
-MY_PNV="${PN}-${MY_PV}"
-
-require pypi setup-py [ import=distutils blacklist='none' work=${MY_PNV} ]
+require pypi setup-py [ import=setuputils blacklist='none' ]
 
 SUMMARY="Python USB Access Module"
 DESCRIPTION="
@@ -13,8 +10,7 @@ additional code in any environment with Python >= 2.4, ctypes and an pre-built
 usb backend library (currently, libusb 0.1.x, libusb 1.x, and OpenUSB).
 "
 
-HOMEPAGE="http://walac.github.io/pyusb/"
-DOWNLOADS="http://pypi.python.org/packages/source/${PN:0:1}/${PN}/${MY_PNV}.tar.gz"
+HOMEPAGE="https://${PN}.github.io/${PN}/"
 
 LICENCES="BSD-3"
 SLOT="0"
@@ -27,6 +23,7 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
-# they want to access the USB ports
+# Tests aren't part of the tarball (1.0.2)
 RESTRICT="test"
+
 
