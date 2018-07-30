@@ -27,6 +27,8 @@ DEPENDENCIES="
         dev-perl/Sub-Install
         dev-perl/Test-Fatal
         dev-perl/Test-Pod
+    test:
+        dev-perl/Module-Pluggable
 "
 
 BUGS_TO="will@worrbase.com"
