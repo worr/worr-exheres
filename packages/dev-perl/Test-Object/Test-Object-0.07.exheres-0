@@ -16,6 +16,8 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
+    build:
+        dev-perl/Module-Install
     build+run:
         dev-perl/PathTools
         dev-perl/Scalar-List-Utils

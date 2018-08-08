@@ -19,6 +19,7 @@ DEPENDENCIES="
         dev-perl/Module-Runtime
         dev-perl/Moose
     test:
+        dev-perl/namespace-autoclean
         dev-perl/Test-Fatal
 "
 

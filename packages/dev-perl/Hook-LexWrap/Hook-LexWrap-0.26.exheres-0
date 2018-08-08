@@ -1,7 +1,7 @@
 # Copyright 2014 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require perl-module [ module_author=CHORNY ]
+require perl-module [ module_author=ETHER ]
 
 SUMMARY="Lexically scoped subroutine wrappers"
 DESCRIPTION="
