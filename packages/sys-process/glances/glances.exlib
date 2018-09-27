@@ -17,7 +17,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-python/psutil[>=3.2.2][python_abis:*(-)?]
+        dev-python/psutil[>=5.3.0][python_abis:*(-)?]
     suggestion:
         (
             dev-python/bottle[python_abis:*(-)?]
@@ -33,7 +33,7 @@ DEPENDENCIES="
             description = [ Chart plugin ]
         ]]
         (
-            dev-python/zeroconf[>=0.17][python_abis:*(-)?]
+            dev-python/zeroconf[>=0.19.1][python_abis:*(-)?]
         ) [[
             *group-name = browser
             description = [ Browser plugin ]
@@ -63,6 +63,11 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
+# Incompatible with python 2 files
+PYTHON_BYTECOMPILE_EXCLUDES=(
+    glances/exports/glances_mqtt.py
+)
+
 test_one_multibuild() {
     esandbox allow_net --connect "inet:127.0.0.1/0@7634"
     PYTHONPATH="$(ls -d ${PWD}/build/lib*)" edo ${PYTHON} unitest.py
@@ -77,3 +82,4 @@ glances_src_install() {
     # And move the original doc
     edo mv ${IMAGE}/usr/share/doc/{${PN},${PNVR}}
 }
+
