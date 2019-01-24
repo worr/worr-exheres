@@ -19,10 +19,11 @@ DEPENDENCIES="
     build+run:
         dev-db/tokyocabinet
         dev-libs/pcre
-        virtual/libssl
         libvirt? ( virtualization-lib/libvirt )
         mysql? ( dev-db/mysql )
         postgresql? ( dev-db/postgresql )
+        providers:libressl? ( dev-libs/libressl:= )
+        providers:openssl? ( dev-libs/openssl )
 "
 
 BUGS_TO="will@worrbase.com"
