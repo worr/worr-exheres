@@ -1,8 +1,9 @@
 # Copyright 2012 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require bash-completion
-require github [ user=dell tag="v${PV}" ]
+require github [ user=dell tag="v${PV}" ] \
+    bash-completion \
+    systemd-service [ systemd_files=[ dkms.service ] ]
 
 SUMMARY="Dynamically rebuild kernel modules"
 DESCRIPTION="
@@ -10,7 +11,6 @@ DKMS includes utilities to dynamically rebuild kernel modules when the kernel is
 allows developers to build DKMS-enabled tarballs, rpms and debs that will be rebuilt on kernel
 update.
 "
-HOMEPAGE="http://linux.dell.com/dkms/"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -50,5 +50,7 @@ src_install() {
     for c in "${MY_BASHDIR}"/*; do
         dobashcompletion "$c"
     done
+
+    install_systemd_files
 }
 
