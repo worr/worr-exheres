@@ -7,17 +7,16 @@ SUMMARY="ruby inotify hooks"
 DESCRIPTION="
 A Ruby wrapper for Linux's inotify, using FFI
 "
+HOMEPAGE+=" http://github.com/nex3/rb-inotify"
 
 LICENCES="MIT"
-
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
-HOMEPAGE="http://github.com/nex3/rb-inotify"
 
 DEPENDENCIES="
     build+run:
-        dev-ruby/ffi[ruby_abis:*(-)?]
+        dev-ruby/ffi[>=1.0][ruby_abis:*(-)?]
 "
 
 BUGS_TO="will@worrbase.com"
