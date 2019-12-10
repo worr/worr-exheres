@@ -9,7 +9,6 @@ FSEvents API with Signals catching (without RubyCocoa)
 "
 
 LICENCES="MIT"
-
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
