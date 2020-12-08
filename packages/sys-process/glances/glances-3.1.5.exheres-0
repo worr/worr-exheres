@@ -1,9 +1,0 @@
-# Copyright 2012-2014 William Orr <will@worrbase.com>
-# Distributed under the terms of the GNU General Public License v2
-
-GITHUB_TAG=v${PV}
-require glances
-
-SLOT="0"
-PLATFORMS="~amd64"
-
