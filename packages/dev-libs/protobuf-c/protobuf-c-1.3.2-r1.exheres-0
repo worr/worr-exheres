@@ -22,3 +22,6 @@ DEPENDENCIES="
 
 BUGS_TO="will@worrbase.com"
 
+src_configure() {
+    LDFLAGS="${LDFLAGS} -Wl,--no-as-needed" econf
+}
