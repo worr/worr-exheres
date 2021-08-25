@@ -1,7 +1,7 @@
 # Copyright 2013 William Orr <will@worrbase.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ tag=v${PV} ] autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
+require github [ tag=v${PV} ] autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.16 1.15 ] ]
 
 SUMMARY="C bindings for the protobuf library"
 DESCRIPTION="
